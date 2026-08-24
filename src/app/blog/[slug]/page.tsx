@@ -63,6 +63,61 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </p>
       </article>
 
+      {/* Read Next Section */}
+      <section className="mt-32 border-t border-neutral-800 pt-16 -mx-6 md:-mx-12 px-6 md:px-12">
+        <h2 className="font-display text-3xl md:text-5xl uppercase tracking-tighter mb-12">
+          READ NEXT
+        </h2>
+        <div className="flex flex-col divide-y divide-neutral-800 border-t border-neutral-800">
+          {[
+            { title: "The Death of the Drop Shadow", slug: "the-death-of-the-drop-shadow", date: "Oct 12, 2025", tag: "Design", readTime: "5 MIN", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
+            { title: "Why Web3 Needs Typography", slug: "why-web3-needs-typography", date: "Sep 04, 2025", tag: "Web3", readTime: "4 MIN", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=600&q=80" },
+            { title: "Motion as Function", slug: "motion-as-function", date: "Aug 18, 2025", tag: "UX", readTime: "7 MIN", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80" },
+            { title: "Optimizing Three.js", slug: "optimizing-three-js", date: "Jul 22, 2025", tag: "Dev", readTime: "6 MIN", img: "https://images.unsplash.com/photo-1617042375876-a13e36732a04?w=600&q=80" }
+          ]
+            .filter((post) => post.slug !== resolvedParams.slug)
+            .slice(0, 3)
+            .map((post, i) => (
+              <Link href={`/blog/${post.slug}`} key={i} className="group flex flex-col md:flex-row gap-0 hover:bg-white hover:text-black transition-all duration-300 cursor-crosshair -mx-6 md:-mx-12 px-6 md:px-12">
+
+                {/* IMAGE — left on desktop */}
+                <div className="hidden md:block w-[260px] lg:w-[320px] shrink-0 self-stretch overflow-hidden">
+                  <div className="relative h-full min-h-[220px] overflow-hidden">
+                    <img
+                      src={post.img}
+                      alt={post.title}
+                      className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    />
+                  </div>
+                </div>
+
+                {/* CONTENT */}
+                <div className="flex flex-col justify-between flex-1 py-8 md:px-10 gap-6">
+                  <div className="flex flex-col gap-3">
+                    <h3 className="font-display text-3xl md:text-4xl uppercase tracking-tighter transition-all line-clamp-2">{post.title}</h3>
+                    <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 group-hover:text-neutral-700 transition-colors">
+                      {post.date} &nbsp;·&nbsp; {post.readTime} READ &nbsp;·&nbsp; {post.tag}
+                    </p>
+                  </div>
+
+                  {/* IMAGE — mobile only */}
+                  <div className="block md:hidden w-full h-[200px] overflow-hidden">
+                    <img
+                      src={post.img}
+                      alt={post.title}
+                      className="w-full h-full object-cover grayscale"
+                    />
+                  </div>
+
+                  <div className="flex justify-end">
+                    <span className="inline-block border border-white group-hover:border-black px-6 py-3 font-mono text-xs tracking-widest font-bold uppercase transition-colors">READ ARTICLE</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+        </div>
+      </section>
+
     </main>
   );
 }
