@@ -1,10 +1,58 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #000000;
-  --color-foreground: #ffffff;
+  --color-background: var(--theme-bg);
+  --color-foreground: var(--theme-fg);
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-neutral-950: var(--theme-neutral-950);
+  --color-neutral-900: var(--theme-neutral-900);
+  --color-neutral-800: var(--theme-neutral-800);
+  --color-neutral-700: var(--theme-neutral-700);
+  --color-neutral-600: var(--theme-neutral-600);
+  --color-neutral-500: var(--theme-neutral-500);
+  --color-neutral-400: var(--theme-neutral-400);
+  --color-neutral-300: var(--theme-neutral-300);
+  
+  --color-white: var(--theme-white);
+  --color-black: var(--theme-black);
+}
+
+:root {
+  /* Default Dark Mode */
+  --theme-bg: #000000;
+  --theme-fg: #ffffff;
+  
+  --theme-neutral-950: #0a0a0a;
+  --theme-neutral-900: #171717;
+  --theme-neutral-800: #262626;
+  --theme-neutral-700: #404040;
+  --theme-neutral-600: #525252;
+  --theme-neutral-500: #737373;
+  --theme-neutral-400: #a3a3a3;
+  --theme-neutral-300: #d4d4d4;
+  
+  --theme-white: #ffffff;
+  --theme-black: #000000;
+}
+
+html.light-mode {
+  /* Light Mode */
+  --theme-bg: #f9f9f9;
+  --theme-fg: #111111;
+  
+  --theme-neutral-950: #f0f0f0; /* Off-white for section bgs */
+  --theme-neutral-900: #e5e5e5;
+  --theme-neutral-800: #d4d4d4; /* Borders */
+  --theme-neutral-700: #a3a3a3;
+  --theme-neutral-600: #737373;
+  --theme-neutral-500: #525252;
+  --theme-neutral-400: #404040;
+  --theme-neutral-300: #262626;
+  
+  --theme-white: #111111; /* White text becomes very dark gray */
+  --theme-black: #ffffff; /* Black backgrounds become pure white */
 }
 
 
@@ -18,4 +66,27 @@
 @keyframes marquee-reverse {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0%); }
+}
+
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
+}
+
+/* View Transitions for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
 }

@@ -2,8 +2,15 @@
 
 import Lenis from 'lenis';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function SmoothScroller({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,

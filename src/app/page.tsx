@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 function WorkSection() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -38,7 +39,7 @@ function WorkSection() {
           <div className="flex-1 flex items-center">
             <motion.div style={{ x }} className="flex gap-4 px-12 w-max">
               {projects.map((project, i) => (
-                <div key={i} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-neutral-950 overflow-hidden border border-neutral-800 hover:border-white transition-colors group shrink-0 flex items-center justify-center">
+                <div key={i} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[#ffffff] transition-colors group shrink-0 flex items-center justify-center">
                   {/* Background image — grayscale by default, color on hover */}
                   <img
                     src={project.img}
@@ -46,16 +47,16 @@ function WorkSection() {
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 z-0"
                   />
                   {/* Dark overlay fades out on hover to reveal image */}
-                  <div className="absolute inset-0 bg-black/70 group-hover:bg-black/30 transition-colors duration-700 z-10" />
+                  <div className="absolute inset-0 bg-[#000000]/70 group-hover:bg-[#000000]/30 transition-colors duration-700 z-10" />
                   {/* Content overlay — always visible */}
                   <div className="absolute p-6 flex flex-col justify-between h-full w-full z-20">
                     <div className="flex justify-between items-start">
-                      <span className="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
-                      <ArrowUpRight size={32} className="text-white" />
+                      <span className="px-4 py-2 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
+                      <ArrowUpRight size={32} className="text-[#ffffff]" />
                     </div>
                     <div>
-                      <h3 className="font-display text-3xl md:text-5xl text-white tracking-tighter uppercase">{project.title}</h3>
-                      <p className="text-neutral-400 mt-3 font-mono text-sm uppercase tracking-widest">{project.year}</p>
+                      <h3 className="font-display text-3xl md:text-5xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+                      <p className="text-[#a3a3a3] mt-3 font-mono text-sm uppercase tracking-widest">{project.year}</p>
                     </div>
                   </div>
                 </div>
@@ -72,21 +73,21 @@ function WorkSection() {
         </div>
         <div className="flex flex-col gap-6 px-6">
           {projects.map((project, i) => (
-            <div key={i} className="w-full relative bg-neutral-950 border border-neutral-800 overflow-hidden flex flex-col justify-between h-[400px] group">
+            <div key={i} className="w-full relative bg-[#0a0a0a] border border-[#262626] overflow-hidden flex flex-col justify-between h-[400px] group">
               {/* Background image */}
               <img
                 src={project.img}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 z-0"
               />
-              <div className="absolute inset-0 bg-black/65 group-hover:bg-black/30 transition-colors duration-700 z-10" />
+              <div className="absolute inset-0 bg-[#000000]/65 group-hover:bg-[#000000]/30 transition-colors duration-700 z-10" />
               <div className="flex justify-between items-start relative z-20 p-6">
-                <span className="px-3 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
-                <ArrowUpRight size={28} className="text-white" />
+                <span className="px-3 py-1.5 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
+                <ArrowUpRight size={28} className="text-[#ffffff]" />
               </div>
               <div className="relative z-20 p-6">
-                <h3 className="font-display text-3xl text-white tracking-tighter uppercase">{project.title}</h3>
-                <p className="text-neutral-400 mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
+                <h3 className="font-display text-3xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+                <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
               </div>
             </div>
           ))}
@@ -142,6 +143,7 @@ function ScrambleText({ text }: { text: string }) {
 export default function Home() {
   const containerRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (menuOpen) {
@@ -154,17 +156,21 @@ export default function Home() {
   return (
     <main ref={containerRef} className="min-h-screen text-white selection:bg-white selection:text-black relative">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center mix-blend-difference text-white">
-        <a href="#" className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity">JOHN.</a>
-        <div className="flex gap-6 text-sm font-medium hidden md:flex">
-          <a href="#about" className="hover:line-through transition-all">ABOUT</a>
-          <a href="#work-desktop" className="hover:line-through transition-all">WORK</a>
-          <a href="#experience" className="hover:line-through transition-all">EXPERIENCE</a>
-          <a href="#blog" className="hover:line-through transition-all">BLOG</a>
-          <a href="#contact" className="hover:line-through transition-all">CONTACT</a>
-        </div>
+      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center">
+        <Link 
+          href="/" 
+          onClick={(e) => {
+            if (window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity"
+        >
+          JOHN.
+        </Link>
         <button 
-          className="md:hidden relative z-[60] w-12 h-12 flex flex-col items-end justify-center gap-[6px] group" 
+          className="relative z-[60] w-12 h-12 flex flex-col items-end justify-center gap-[6px] group" 
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className={`block h-[3px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-8 -rotate-45 translate-y-[9px]" : "w-10 group-hover:w-6"}`} />
@@ -184,13 +190,14 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           >
             {/* Nav links */}
-            <nav className="flex flex-col gap-1">
+            <nav className="flex flex-col gap-1 md:gap-0">
               {[
+                { label: "Home", href: "#" },
                 { label: "About", href: "#about" },
-                { label: "Work", href: "#work-mobile" },
+                { label: "Work", href: "#work" },
                 { label: "Experience", href: "#experience" },
+                { label: "Credential", href: "#certifications" },
                 { label: "Blog", href: "#blog" },
-                { label: "Contact", href: "#contact" },
               ].map((item, i) => (
                 <div key={item.label} className="overflow-hidden flex items-center gap-4">
                   <motion.span
@@ -203,7 +210,7 @@ export default function Home() {
                   <motion.a
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block font-display text-[13vw] leading-none tracking-tighter uppercase text-white hover:text-neutral-500 transition-colors"
+                    className="block font-display text-[13vw] md:text-[6vw] lg:text-[5vw] leading-none tracking-tighter uppercase text-white hover:text-neutral-500 transition-colors py-1"
                     initial={{ y: "110%" }}
                     animate={{ y: "0%" }}
                     exit={{ y: "110%" }}
@@ -217,21 +224,34 @@ export default function Home() {
 
             {/* Bottom bar */}
             <motion.div
-              className="absolute bottom-8 left-8 right-8 flex justify-between items-center border-t border-neutral-800 pt-6"
+              className="absolute bottom-8 left-8 right-8 flex justify-end items-end md:items-center gap-4 border-t border-neutral-800 pt-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ delay: 0.6, duration: 0.4 }}
             >
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-600">JOHN — Portfolio</span>
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-600">2025</span>
+              <button 
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  toggleTheme(e);
+                }} 
+                className="w-12 h-12 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                aria-label="Toggle theme"
+              >
+                {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+              </button>
+              <Link href="/about" onClick={() => setMenuOpen(false)} className="group flex items-center gap-3 w-fit border border-neutral-700 rounded-full px-6 py-3 hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                <span className="font-mono text-xs uppercase tracking-widest text-neutral-400 group-hover:text-black transition-colors">Go to Resume</span>
+                <ArrowRight size={16} className="text-neutral-400 group-hover:text-black transition-colors" />
+              </Link>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
+
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center md:justify-end p-6 md:p-12 border-b border-neutral-800 relative overflow-hidden pt-32 md:pt-0">
+      <section id="hero" className="min-h-screen flex flex-col justify-center md:justify-end p-6 md:p-12 border-b border-neutral-800 relative overflow-hidden pt-32 md:pt-0">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -262,9 +282,6 @@ export default function Home() {
             Crafting digital experiences through the intersection of design, motion, and code.
           </p>
         </div>
-        
-        {/* Abstract Background Element for Media-Heavy Feel */}
-        <div className="absolute top-1/4 right-0 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-neutral-900 rounded-full blur-[100px] opacity-50 z-0 pointer-events-none" />
       </section>
 
       {/* About Me */}
@@ -286,17 +303,19 @@ export default function Home() {
             Blurring the line between art and code. I use brutalist structures, striking typography, and precise motion to build digital experiences that don't just exist, but <span className="text-white font-display italic">perform.</span>
           </p>
 
-          <button data-mascot-target="about-btn" className="mt-16 flex items-center gap-3 border border-neutral-700 rounded-full px-8 py-4 hover:bg-white hover:text-black hover:border-white transition-all duration-300 font-display text-lg uppercase tracking-wider">
-            Read Full Manifesto <ArrowRight size={20} />
-          </button>
+          <Link href="/about" data-mascot-target="about-btn" className="mt-16 flex items-center gap-3 border border-neutral-700 rounded-full px-8 py-4 hover:bg-white hover:text-black hover:border-white transition-all duration-300 font-display text-lg uppercase tracking-wider">
+            Get to know me more <ArrowRight size={20} />
+          </Link>
         </ScrollReveal>
       </section>
 
       {/* Projects */}
-      <WorkSection />
+      <div id="work">
+        <WorkSection />
+      </div>
 
       {/* Experience */}
-      <section id="experience" className="py-24 px-6 md:px-12 border-b border-neutral-800">
+      <section id="experience" className="py-32 md:py-48 px-6 md:px-12 border-b border-neutral-800">
         <ScrollReveal className="w-full">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
           <div className="space-y-16 border-l border-neutral-800 pl-8 ml-2 md:ml-4">
@@ -321,7 +340,7 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section id="tech-stack" className="py-24 border-b border-neutral-800 overflow-hidden relative flex flex-col gap-12">
+      <section id="tech-stack" className="py-32 md:py-48 border-b border-neutral-800 overflow-hidden relative flex flex-col gap-12">
         <ScrollReveal className="w-full">
           <div className="px-6 md:px-12" data-mascot-target="arsenal-header">
             <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white mb-8">THE ARSENAL</h2>
@@ -350,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* Certifications */}
-      <section id="certifications" className="py-24 px-6 md:px-12 border-b border-neutral-800">
+      <section id="certifications" className="py-32 md:py-48 px-6 md:px-12 border-b border-neutral-800">
         <ScrollReveal className="w-full">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr">
@@ -365,10 +384,10 @@ export default function Home() {
               <div key={i} className="p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
                 <div>
                   <span className="font-mono text-neutral-600 text-xl">{cert.id}</span>
-                  <h3 className="font-display text-3xl md:text-4xl mt-4 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase">{cert.name}</h3>
+                  <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-4 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words">{cert.name}</h3>
                 </div>
                 <div className="mt-8 border-t border-neutral-800 pt-4">
-                  <p className="text-sm font-sans text-neutral-400 uppercase tracking-widest">{cert.issuer}</p>
+                  <p className="text-sm font-sans text-neutral-400 uppercase tracking-widest break-words">{cert.issuer}</p>
                   <p className="font-mono text-xs text-neutral-500 mt-2 uppercase tracking-widest">{cert.year}</p>
                 </div>
               </div>
@@ -378,7 +397,7 @@ export default function Home() {
       </section>
 
       {/* Blog */}
-      <section id="blog" className="py-24 px-6 md:px-12 border-b border-neutral-800">
+      <section id="blog" className="py-32 md:py-48 px-6 md:px-12 border-b border-neutral-800">
         <ScrollReveal className="w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <h2 className="font-display text-4xl md:text-6xl tracking-tight uppercase" data-mascot-target="blog-title">BLOG</h2>
