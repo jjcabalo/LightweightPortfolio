@@ -7,7 +7,7 @@ import * as THREE from "three";
 import { useTheme } from "@/components/ThemeProvider";
 
 function Particles({ isLight }: { isLight: boolean }) {
-  const count = 1000; // slightly reduced for performance
+  const count = 3000; // Increased particle count
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {

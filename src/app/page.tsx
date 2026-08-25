@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Mail, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,19 +12,31 @@ function WorkSection() {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   // Uses dynamic calculation to stop exactly at the end of the content regardless of screen size
   const x = useTransform(scrollYProgress, (p) => `calc(-${p * 100}% + ${p * 100}vw)`);
 
   const projects = [
-    { title: "Ethereal Echoes", category: "Interactive Install", year: "2023", img: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80" },
-    { title: "Brutal Genesis", category: "Web3 Platform", year: "2024", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&q=80" },
-    { title: "Void Analytics", category: "Dashboard UI", year: "2024", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-    { title: "Chromatic Shift", category: "Motion Identity", year: "2025", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
-    { title: "Neon Construct", category: "Brand System", year: "2025", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" },
-    { title: "Hyper Flux", category: "WebGL Experience", year: "2025", img: "https://images.unsplash.com/photo-1617042375876-a13e36732a04?w=800&q=80" },
-    { title: "Kinetics", category: "Type Specimen", year: "2025", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" }
+    { title: "Ethereal Echoes", category: "Interactive Install", year: "2023", date: "OCT 2023", img: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80", role: "Lead Creative Technologist", tech: "WebGL, Three.js, Web Audio API", desc: "An immersive audio-reactive WebGL installation that transforms physical space into dynamic soundscapes. Featured in galleries across NYC, the project uses real-time skeletal tracking to bridge physical movement and digital art." },
+    { title: "Brutal Genesis", category: "Web3 Platform", year: "2024", date: "FEB 2024", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&q=80", role: "UI/UX & Frontend Lead", tech: "Next.js, Solidity, Ethers.js", desc: "A hyper-minimalist NFT marketplace built with brutalist design principles. Focusing on typography, stark contrasts, and seamless wallet integrations through zero-gas meta-transactions." },
+    { title: "Void Analytics", category: "Dashboard UI", year: "2024", date: "JUN 2024", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", role: "Product Designer", tech: "React, D3.js, Tailwind", desc: "A sleek, cinematic data visualization dashboard created for processing massive datasets of real-time financial metrics, blending complex D3.js charting with high-performance React architecture." },
+    { title: "Chromatic Shift", category: "Motion Identity", year: "2025", date: "JAN 2025", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", role: "Art Director", tech: "Cinema4D, GSAP, Figma", desc: "A comprehensive brand overhaul anchored by kinetic typography and dynamic color systems, serving as the digital foundation for a leading European creative agency." },
+    { title: "Neon Construct", category: "Brand System", year: "2025", date: "MAR 2025", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80", role: "Brand Designer", tech: "Illustrator, After Effects", desc: "An experimental visual identity exploring the collision of 90s retro-futurism and brutalist structural design, complete with generative assets." },
+    { title: "Hyper Flux", category: "WebGL Experience", year: "2025", date: "MAY 2025", img: "https://images.unsplash.com/photo-1617042375876-a13e36732a04?w=800&q=80", role: "Creative Developer", tech: "Three.js, GLSL Shaders", desc: "A browser-based interactive experience pushing the limits of Three.js. Users navigate through fluid, evolving geometries generated procedurally on the GPU." },
+    { title: "Kinetics", category: "Type Specimen", year: "2025", date: "AUG 2025", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80", role: "Interaction Designer", tech: "Matter.js, GSAP", desc: "A digital type specimen celebrating variable fonts. Scroll-linked animations and physics-based interactions let users physically 'play' with typography." }
   ];
+
+  // Prevent scrolling when popup is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+      (window as any).lenis?.stop();
+    } else {
+      document.body.style.overflow = "unset";
+      (window as any).lenis?.start();
+    }
+  }, [selectedProject]);
 
   return (
     <>
@@ -39,17 +51,47 @@ function WorkSection() {
           <div className="flex-1 flex items-center">
             <motion.div style={{ x }} className="flex gap-4 px-12 w-max">
               {projects.map((project, i) => (
-                <div key={i} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[#ffffff] transition-colors group shrink-0 flex items-center justify-center">
+                <div key={i} onClick={() => setSelectedProject({...project, index: i})} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[#ffffff] transition-colors group shrink-0 flex items-center justify-center cursor-crosshair">
                   {/* Background image — grayscale by default, color on hover */}
                   <img
                     src={project.img}
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 z-0"
                   />
-                  {/* Dark overlay fades out on hover to reveal image */}
-                  <div className="absolute inset-0 bg-[#000000]/70 group-hover:bg-[#000000]/30 transition-colors duration-700 z-10" />
+                  {/* Dark overlay fades out on hover to reveal background image */}
+                  <div className="absolute inset-0 bg-[#000000]/80 group-hover:bg-[#000000]/40 transition-colors duration-700 z-10" />
+                  
+                  {/* Center Device Mockups */}
+                  <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none scale-[0.75] lg:scale-90 xl:scale-100 transition-transform duration-500">
+                    {i % 2 === 0 ? (
+                      /* Phone Mockup (iPhone Style) */
+                      <div className="w-[144px] h-[284px] md:w-[164px] md:h-[324px] p-[2px] rounded-[26px] md:rounded-[34px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[24px] md:rounded-[32px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[20px] md:rounded-[26px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                            <img src={project.img} alt="Phone view" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Monitor/Tablet Mockup (iPad Style) */
+                      <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                            <img src={project.img} alt="Monitor view" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Content overlay — always visible */}
-                  <div className="absolute p-6 flex flex-col justify-between h-full w-full z-20">
+                  <div className="absolute p-6 flex flex-col justify-between h-full w-full z-30">
                     <div className="flex justify-between items-start">
                       <span className="px-4 py-2 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
                       <ArrowUpRight size={32} className="text-[#ffffff]" />
@@ -73,26 +115,130 @@ function WorkSection() {
         </div>
         <div className="flex flex-col gap-6 px-6">
           {projects.map((project, i) => (
-            <div key={i} className="w-full relative bg-[#0a0a0a] border border-[#262626] overflow-hidden flex flex-col justify-between h-[400px] group">
-              {/* Background image */}
-              <img
-                src={project.img}
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 z-0"
-              />
-              <div className="absolute inset-0 bg-[#000000]/65 group-hover:bg-[#000000]/30 transition-colors duration-700 z-10" />
-              <div className="flex justify-between items-start relative z-20 p-6">
-                <span className="px-3 py-1.5 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
-                <ArrowUpRight size={28} className="text-[#ffffff]" />
-              </div>
-              <div className="relative z-20 p-6">
-                <h3 className="font-display text-3xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
-                <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
-              </div>
-            </div>
+            <MobileProjectCard 
+              key={i} 
+              project={project} 
+              i={i} 
+              onClick={() => setSelectedProject({...project, index: i})} 
+            />
           ))}
         </div>
       </section>
+
+      {/* Project Details Popup */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-neutral-950 text-white flex flex-col overflow-hidden"
+            initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+          >
+            {/* Close Button — positioned absolutely to the fixed modal, so it stays sticky even while scrolling */}
+            <button 
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-6 right-6 z-[110] w-12 h-12 flex flex-col items-end justify-center gap-[6px] mix-blend-difference"
+            >
+              <span className="block h-[3px] bg-[#ffffff] w-8 rotate-45 translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-[#ffffff] w-8 -rotate-45 -translate-y-[4.5px]" />
+            </button>
+
+            {/* Scrollable Container */}
+            <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
+              <div className="flex flex-col md:flex-row min-h-full relative">
+                {/* Image Section */}
+                <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex items-center justify-center overflow-hidden">
+                  <img
+                    src={selectedProject.img}
+                    alt={selectedProject.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/30 z-10" />
+
+                  <div className="relative z-20 -translate-y-[3vh] md:translate-y-0 scale-[0.9] sm:scale-110 md:scale-[1.1] lg:scale-[1.4] xl:scale-[1.7] flex items-center justify-center pointer-events-none transition-transform duration-500">
+                    {selectedProject.index % 2 === 0 ? (
+                      /* Phone Mockup (iPhone Style) */
+                      <div className="w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                            <img src={selectedProject.img} alt="Phone view" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Monitor/Tablet Mockup (iPad Style) */
+                      <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                            <img src={selectedProject.img} alt="Monitor view" className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent md:hidden z-30" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-neutral-950 hidden md:block z-30" />
+                </div>
+
+                {/* Content Section */}
+                <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-10 lg:p-16 xl:p-24 relative z-10 bg-neutral-950 md:bg-transparent min-h-[50vh] mt-[-6vh] md:mt-0">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                  >
+                    <span className="inline-block px-4 py-2 border border-neutral-700 text-xs font-mono uppercase tracking-widest rounded-full mb-6 xl:mb-8">
+                      {selectedProject.year} / {selectedProject.category}
+                    </span>
+                    
+                    <h2 className="font-display text-5xl md:text-5xl lg:text-6xl xl:text-8xl tracking-tighter uppercase leading-none mb-8 xl:mb-12">
+                      {selectedProject.title}
+                    </h2>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:gap-8 border-t border-neutral-800 pt-6 xl:pt-8 mb-8 xl:mb-12">
+                      <div>
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Role</h4>
+                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.role}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Tech Stack</h4>
+                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.tech}</p>
+                      </div>
+                      <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 border-neutral-800 pt-6 sm:pt-0">
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Date</h4>
+                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.date}</p>
+                      </div>
+                    </div>
+                    
+                    <p className="font-sans text-lg text-neutral-400 leading-relaxed mb-12">
+                      {selectedProject.desc}
+                    </p>
+
+                    <a href="#" className="inline-flex items-center gap-3 px-6 py-4 border border-neutral-700 rounded-full font-mono text-sm uppercase tracking-widest text-[#ffffff] hover:bg-[#ffffff] hover:text-[#000000] hover:border-[#ffffff] transition-all duration-300 group w-fit mb-12">
+                      View Live Site
+                      <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+
+                    <div className="flex flex-col sm:flex-row gap-4 xl:gap-6">
+                      <button className="flex items-center justify-center gap-3 xl:gap-4 bg-white text-black px-6 py-3 xl:px-8 xl:py-4 rounded-full font-mono text-xs xl:text-sm uppercase tracking-widest font-bold hover:bg-neutral-300 transition-colors w-full sm:w-auto">
+                        View Live Site <ArrowUpRight size={18} />
+                      </button>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
@@ -148,15 +294,17 @@ export default function Home() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
+      (window as any).lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
+      (window as any).lenis?.start();
     }
   }, [menuOpen]);
 
   return (
     <main ref={containerRef} className="min-h-screen text-white selection:bg-white selection:text-black relative">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center">
+      <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center mix-blend-difference text-[#ffffff]">
         <Link 
           href="/" 
           onClick={(e) => {
@@ -165,7 +313,7 @@ export default function Home() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity"
+          className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity text-[#ffffff]"
         >
           JOHN.
         </Link>
@@ -173,9 +321,9 @@ export default function Home() {
           className="relative z-[60] w-12 h-12 flex flex-col items-end justify-center gap-[6px] group" 
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className={`block h-[3px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-8 -rotate-45 translate-y-[9px]" : "w-10 group-hover:w-6"}`} />
-          <span className={`block h-[3px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-0 opacity-0" : "w-6 group-hover:w-10"}`} />
-          <span className={`block h-[3px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-8 rotate-45 -translate-y-[9px]" : "w-8 group-hover:w-4"}`} />
+          <span className={`block h-[3px] bg-[#ffffff] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-8 -rotate-45 translate-y-[9px]" : "w-10 group-hover:w-6"}`} />
+          <span className={`block h-[3px] bg-[#ffffff] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-0 opacity-0" : "w-6 group-hover:w-10"}`} />
+          <span className={`block h-[3px] bg-[#ffffff] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${menuOpen ? "w-8 rotate-45 -translate-y-[9px]" : "w-8 group-hover:w-4"}`} />
         </button>
       </nav>
 
@@ -374,23 +522,27 @@ export default function Home() {
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr">
             {[
-              { id: "01", name: "Advanced WebGL Patterns", issuer: "Creative Coding Course", year: "2024" },
-              { id: "02", name: "Blockchain Architecture", issuer: "Web3 Institute", year: "2023" },
-              { id: "03", name: "Awwwards Masterclass", issuer: "Typography in Web", year: "2022" },
-              { id: "04", name: "Google UX Design", issuer: "Professional Certificate", year: "2022" },
-              { id: "05", name: "3D Motion Graphics", issuer: "School of Motion", year: "2021" },
-              { id: "06", name: "Frontend Architecture", issuer: "Frontend Masters", year: "2021" }
+              { id: "01", name: "Advanced WebGL Patterns", issuer: "Creative Coding Course", year: "2024", link: "#" },
+              { id: "02", name: "Blockchain Architecture", issuer: "Web3 Institute", year: "2023", link: "#" },
+              { id: "03", name: "Awwwards Masterclass", issuer: "Typography in Web", year: "2022", link: "#" },
+              { id: "04", name: "Google UX Design", issuer: "Professional Certificate", year: "2022", link: "#" },
+              { id: "05", name: "3D Motion Graphics", issuer: "School of Motion", year: "2021", link: "#" },
+              { id: "06", name: "Frontend Architecture", issuer: "Frontend Masters", year: "2021", link: "#" }
             ].map((cert, i) => (
-              <div key={i} className="p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+              <a href={cert.link} key={i} className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+                {/* Link Icon */}
+                <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
+                  <ArrowUpRight size={24} />
+                </div>
                 <div>
                   <span className="font-mono text-neutral-600 text-xl">{cert.id}</span>
-                  <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-4 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words">{cert.name}</h3>
+                  <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-4 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words pr-8">{cert.name}</h3>
                 </div>
                 <div className="mt-8 border-t border-neutral-800 pt-4">
                   <p className="text-sm font-sans text-neutral-400 uppercase tracking-widest break-words">{cert.issuer}</p>
                   <p className="font-mono text-xs text-neutral-500 mt-2 uppercase tracking-widest">{cert.year}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </ScrollReveal>
@@ -457,35 +609,120 @@ export default function Home() {
       </section>
 
       {/* Footer / Contact */}
-      <footer id="contact" className="py-24 px-6 md:px-12">
-        <ScrollReveal className="w-full">
-          <div className="text-right md:text-left flex flex-col md:flex-row justify-between items-end gap-12">
-            <div data-mascot-target="footer-talk">
-              <h2 className="font-display text-7xl md:text-[10vw] leading-none tracking-tighter transition-all cursor-pointer">
-                LET'S TALK
+      <footer id="contact" className="pt-32 pb-12 px-6 md:px-12 border-t border-neutral-800">
+        <ScrollReveal className="w-full flex flex-col gap-24">
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="md:col-span-8 flex flex-col justify-between" data-mascot-target="footer-talk">
+              <h2 className="font-display text-6xl md:text-[8vw] leading-[0.85] tracking-tighter uppercase break-words">
+                Have a project?<br />
+                <span className="text-neutral-500 italic hover:text-white transition-colors cursor-crosshair">Let's build it.</span>
               </h2>
+              <div className="mt-16 md:mt-24">
+                <a href="mailto:hello@johnjervys.com" className="inline-flex items-center gap-6 group">
+                  <span className="font-mono text-xl md:text-3xl text-neutral-300 uppercase tracking-widest border-b-2 border-transparent group-hover:border-white transition-all pb-2 break-all">
+                    hello@johnjervys.com
+                  </span>
+                  <div className="w-12 h-12 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0">
+                    <ArrowUpRight size={24} />
+                  </div>
+                </a>
+              </div>
             </div>
-            <div className="flex gap-8 justify-end">
-              <a href="#" className="font-mono text-sm uppercase hover:line-through transition-all">
-                Github
-              </a>
-              <a href="#" className="font-mono text-sm uppercase hover:line-through transition-all">
-                Instagram
-              </a>
-              <a href="#" className="font-mono text-sm uppercase hover:line-through transition-all">
-                LinkedIn
-              </a>
-              <a href="#" className="font-mono text-sm uppercase hover:line-through transition-all">
-                <Mail size={16} className="inline-block" />
-              </a>
+
+            <div className="md:col-span-4 flex flex-col items-start md:items-end justify-between border-t md:border-t-0 md:border-l border-neutral-800 pt-12 md:pt-0 md:pl-12">
+              <div className="flex flex-col gap-6 w-full">
+                <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2">Socials</h3>
+                {[
+                  { name: "Instagram", handle: "@johnjervys" },
+                  { name: "Twitter", handle: "@jervys_code" },
+                  { name: "LinkedIn", handle: "/in/johnjervys" },
+                  { name: "GitHub", handle: "/johnjervys" }
+                ].map((social, i) => (
+                  <a key={i} href="#" className="flex justify-between items-end border-b border-neutral-800 pb-4 group">
+                    <span className="font-display text-2xl uppercase tracking-wider group-hover:text-neutral-400 transition-colors">{social.name}</span>
+                    <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors">{social.handle}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="mt-24 pt-8 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-end md:items-center text-neutral-600 font-mono text-sm gap-4 text-right md:text-left">
-            <p>© {new Date().getFullYear()} JOHN. ALL RIGHTS RESERVED.</p>
-            <p>BUILT FOR VERCEL</p>
+
+          <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-neutral-600 font-mono text-xs uppercase tracking-widest gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+              <span>© {new Date().getFullYear()} JOHN JERVYS</span>
+              <span>Based in NY</span>
+            </div>
+            <div className="flex flex-wrap gap-4 sm:gap-8">
+              <a href="#" className="hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <span>Built with Next.js</span>
+            </div>
           </div>
+
         </ScrollReveal>
       </footer>
     </main>
+  );
+}
+
+function MobileProjectCard({ project, i, onClick }: { project: any, i: number, onClick: () => void }) {
+  const ref = useRef(null);
+  // Trigger ONLY when the element crosses the exact center 2% of the screen.
+  // This guarantees that only one project is colored at a time.
+  const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
+
+  return (
+    <div 
+      ref={ref} 
+      onClick={onClick} 
+      className="w-full relative bg-[#0a0a0a] border border-[#262626] overflow-hidden flex flex-col justify-between h-[400px] cursor-crosshair group/card"
+    >
+      {/* Background image */}
+      <img
+        src={project.img}
+        alt={project.title}
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 z-0 ${isInView ? "grayscale-0 scale-105" : "grayscale scale-100"}`}
+      />
+      <div className={`absolute inset-0 transition-colors duration-700 z-10 ${isInView ? "bg-[#000000]/40" : "bg-[#000000]/80"}`} />
+      
+      {/* Center Device Mockups */}
+      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        {i % 2 === 0 ? (
+          /* Phone Mockup (iPhone Style) */
+          <div className={`w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+            {/* Front Black Bezel */}
+            <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+              {/* Screen */}
+              <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                <img src={project.img} alt="Phone view" className={`w-full h-full object-cover transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`} />
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Monitor/Tablet Mockup (iPad Style) */
+          <div className={`w-[244px] h-[164px] p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+            {/* Front Black Bezel */}
+            <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+              {/* Screen */}
+              <div className="w-full h-full rounded-[10px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+                <img src={project.img} alt="Monitor view" className={`w-full h-full object-cover transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`} />
+                <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-between items-start relative z-30 p-6">
+        <span className="px-3 py-1.5 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
+        <ArrowUpRight size={28} className="text-[#ffffff]" />
+      </div>
+      <div className="relative z-30 p-6">
+        <h3 className="font-display text-3xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+        <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
+      </div>
+    </div>
   );
 }

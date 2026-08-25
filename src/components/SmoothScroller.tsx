@@ -19,6 +19,8 @@ export default function SmoothScroller({ children }: { children: React.ReactNode
       wheelMultiplier: 1,
       touchMultiplier: 2,
     });
+    
+    (window as any).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -29,6 +31,7 @@ export default function SmoothScroller({ children }: { children: React.ReactNode
 
     return () => {
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 
