@@ -1,18 +1,66 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion, useInView, useScroll } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Download, ArrowUpRight } from "lucide-react";
 
+function ExperienceLineSegment() {
+  const lineRef = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: lineRef,
+    offset: ["start center", "end center"]
+  });
+
+  return (
+    <>
+      <div ref={lineRef} className="absolute left-[-34px] top-[16px] bottom-[-112px] w-[2px] bg-neutral-800 z-0" />
+      <motion.div 
+        className="absolute left-[-34px] top-[16px] bottom-[-112px] w-[2px] bg-[var(--theme-fg)] origin-top z-0"
+        style={{ scaleY: scrollYProgress }}
+      />
+    </>
+  );
+}
+function ExperienceItem({ exp, i, isLast }: { exp: any; i: number; isLast: boolean }) {
+  const circleRef = React.useRef(null);
+  const isInView = useInView(circleRef, { margin: "10000px 0px -50% 0px", once: false });
+
+  return (
+    <div className="relative group">
+      <div ref={circleRef} className="absolute top-2 w-full h-[1px]" />
+      
+      {!isLast && <ExperienceLineSegment />}
+
+      <motion.div 
+        initial={{ scale: 1, backgroundColor: "var(--theme-bg)", borderColor: "var(--theme-neutral-600)", boxShadow: "0 0 0px rgba(255,255,255,0)" }}
+        animate={{ 
+          scale: isInView ? 1.1 : 1, 
+          backgroundColor: isInView ? "var(--theme-fg)" : "var(--theme-bg)",
+          borderColor: isInView ? "var(--theme-fg)" : "var(--theme-neutral-600)",
+          boxShadow: isInView ? "0 0 20px var(--theme-fg)" : "0 0 0px rgba(0,0,0,0)"
+        }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute -left-[41px] top-2 w-4 h-4 rounded-full border-2 z-10" 
+      />
+      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+        <h3 className={`text-4xl font-display transition-colors duration-500 tracking-tighter uppercase ${isInView ? "text-[var(--theme-fg)]" : "text-neutral-500"}`}>{exp.role}</h3>
+        <span className={`font-mono text-sm uppercase tracking-widest transition-colors duration-500 ${isInView ? "text-[var(--theme-fg)]" : "text-neutral-500"}`}>{exp.date}</span>
+      </div>
+      <p className={`text-base font-mono mt-4 uppercase tracking-widest transition-colors duration-500 ${isInView ? "text-[var(--theme-fg)]" : "text-neutral-500"}`}>{exp.company}</p>
+      <p className="text-neutral-500 font-sans mt-4 max-w-5xl leading-relaxed">{exp.desc}</p>
+    </div>
+  );
+}
 export default function AboutPage() {
   return (
     <main className="min-h-screen text-white selection:bg-white selection:text-black relative pb-32">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center mix-blend-difference text-[#ffffff]">
         <Link href="/" className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity text-[#ffffff]">
-          JOHN.
+          JOHN.ABOUT
         </Link>
-        <Link href="/" className="flex items-center gap-2 font-mono text-sm uppercase hover:line-through transition-all text-[#ffffff]">
+        <Link href="/" className="flex items-center gap-2 font-mono text-sm uppercase hover:line-through transition-all text-[#ffffff] h-12">
           <ArrowLeft size={16} /> Back
         </Link>
       </nav>
@@ -37,15 +85,15 @@ export default function AboutPage() {
         <div className="flex flex-col mt-24">
           {/* About & Capabilities Section */}
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 border-b border-neutral-800 pb-24 mb-24"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 border-b border-neutral-800 pb-24 mb-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 sticky top-32">About & Capabilities</h2>
             </div>
-            <div className="lg:col-span-8 flex flex-col gap-20">
+            <div className="lg:col-span-9 flex flex-col gap-20">
               <div>
                 <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-neutral-300 leading-tight mb-12">
                   I am a multimedia artist and creative developer blurring the line between code and art. With over 5 years of experience, I specialize in crafting digital experiences that utilize brutalist structures, striking typography, and precise motion.
@@ -97,49 +145,37 @@ export default function AboutPage() {
 
           {/* Experience Section */}
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 border-b border-neutral-800 pb-24 mb-24"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 border-b border-neutral-800 pb-24 mb-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 sticky top-32">Experience</h2>
             </div>
-            <div className="lg:col-span-8 space-y-20 border-l border-neutral-800 pl-8 ml-2 md:ml-4">
+            <div className="lg:col-span-9 space-y-24 pl-8 ml-2 md:ml-4 relative">
               {[
                 { role: "Lead Multimedia Designer", company: "Studio Void", date: "2024 - Present", desc: "Spearheaded creative direction for over 20+ digital campaigns. Managed a team of 5 designers to deliver award-winning interactive web experiences." },
                 { role: "Senior Creative Developer", company: "Web3 Innovators", date: "2022 - 2024", desc: "Engineered high-performance WebGL interfaces for decentralized applications. Bridged the gap between conceptual design and technical execution." },
                 { role: "Interactive Designer", company: "Digital Arts Inc.", date: "2020 - 2022", desc: "Prototyped and developed immersive brand experiences. Specialized in motion design and fluid user interactions using GSAP and Three.js." },
                 { role: "Motion Graphics Intern", company: "Creative Tech Lab", date: "2019 - 2020", desc: "Assisted in producing motion graphics for commercial clients. Learned industry-standard workflows for 3D modeling and video composition." }
-              ].map((exp, i) => (
-                <div key={i} className="group relative">
-                  <div className="absolute -left-[41px] top-4 w-4 h-4 bg-neutral-950 border-2 border-neutral-600 group-hover:border-white transition-colors rounded-full" />
-                  <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
-                    <div>
-                      <h3 className="font-display text-4xl uppercase tracking-tighter group-hover:text-neutral-400 transition-colors">{exp.role}</h3>
-                      <p className="font-mono text-base uppercase tracking-widest text-neutral-500 mt-4">{exp.company}</p>
-                    </div>
-                    <span className="font-mono text-sm uppercase tracking-widest text-neutral-600 shrink-0 md:text-right pt-2">{exp.date}</span>
-                  </div>
-                  <p className="font-sans text-xl text-neutral-400 mt-8 leading-relaxed max-w-3xl group-hover:text-neutral-300 transition-colors">
-                    {exp.desc}
-                  </p>
-                </div>
+              ].map((exp, i, arr) => (
+                <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
               ))}
             </div>
           </motion.div>
 
           {/* Projects Section */}
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 border-b border-neutral-800 pb-24 mb-24"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 border-b border-neutral-800 pb-24 mb-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 sticky top-32">Projects and Works</h2>
             </div>
-            <div className="lg:col-span-8 space-y-20">
+            <div className="lg:col-span-9 space-y-20">
               {[
                 { name: "Ethereal Echoes", category: "Interactive Install", year: "2023", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800", desc: "An audio-reactive WebGL installation exhibited in NYC, allowing users to manipulate soundscapes through physical gestures." },
                 { name: "Brutal Genesis", category: "Web3 Platform", year: "2024", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800", desc: "A minimalist NFT marketplace utilizing a brutalist design system, featuring seamless wallet integrations and gas-optimized contracts." },
@@ -164,16 +200,16 @@ export default function AboutPage() {
 
           {/* Awards & Recognition */}
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 border-b border-neutral-800 pb-24 mb-24"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 border-b border-neutral-800 pb-24 mb-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 sticky top-32">Awards & Recognition</h2>
             </div>
-            <div className="lg:col-span-8 space-y-20">
+            <div className="lg:col-span-9 space-y-20">
               {[
                 { title: "Site of the Day", issuer: "Awwwards", date: "2024", desc: "Awarded for exceptional creativity, design, and technical execution on the Void Analytics dashboard platform." },
                 { title: "Gold Winner - Digital Art", issuer: "Indigo Design Awards", date: "2023", desc: "Recognized internationally for the 'Ethereal Echoes' interactive web installation." },
@@ -198,16 +234,16 @@ export default function AboutPage() {
 
           {/* Education & Certifications */}
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 pb-24"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 pb-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-6 sticky top-32">Education & Certs</h2>
             </div>
-            <div className="lg:col-span-8 flex flex-col gap-24">
+            <div className="lg:col-span-9 flex flex-col gap-24">
               <div className="space-y-20">
                 {[
                   { degree: "BFA in Design & Technology", school: "Parsons School of Design", date: "2016 - 2020", desc: "Graduated with honors. Focused on the intersection of physical computing, generative art, and modern web architecture." },
@@ -230,18 +266,20 @@ export default function AboutPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-neutral-800">
                 {[
-                  { id: "01", name: "AWS Certified Developer", issuer: "Amazon Web Services", date: "2023", link: "#" },
-                  { id: "02", name: "Advanced React Patterns", issuer: "Frontend Masters", date: "2022", link: "#" },
-                  { id: "03", name: "UI/UX Micro-Interactions", issuer: "Awwwards Academy", date: "2022", link: "#" }
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Three.js_Icon.svg", name: "Advanced WebGL Patterns", issuer: "Creative Coding Course", date: "Aug 2024", link: "#" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg", name: "Blockchain Architecture", issuer: "Web3 Institute", date: "Dec 2023", link: "#" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg", name: "Awwwards Masterclass", issuer: "Typography in Web", date: "Oct 2022", link: "#" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg", name: "Google UX Design", issuer: "Professional Certificate", date: "Mar 2022", link: "#" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg", name: "3D Motion Graphics", issuer: "School of Motion", date: "Nov 2021", link: "#" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", name: "Frontend Architecture", issuer: "Frontend Masters", date: "Jan 2021", link: "#" }
                 ].map((cert, i) => (
-                  <a href={cert.link} key={i} className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[200px]">
-                    {/* Link Icon */}
+                  <a href={cert.link} key={i} className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
                     <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                       <ArrowUpRight size={24} />
                     </div>
                     <div>
-                      <span className="font-mono text-neutral-600 text-xl">{cert.id}</span>
-                      <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-4 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words pr-8">{cert.name}</h3>
+                      <img src={cert.logo} alt={cert.issuer} className="w-10 h-10 object-contain grayscale opacity-50 group-hover:opacity-100 transition-opacity brightness-200 contrast-200" />
+                      <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-6 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words pr-8">{cert.name}</h3>
                     </div>
                     <div className="mt-8 border-t border-neutral-800 pt-4">
                       <p className="text-sm font-sans text-neutral-400 uppercase tracking-widest break-words">{cert.issuer}</p>
@@ -254,6 +292,15 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-    </main>
+      </main>
   );
 }
+
+
+
+
+
+
+
+
+

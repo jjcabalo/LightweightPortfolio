@@ -8,6 +8,9 @@ export default function SmoothScroller({ children }: { children: React.ReactNode
   const pathname = usePathname();
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
 
