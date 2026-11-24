@@ -913,7 +913,7 @@ function HeroAndAboutSection() {
             {/* Row 1: Massive Lede Headline (Spans all 12 cols) */}
             <div className="col-span-1 md:col-span-12">
               <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.12] tracking-tighter text-[var(--theme-fg)] text-left">
-                I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
+                I&apos;m John Jervys — a multimedia creative and aspiring software engineer who enjoys bringing ideas to life through visuals, storytelling, design, and technology.
               </h3>
             </div>
 
@@ -932,10 +932,10 @@ function HeroAndAboutSection() {
             {/* Row 2, Right: 2 Bio Paragraphs (Cols 7-12 on desktop, 2-column subgrid) */}
             <div className="col-span-1 md:col-span-6 order-2 md:order-3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 text-neutral-600 dark:text-neutral-400 font-sans text-sm md:text-base leading-relaxed">
               <p>
-                Currently, I&apos;m a 4th-year BS Computer Science student majoring in Application Development at the University of Makati and a consistent Dean&apos;s Lister. I work across multimedia production, video editing, photography, graphic design, UI/UX design, and software development. I also run EstudyantEdits, my creative services venture, while taking on projects that challenge both my creative and technical skills.
+                Currently a 4th-year BS Computer Science student at the University of Makati, a Freelancer, and founder of EstudyantEdits. I work across multimedia production, video editing, photography, UI/UX design, and software development.
               </p>
               <p>
-                I&apos;m working towards becoming a well-rounded software engineer with a strong foundation in UI/UX and product design. I want to bridge the gap between thoughtful design and functional technology, while continuing to grow as a creative who can conceptualize, produce, and build meaningful experiences from the ground up.
+                I&apos;m working towards becoming a well-rounded software engineer specializing in UI/UX and product design, bridging creative thinking with functional technology.
               </p>
             </div>
           </div>

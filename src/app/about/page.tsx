@@ -96,7 +96,7 @@ export default function AboutPage() {
             <div className="lg:col-span-9 flex flex-col gap-20">
               <div>
                 <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-neutral-300 leading-tight mb-12">
-                  I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology. Currently a 4th-year BS Computer Science student majoring in Application Development at the University of Makati and a consistent Dean&apos;s Lister.
+                  I&apos;m John Jervys — a multimedia creative and aspiring software engineer who enjoys bringing ideas to life through visuals, storytelling, design, and technology. Currently a 4th-year BS Computer Science student at the University of Makati, a Freelancer, and founder of EstudyantEdits.
                 </p>
                 <div className="flex gap-4">
                   <a href="https://linkedin.com/in/john-jervys-cabalo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
