@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useMotionValueEvent, useAnimation } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Mail, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,13 +18,86 @@ function WorkSection() {
   const x = useTransform(scrollYProgress, (p) => `calc(-${p * 100}% + ${p * 100}vw)`);
 
   const projects = [
-    { title: "Ethereal Echoes", category: "Interactive Install", year: "2023", date: "OCT 2023", img: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80", role: "Lead Creative Technologist", tech: "WebGL, Three.js, Web Audio API", desc: "An immersive audio-reactive WebGL installation that transforms physical space into dynamic soundscapes. Featured in galleries across NYC, the project uses real-time skeletal tracking to bridge physical movement and digital art." },
-    { title: "Brutal Genesis", category: "Web3 Platform", year: "2024", date: "FEB 2024", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&q=80", role: "UI/UX & Frontend Lead", tech: "Next.js, Solidity, Ethers.js", desc: "A hyper-minimalist NFT marketplace built with brutalist design principles. Focusing on typography, stark contrasts, and seamless wallet integrations through zero-gas meta-transactions." },
-    { title: "Void Analytics", category: "Dashboard UI", year: "2024", date: "JUN 2024", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", role: "Product Designer", tech: "React, D3.js, Tailwind", desc: "A sleek, cinematic data visualization dashboard created for processing massive datasets of real-time financial metrics, blending complex D3.js charting with high-performance React architecture." },
-    { title: "Chromatic Shift", category: "Motion Identity", year: "2025", date: "JAN 2025", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", role: "Art Director", tech: "Cinema4D, GSAP, Figma", desc: "A comprehensive brand overhaul anchored by kinetic typography and dynamic color systems, serving as the digital foundation for a leading European creative agency." },
-    { title: "Neon Construct", category: "Brand System", year: "2025", date: "MAR 2025", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80", role: "Brand Designer", tech: "Illustrator, After Effects", desc: "An experimental visual identity exploring the collision of 90s retro-futurism and brutalist structural design, complete with generative assets." },
-    { title: "Hyper Flux", category: "WebGL Experience", year: "2025", date: "MAY 2025", img: "https://images.unsplash.com/photo-1617042375876-a13e36732a04?w=800&q=80", role: "Creative Developer", tech: "Three.js, GLSL Shaders", desc: "A browser-based interactive experience pushing the limits of Three.js. Users navigate through fluid, evolving geometries generated procedurally on the GPU." },
-    { title: "Kinetics", category: "Type Specimen", year: "2025", date: "AUG 2025", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80", role: "Interaction Designer", tech: "Matter.js, GSAP", desc: "A digital type specimen celebrating variable fonts. Scroll-linked animations and physics-based interactions let users physically 'play' with typography." }
+    { 
+      title: "KOMYUTPH", 
+      category: "PWA Navigation", 
+      year: "2026", 
+      date: "2026 – PRESENT", 
+      img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80", 
+      role: "Lead Developer & UI/UX Designer", 
+      tech: "React, PWA, Tailwind CSS, Leaflet", 
+      desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility." 
+    },
+    { 
+      title: "eHANDA", 
+      category: "GovTech Platform", 
+      year: "2026", 
+      date: "JUL 2026", 
+      img: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80", 
+      role: "UI/UX Designer & Media Director", 
+      tech: "Next.js, Supabase, Tailwind CSS, Figma", 
+      desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026)." 
+    },
+    { 
+      title: "MapuOne", 
+      category: "Campus Web App", 
+      year: "2026", 
+      date: "OCT 2026", 
+      img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80", 
+      role: "Full-Stack Developer & UI/UX Designer", 
+      tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
+      desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch." 
+    },
+    { 
+      title: "IoTrack Learning Kit", 
+      category: "EdTech & IoT", 
+      year: "2026", 
+      date: "OCT 2026", 
+      img: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1600&q=80", 
+      role: "Frontend Developer & UI/UX Designer", 
+      tech: "React, Tailwind CSS, Supabase, PostgreSQL", 
+      desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible." 
+    },
+    { 
+      title: "SilangApp", 
+      category: "Civic Mobile App", 
+      year: "2025", 
+      date: "SEP – DEC 2025", 
+      img: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1600&q=80", 
+      role: "Lead Mobile Developer & UI/UX Designer", 
+      tech: "React Native, Expo, Prisma, PostgreSQL", 
+      desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories." 
+    },
+    { 
+      title: "StudyBuddy", 
+      category: "AI Productivity", 
+      year: "2024", 
+      date: "SEP – DEC 2024", 
+      img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=80", 
+      role: "Backend Developer & Software Architect", 
+      tech: "ASP.NET Core, C#, MySQL, OpenAI API", 
+      desc: "An intelligent student productivity ecosystem featuring an integrated AI study assistant, automated deadline scheduling, and predictive academic workload analytics built on a robust ASP.NET Core backend." 
+    },
+    { 
+      title: "StudyCircle", 
+      category: "Collaborative Learning", 
+      year: "2026", 
+      date: "FEB 2026", 
+      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80", 
+      role: "Lead UI/UX & Web Developer", 
+      tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
+      desc: "An AI-enhanced collaborative study platform featuring shared markdown documentation, interactive virtual study lounges, and automated flashcard generation for collegiate peer study groups." 
+    },
+    { 
+      title: "Erehwon Art Center MIS", 
+      category: "Arts MIS Platform", 
+      year: "2026", 
+      date: "FEB 2026", 
+      img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80", 
+      role: "Full-Stack Developer", 
+      tech: "React, Node.js, Express, PostgreSQL", 
+      desc: "A custom Management Information System (MIS) engineered for Erehwon Center for the Arts to catalog valuable art collections, maintain artist exhibition records, and digitize national cultural archives." 
+    }
   ];
 
   // Prevent scrolling when popup is open
@@ -45,7 +118,7 @@ function WorkSection() {
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-24 pb-12">
           <ScrollReveal className="w-full h-full flex flex-col justify-center">
             <div className="px-12 mb-12 flex justify-between items-end shrink-0">
-              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SELECTED WORK</h2>
+              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SOFTWARE PROJECTS</h2>
               <span className="text-neutral-500 font-mono">(0{projects.length})</span>
             </div>
             
@@ -113,7 +186,7 @@ function WorkSection() {
       {/* Mobile Normal Scroll */}
       <ScrollReveal as="section" id="work-mobile" className="block md:hidden py-24 ">
         <div className="px-6 mb-12 flex justify-between items-end">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SELECTED WORK</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SOFTWARE PROJECTS</h2>
         </div>
         <div className="flex flex-col gap-6 px-6">
           {projects.map((project, i) => (
@@ -131,24 +204,25 @@ function WorkSection() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[100] bg-neutral-950 text-white flex flex-col overflow-hidden"
+            className="fixed inset-0 z-[100] bg-[var(--theme-bg)] text-[var(--theme-fg)] flex flex-col overflow-hidden"
             initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
             animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
             exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           >
-            {/* Close Button Ã¢â‚¬â€ positioned absolutely to the fixed modal, so it stays sticky even while scrolling */}
+            {/* Close Button — positioned absolutely to the fixed modal, so it stays sticky even while scrolling */}
             <button 
               onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 z-[110] w-12 h-12 flex flex-col items-end justify-center gap-[6px] md:mix-blend-difference"
+              className="absolute top-6 right-6 z-[110] w-12 h-12 flex flex-col items-end justify-center gap-[6px] mix-blend-difference"
             >
-              <span className="block h-[3px] bg-white md:bg-[#ffffff] w-8 rotate-45 translate-y-[4.5px]" />
-              <span className="block h-[3px] bg-white md:bg-[#ffffff] w-8 -rotate-45 -translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-white w-8 rotate-45 translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-white w-8 -rotate-45 -translate-y-[4.5px]" />
             </button>
 
             {/* Scrollable Container */}
             <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
               <div className="flex flex-col md:flex-row min-h-full relative">
+                
                 {/* Image Section */}
                 <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex items-center justify-center overflow-hidden">
                   <img
@@ -186,43 +260,47 @@ function WorkSection() {
                     )}
                   </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent md:hidden z-30" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-neutral-950 hidden md:block z-30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] via-[var(--theme-bg)]/20 to-transparent md:hidden z-30" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--theme-bg)] hidden md:block z-30" />
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center p-6 md:p-10 lg:p-16 xl:p-24 relative z-10 bg-neutral-950 md:bg-transparent min-h-[50vh] mt-[-6vh] md:mt-0">
+                <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-24 py-12 md:py-24 relative z-10 bg-[var(--theme-bg)] md:bg-transparent min-h-screen mt-[-6vh] md:mt-0">
                   <motion.div
+                    className="my-auto"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
-                    <span className="inline-block px-4 py-2 border border-neutral-700 text-xs font-mono uppercase tracking-widest rounded-full mb-6 xl:mb-8">
+                    <span className="inline-block px-4 py-2 border border-[var(--theme-fg)]/30 text-xs font-mono uppercase tracking-widest rounded-full mb-6 xl:mb-8 opacity-70">
                       {selectedProject.year} / {selectedProject.category}
                     </span>
                     
-                    <h2 className="font-display text-5xl md:text-5xl lg:text-6xl xl:text-8xl tracking-tighter uppercase leading-none mb-8 xl:mb-12">
+                    <h2 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] tracking-tighter uppercase leading-[0.85] mb-8 xl:mb-12">
                       {selectedProject.title}
                     </h2>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:gap-8  pt-6 xl:pt-8 mb-8 xl:mb-12">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:gap-8 pt-6 xl:pt-8 mb-8 xl:mb-12 border-t border-[var(--theme-fg)]/20">
                       <div>
-                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Role</h4>
-                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.role}</p>
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest opacity-60 mb-2">Role</h4>
+                        <p className="font-sans text-sm xl:text-base opacity-90">{selectedProject.role}</p>
                       </div>
                       <div>
-                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Tech Stack</h4>
-                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.tech}</p>
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest opacity-60 mb-2">Tech Stack</h4>
+                        <p className="font-sans text-sm xl:text-base opacity-90">{selectedProject.tech}</p>
                       </div>
-                      <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 border-neutral-800 pt-6 sm:pt-0">
-                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest text-neutral-500 mb-2">Date</h4>
-                        <p className="font-sans text-xs xl:text-sm text-neutral-300">{selectedProject.date}</p>
+                      <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 border-[var(--theme-fg)]/20 pt-6 sm:pt-0">
+                        <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest opacity-60 mb-2">Date</h4>
+                        <p className="font-sans text-sm xl:text-base opacity-90">{selectedProject.date}</p>
                       </div>
                     </div>
                     
-                    <p className="font-sans text-lg text-neutral-400 leading-relaxed mb-12">
-                      {selectedProject.desc}
-                    </p>
+                    <div className="mb-12">
+                      <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest opacity-60 mb-4 hidden md:block">About the Project</h4>
+                      <p className="font-sans text-2xl md:text-3xl lg:text-4xl opacity-80 leading-tight">
+                        {selectedProject.desc}
+                      </p>
+                    </div>
 
                     <div className="flex justify-end w-full">
                       <a href="#" className="inline-flex items-center gap-3 px-6 py-4 border border-neutral-700 rounded-full font-mono text-sm uppercase tracking-widest text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 group w-fit mb-12">
@@ -241,15 +319,32 @@ function WorkSection() {
   );
 }
 
-function ScrollReveal({ children, className, id, as = "div" }: { children: React.ReactNode; className?: string; id?: string, as?: "div" | "section" | "footer" }) {
+function ScrollReveal({ children, className, id, as = "div", staggerChildren = 0.1 }: { children: React.ReactNode; className?: string; id?: string, as?: "div" | "section" | "footer"; staggerChildren?: number }) {
   const Component = motion[as] as any;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-15%", once: false });
+  const controls = useAnimation();
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <Component
+      ref={ref}
       id={id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-15%" }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], staggerChildren }}
       className={className}
     >
       {children}
@@ -284,6 +379,47 @@ function ScrambleText({ text }: { text: string }) {
   }, [text]);
 
   return <span>{displayText}</span>;
+}
+
+function TypewriterRole({ roles }: { roles: string[] }) {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const role = roles[currentRoleIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && currentText === role) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && currentText === "") {
+      setIsDeleting(false);
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    } else {
+      timeout = setTimeout(() => {
+        setCurrentText(role.substring(0, currentText.length + (isDeleting ? -1 : 1)));
+      }, isDeleting ? 30 : 80);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentRoleIndex, roles, mounted]);
+
+  if (!mounted) {
+    return <span className="border-b-2 border-current">{roles[0]}</span>;
+  }
+
+  return (
+    <span className="inline-block border-b-2 border-current font-bold text-[var(--theme-fg)]">
+      {currentText || "\u00A0"}
+      <span className="animate-pulse ml-0.5 opacity-70">|</span>
+    </span>
+  );
 }
 
 function ExperienceLineSegment() {
@@ -331,6 +467,480 @@ function ExperienceItem({ exp, i, isLast }: { exp: any; i: number; isLast: boole
       </div>
       <p className={`text-lg mt-2 uppercase tracking-wide transition-colors duration-500 ${isInView ? "text-[var(--theme-fg)]" : "text-neutral-300"}`}>{exp.company}</p>
       <p className="text-neutral-500 font-sans mt-4 max-w-5xl leading-relaxed">{exp.desc}</p>
+    </div>
+  );
+}
+
+function AwardsMediaItem({ m, idx }: { m: any, idx: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
+
+  return (
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: false, margin: "-10%" }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full relative overflow-hidden bg-neutral-950 group flex items-center justify-center cursor-crosshair rounded-sm"
+    >
+      {m.type === 'video' ? (
+        <video 
+          src={m.url} 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className={`w-full h-auto block object-cover transition-transform duration-700 z-0 ${isInView ? "grayscale-0 max-md:scale-105" : "max-md:grayscale max-md:scale-100"} md:grayscale md:group-hover:grayscale-0 md:group-hover:scale-110`} 
+        />
+      ) : (
+        <img 
+          src={m.url} 
+          alt={`Media ${idx + 1}`} 
+          className={`w-full h-auto block object-cover transition-transform duration-700 z-0 ${isInView ? "grayscale-0 max-md:scale-105" : "max-md:grayscale max-md:scale-100"} md:grayscale md:group-hover:grayscale-0 md:group-hover:scale-110`} 
+        />
+      )}
+      
+      {/* Dark overlay that fades on hover/scroll to mimic the main page project vibe */}
+      <div className={`absolute inset-0 transition-colors duration-700 z-10 pointer-events-none ${isInView ? "max-md:bg-[#000000]/20" : "max-md:bg-[#000000]/80"} md:bg-[#000000]/80 md:group-hover:bg-[#000000]/20`} />
+    </motion.div>
+  );
+}
+
+function AwardListItem({ item, i, onClick }: { item: any, i: number, onClick: () => void }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
+
+  return (
+    <div 
+      ref={ref}
+      onClick={onClick} 
+      className={`group flex flex-col md:flex-row justify-between items-start md:items-center py-8 border-b border-[var(--theme-fg)]/10 transition-all duration-300 cursor-crosshair ${
+        isInView ? "max-md:bg-[var(--theme-fg)] max-md:text-[var(--theme-bg)] max-md:px-6" : ""
+      } md:hover:bg-[var(--theme-fg)] md:hover:text-[var(--theme-bg)] md:hover:px-6`}
+    >
+      <div className="flex flex-col md:flex-row gap-2 md:gap-12 md:items-center">
+        <span className={`font-mono text-xs tracking-widest transition-colors ${
+          isInView ? "max-md:text-[var(--theme-bg)]/50" : "max-md:text-[var(--theme-fg)]/40"
+        } md:text-[var(--theme-fg)]/40 md:group-hover:text-[var(--theme-bg)]/50`}>
+          0{i + 1}
+        </span>
+        <h3 className="font-display text-2xl md:text-4xl uppercase tracking-tighter">{item.award}</h3>
+      </div>
+      <div className="flex flex-col md:flex-row gap-2 md:gap-16 md:items-center mt-4 md:mt-0 w-full md:w-auto">
+        <p className={`font-mono text-sm tracking-widest uppercase transition-colors w-40 ${
+          isInView ? "max-md:text-[var(--theme-bg)]/70" : "max-md:text-[var(--theme-fg)]/60"
+        } md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
+          {item.competition}
+        </p>
+        <p className={`font-sans text-sm tracking-wide transition-colors w-32 hidden md:block md:text-[var(--theme-fg)]/50 md:group-hover:text-[var(--theme-bg)]/60`}>
+          {item.project}
+        </p>
+        <span className="font-mono text-xl tracking-tighter font-bold">{item.year}</span>
+      </div>
+    </div>
+  );
+}
+
+function AwardsSection() {
+  const [selectedAward, setSelectedAward] = useState<any>(null);
+
+  useEffect(() => {
+    if (selectedAward) {
+      document.body.style.overflow = "hidden";
+      (window as any).lenis?.stop();
+    } else {
+      document.body.style.overflow = "unset";
+      (window as any).lenis?.start();
+    }
+  }, [selectedAward]);
+
+  const awards = [
+    { 
+      award: "Best in UI and UX; 1st Runner Up", 
+      competition: "Infotechnolympics 2026", 
+      year: "2026", 
+      project: "Hackathon Category", 
+      prize: "Trophy + Cash Prize", 
+      role: "Lead UI/UX Designer & Full-Stack Developer", 
+      desc: "Awarded Best in UI and UX and 1st Runner Up in the Hackathon Category at Infotechnolympics 2026. Recognized for exceptional human-centered interaction design, user accessibility, and rapid functional prototyping under intense hackathon time constraints.", 
+      media: [
+        { type: 'image', url: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1600&q=80" },
+        { type: 'image', url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80" }
+      ]
+    },
+    { 
+      award: "Top 10 Finalists", 
+      competition: "eGovPH Hackathon 2026", 
+      year: "2026", 
+      project: "eHANDA", 
+      prize: "National Finalist Recognition", 
+      role: "UI/UX Designer & Media Director", 
+      desc: "Selected as one of the Top 10 Finalists nationwide in the prestigious eGovPH Hackathon 2026 for eHANDA, a rapid post-disaster household assessment platform integrating into the national eGovPH app ecosystem.", 
+      media: [
+        { type: 'image', url: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80" },
+        { type: 'image', url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80" }
+      ]
+    },
+    { 
+      award: "Most Commercially Viable", 
+      competition: "UMak 7th Hackathon 2025", 
+      year: "2025", 
+      project: "Campus Innovation Track", 
+      prize: "Special Citation & Grant", 
+      role: "UI/UX Designer & Product Lead", 
+      desc: "Honored with the Most Commercially Viable Award at the 7th University of Makati Hackathon 2025. Recognized for outstanding business sustainability, market readiness, and an intuitive product experience.", 
+      media: [
+        { type: 'image', url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80" },
+        { type: 'image', url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80" }
+      ]
+    },
+    { 
+      award: "1st Runner Up — C# Category", 
+      competition: "Infotechnolympics 2025", 
+      year: "2024", 
+      project: "C# Algorithmic Challenge", 
+      prize: "Trophy + Certificate", 
+      role: "Software Developer", 
+      desc: "Won 1st Runner Up in the C# Category at Infotechnolympics 2025, demonstrating advanced computational problem solving, data structure proficiency, and rapid algorithmic software development.", 
+      media: [
+        { type: 'image', url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80" },
+        { type: 'image', url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&q=80" }
+      ]
+    }
+  ];
+
+  return (
+    <>
+      <ScrollReveal as="section" id="awards" className="py-40 md:py-48 px-6 md:px-12">
+        <div className="w-full">
+          <div className="flex justify-between items-end mb-12 border-b border-[var(--theme-fg)]/20 pb-6">
+            <h2 className="font-display text-4xl md:text-6xl tracking-tight uppercase">AWARDS</h2>
+            <span className="font-mono text-xs text-[var(--theme-fg)] opacity-50 uppercase tracking-widest hidden md:block">Competitions & Recognition</span>
+          </div>
+          <div className="flex flex-col">
+            {awards.map((item, i) => (
+              <AwardListItem key={i} item={item} i={i} onClick={() => setSelectedAward(item)} />
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <AnimatePresence>
+        {selectedAward && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-[var(--theme-bg)] text-[var(--theme-fg)] flex flex-col overflow-hidden"
+            initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+          >
+            <button 
+              onClick={() => setSelectedAward(null)}
+              className="fixed top-6 right-6 z-[110] w-12 h-12 flex flex-col items-end justify-center gap-[6px] mix-blend-difference"
+            >
+              <span className="block h-[3px] bg-white w-8 rotate-45 translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-white w-8 -rotate-45 -translate-y-[4.5px]" />
+            </button>
+
+            <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative" data-lenis-prevent>
+              <div className="max-w-[1600px] mx-auto w-full px-6 md:px-12 py-24 md:py-32">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="mb-16 md:mb-24"
+                >
+                  <span className="inline-block px-4 py-2 border border-[var(--theme-fg)]/30 text-xs font-mono uppercase tracking-widest rounded-full mb-6 opacity-70">
+                    {selectedAward.year} / {selectedAward.competition}
+                  </span>
+                  
+                  <h2 className="font-display text-5xl md:text-8xl lg:text-[9rem] tracking-tighter uppercase leading-[0.85] mb-8">
+                    {selectedAward.award}
+                  </h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 border-t border-[var(--theme-fg)]/20 pt-8 mt-12">
+                    <div className="md:col-span-4 lg:col-span-3">
+                      <h4 className="font-mono text-xs uppercase tracking-widest opacity-60 mb-2">Project</h4>
+                      <h3 className="font-display text-2xl md:text-3xl tracking-tighter uppercase opacity-90">
+                        {selectedAward.project}
+                      </h3>
+                    </div>
+                    <div className="md:col-span-4 lg:col-span-3">
+                      <h4 className="font-mono text-xs uppercase tracking-widest opacity-60 mb-2">Cash Prize / Reward</h4>
+                      <p className="font-sans text-base font-medium opacity-90">{selectedAward.prize}</p>
+                    </div>
+                    <div className="md:col-span-4 lg:col-span-3">
+                      <h4 className="font-mono text-xs uppercase tracking-widest opacity-60 mb-2">Role</h4>
+                      <p className="font-sans text-base opacity-90">{selectedAward.role}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-16 md:mt-24 max-w-4xl">
+                    <h4 className="font-mono text-xs uppercase tracking-widest opacity-60 mb-6">About the Project</h4>
+                    <p className="font-sans text-2xl md:text-4xl opacity-80 leading-tight">
+                      {selectedAward.desc}
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Media Gallery */}
+                <div className="flex flex-col gap-12 md:gap-24">
+                  {selectedAward.media.map((m: any, idx: number) => (
+                    <AwardsMediaItem key={idx} m={m} idx={idx} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+function HeroAndAboutSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "start start"],
+  });
+
+  // Hero exit transformations: scaling down, fading out, slight upward parallax drift, and subtle depth blur (desktop only)
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.65, 1], [1, 0.35, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const heroFilter = useTransform(scrollYProgress, [0, 0.5, 1], ["blur(0px)", "blur(2px)", "blur(6px)"]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.85], [0, 0.65]);
+
+  // Who is John? (About Section) subtle upward parallax reveal as it ascends (desktop only)
+  const aboutContentY = useTransform(scrollYProgress, [0, 1], [40, 0]);
+  const aboutContentOpacity = useTransform(scrollYProgress, [0.15, 0.85], [0.35, 1]);
+
+  // Adaptive Hero Stat Cards
+  const heroCards = [
+    { num: "8+", label: "Projects", href: "#work" },
+    { num: "4", label: "Awards", href: "#awards" },
+    { num: "100+", label: "Gallery", href: "/gallery" },
+    { num: "4+", label: "Years Exp.", href: "#experience" }
+  ];
+
+  const half = Math.ceil(heroCards.length / 2);
+  const leftCards = heroCards.slice(0, half);
+  const rightCards = heroCards.slice(half);
+
+  return (
+    <div ref={containerRef} className="relative w-full">
+      {/* Hero Section — sticky on desktop, normal relative flow on phone */}
+      <section 
+        id="hero" 
+        className="relative min-h-screen md:sticky md:top-0 md:h-screen w-full flex flex-col justify-between px-6 md:px-12 pt-24 md:pt-16 pb-8 md:pb-10 overflow-hidden z-0"
+      >
+        <motion.div 
+          style={isDesktop ? { 
+            opacity: heroOpacity, 
+            scale: heroScale, 
+            y: heroY, 
+            filter: heroFilter 
+          } : undefined}
+          className="w-full h-full flex flex-col justify-between items-center origin-center relative z-10"
+        >
+          {/* Top Title: JOHN */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full text-center shrink-0 z-0"
+          >
+            <h1 className="font-display text-[22vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] font-bold tracking-tighter uppercase leading-[0.75] text-white select-none">
+              JOHN
+            </h1>
+          </motion.div>
+
+          {/* Center Stage: Portrait flanked by Adaptive Floating Stat Cards on the Left and Right */}
+          <div className="relative w-full max-w-7xl mx-auto flex items-center justify-center my-auto -mt-6 sm:-mt-10 md:-mt-16 lg:-mt-20 z-20 px-2 sm:px-6">
+            {/* Left Floating Cards (Desktop) */}
+            <div className="hidden lg:flex flex-col gap-6 xl:gap-8 flex-1 items-end pr-8 xl:pr-12 pt-8 xl:pt-12 z-30">
+              {leftCards.map((card, idx) => (
+                <Link key={idx} href={card.href} className="group">
+                  <motion.div 
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 + idx * 0.1 }}
+                    whileHover={{ x: -4 }}
+                    className={`relative ${idx % 2 === 0 ? "w-56 xl:w-64" : "w-60 xl:w-72 mr-3 xl:mr-6"} p-6 rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100/85 dark:bg-neutral-950/85 backdrop-blur-md shadow-2xl text-right flex flex-col justify-center cursor-pointer group-hover:border-[var(--theme-fg)]/40 transition-colors`}
+                  >
+                    <div className="absolute top-4 left-4 w-7 h-7 rounded-full border border-neutral-300 dark:border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-[var(--theme-fg)] group-hover:border-[var(--theme-fg)] group-hover:bg-[var(--theme-fg)]/10 transition-all duration-300">
+                      <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                    <span className="font-display text-4xl xl:text-6xl font-bold tracking-tighter text-[var(--theme-fg)] leading-none">
+                      <ScrambleText text={card.num} />
+                    </span>
+                    <p className="font-mono text-xs xl:text-sm uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mt-2">{card.label}</p>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Centered Image — larger and slightly overlapping the JOHN text above */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="relative flex items-center justify-center shrink-0 z-20"
+            >
+              <div className="relative w-[82vw] sm:w-[68vw] md:w-[54vw] lg:w-[38vw] xl:w-[36vw] max-w-[590px] aspect-square flex items-center justify-center">
+                <Image
+                  src={theme === "light" ? "/lmode.png" : "/dmode.png"}
+                  alt="John"
+                  width={1080}
+                  height={1080}
+                  priority
+                  className="w-full h-full object-contain select-none pointer-events-none transition-all duration-500 hover:scale-105"
+                />
+              </div>
+            </motion.div>
+
+            {/* Right Floating Cards (Desktop) */}
+            <div className="hidden lg:flex flex-col gap-6 xl:gap-8 flex-1 items-start pl-8 xl:pl-12 pt-8 xl:pt-12 z-30">
+              {rightCards.map((card, idx) => (
+                <Link key={idx} href={card.href} className="group">
+                  <motion.div 
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 + idx * 0.1 }}
+                    whileHover={{ x: 4 }}
+                    className={`relative ${idx % 2 === 0 ? "w-56 xl:w-64" : "w-60 xl:w-72 ml-3 xl:ml-6"} p-6 rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100/85 dark:bg-neutral-950/85 backdrop-blur-md shadow-2xl text-left flex flex-col justify-center cursor-pointer group-hover:border-[var(--theme-fg)]/40 transition-colors`}
+                  >
+                    <div className="absolute top-4 right-4 w-7 h-7 rounded-full border border-neutral-300 dark:border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-[var(--theme-fg)] group-hover:border-[var(--theme-fg)] group-hover:bg-[var(--theme-fg)]/10 transition-all duration-300">
+                      <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                    <span className="font-display text-4xl xl:text-6xl font-bold tracking-tighter text-[var(--theme-fg)] leading-none">
+                      <ScrambleText text={card.num} />
+                    </span>
+                    <p className="font-mono text-xs xl:text-sm uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mt-2">{card.label}</p>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile / Tablet Cards Grid (Adaptive layout below image when < lg) */}
+          <div className={`grid ${heroCards.length > 2 ? "grid-cols-2" : "grid-cols-1"} gap-4 w-full max-w-lg lg:hidden mt-4 z-30`}>
+            {heroCards.map((c, idx) => (
+              <Link 
+                key={idx} 
+                href={c.href}
+                className="group relative p-4 rounded-xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100/70 dark:bg-neutral-950/70 backdrop-blur-sm text-center cursor-pointer transition-all active:scale-95 hover:border-[var(--theme-fg)]/40"
+              >
+                <div className="absolute top-3 right-3 w-5 h-5 rounded-full border border-neutral-300 dark:border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-[var(--theme-fg)] group-hover:border-[var(--theme-fg)] transition-colors">
+                  <ArrowUpRight size={10} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+                <span className="font-display text-3xl font-bold tracking-tighter text-[var(--theme-fg)]">
+                  <ScrambleText text={c.num} />
+                </span>
+                <p className="font-mono text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mt-1">{c.label}</p>
+              </Link>
+            ))}
+          </div>
+
+          {/* Bottom Summary — enlarged, refined editorial layout */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-5xl mx-auto flex flex-col items-center text-center pb-2 md:pb-6 mt-4 lg:mt-6 shrink-0 z-30"
+          >
+            {/* Portfolio Summary Statement — fixed 3-line layout to prevent line wrapping jumps */}
+            <p className="max-w-6xl mx-auto font-display text-base sm:text-xl md:text-2xl lg:text-[2.15rem] xl:text-[2.25rem] font-medium tracking-tight text-[var(--theme-fg)] leading-[1.25] uppercase">
+              <span className="md:block">
+                Jack of all trades in multimedia, and a builder by code.
+              </span>
+              <span className="md:block my-0.5">
+                From{" "}
+                <TypewriterRole 
+                  roles={[
+                    "video editing", 
+                    "cinematography", 
+                    "videography", 
+                    "creative storytelling", 
+                    "production"
+                  ]} 
+                />{" "}
+                and direction to
+              </span>
+              <span className="md:block">
+                software engineering specializing in{" "}
+                <span className="italic font-light opacity-65">UI/UX design</span>.
+              </span>
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Soft background dimming overlay on desktop only */}
+        {isDesktop && (
+          <motion.div 
+            style={{ opacity: overlayOpacity }} 
+            className="absolute inset-0 bg-[var(--theme-bg)] pointer-events-none z-20" 
+          />
+        )}
+      </section>
+
+      {/* Who is John? (About Section) — overlapping card on desktop, normal section on phone */}
+      <section 
+        ref={aboutRef} 
+        id="about" 
+        className="relative z-10 py-24 md:py-36 px-6 md:px-12 flex flex-col justify-center bg-dissolve-mask overflow-hidden"
+      >
+        <div className="ambient-dissolve-glow" aria-hidden="true" />
+        <motion.div 
+          style={isDesktop ? { y: aboutContentY, opacity: aboutContentOpacity } : undefined}
+          className="w-full max-w-7xl mx-auto flex flex-col relative z-10"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12 md:gap-y-16 lg:gap-y-24 items-end">
+            {/* Row 1: Massive Lede Headline (Spans all 12 cols) */}
+            <div className="col-span-1 md:col-span-12">
+              <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.12] tracking-tighter text-[var(--theme-fg)] text-left">
+                I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
+              </h3>
+            </div>
+
+            {/* Row 2, Left: CTA Link Button (Cols 1-6 on desktop, placed after paragraphs on mobile) */}
+            <div className="col-span-1 md:col-span-6 order-3 md:order-2 flex flex-col justify-end items-start pt-4 md:pt-0">
+              <Link 
+                href="/about" 
+                data-mascot-target="about-btn" 
+                className="group inline-flex items-center gap-3 border border-neutral-300 dark:border-neutral-700 rounded-full px-6 py-3.5 md:px-8 md:py-4 hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-fg)] transition-all duration-300 font-display text-sm md:text-base uppercase tracking-wider text-neutral-700 dark:text-neutral-300 hover:text-[var(--theme-bg)]"
+              >
+                <span>Get to know me more</span>
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            {/* Row 2, Right: 2 Bio Paragraphs (Cols 7-12 on desktop, 2-column subgrid) */}
+            <div className="col-span-1 md:col-span-6 order-2 md:order-3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 text-neutral-600 dark:text-neutral-400 font-sans text-sm md:text-base leading-relaxed">
+              <p>
+                Currently, I&apos;m a 4th-year BS Computer Science student majoring in Application Development at the University of Makati and a consistent Dean&apos;s Lister. I work across multimedia production, video editing, photography, graphic design, UI/UX design, and software development. I also run EstudyantEdits, my creative services venture, while taking on projects that challenge both my creative and technical skills.
+              </p>
+              <p>
+                I&apos;m working towards becoming a well-rounded software engineer with a strong foundation in UI/UX and product design. I want to bridge the gap between thoughtful design and functional technology, while continuing to grow as a creative who can conceptualize, produce, and build meaningful experiences from the ground up.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
@@ -392,7 +1002,7 @@ export default function Home() {
                 {[
                   { label: "Home", href: "#" },
                   { label: "About", href: "#about" },
-                  { label: "Work", href: "#work" },
+                  { label: "Projects", href: "#work" },
                   { label: "Experience", href: "#experience" },
                   { label: "Credentials", href: "#certifications" },
                   { label: "Awards", href: "#awards" },
@@ -429,9 +1039,9 @@ export default function Home() {
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: 0.7, duration: 0.6 }}
                 >
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">Writings</h3>
-                  <Link href="/blog" onClick={() => setMenuOpen(false)} className="group flex items-center gap-4 text-2xl md:text-3xl font-display uppercase tracking-wider text-white hover:text-neutral-400 transition-colors pr-4">
-                    Read the Blog <ArrowUpRight size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">Multimedia Archive</h3>
+                  <Link href="/gallery" onClick={() => setMenuOpen(false)} className="group flex items-center gap-4 text-2xl md:text-3xl font-display uppercase tracking-wider text-white hover:text-neutral-400 transition-colors pr-4">
+                    View Gallery <ArrowUpRight size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>
                 </motion.div>
               </div>
@@ -465,82 +1075,53 @@ export default function Home() {
       </AnimatePresence>
 
 
-      {/* Hero Section */}
-      <ScrollReveal as="section" id="hero" className="min-h-screen flex flex-col justify-center md:justify-end p-6 md:p-12 relative overflow-hidden pt-32 md:pt-0">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="z-10"
-        >
-          <h1 className="font-display text-[15vw] leading-[0.8] tracking-tighter uppercase mb-6 md:mb-12 break-words mt-auto">
-            John<br />
-            <span className="text-neutral-500 italic">Jervys</span>
-          </h1>
-        </motion.div>
-        <div className="flex flex-col lg:flex-row justify-between lg:items-end pb-8 z-10 w-full pt-8 gap-12 border-t border-neutral-800" data-mascot-target="hero-stats">
-          <div className="flex flex-wrap gap-12 md:gap-16 lg:gap-24">
-            <div className="flex flex-col">
-              <span className="font-display text-5xl md:text-6xl tracking-tighter text-white"><ScrambleText text="40+" /></span>
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-2">Projects Shipped</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-5xl md:text-6xl tracking-tighter text-white"><ScrambleText text="05" /></span>
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-2">Years Active</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-5xl md:text-6xl tracking-tighter text-white"><ScrambleText text="12" /></span>
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-2">Industry Awards</span>
-            </div>
-          </div>
-          <p className="max-w-xs md:max-w-md lg:max-w-xs text-neutral-400 font-sans text-sm text-right self-end uppercase tracking-widest">
-            Crafting digital experiences through the intersection of design, motion, and code.
-          </p>
-        </div>
-      </ScrollReveal>
-
-      {/* About Me */}
-      <ScrollReveal as="section" id="about" className="py-32 px-6 md:px-12 relative flex flex-col items-center justify-center text-center bg-neutral-950/50">
-        <div className="w-full flex flex-col items-center">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-neutral-500 mb-8">Who is John?</h2>
-          
-          <div className="relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center py-20 md:py-32">
-             {/* Foreground Text */}
-             <div className="relative z-10">
-               <p className="font-display text-5xl md:text-7xl lg:text-[10rem] leading-[0.8] tracking-tighter text-white uppercase">
-                 MULTIMEDIA <br/>
-                 <span className="italic relative inline-block">ARTIST.<span className="absolute -bottom-2 left-0 w-full h-[4px] bg-white"></span></span>
-               </p>
-             </div>
-          </div>
-
-          <p className="font-sans text-xl md:text-3xl text-neutral-400 mt-16 max-w-4xl leading-relaxed">
-            Blurring the line between art and code. I use brutalist structures, striking typography, and precise motion to build digital experiences that don't just exist, but <span className="text-white font-display italic">perform.</span>
-          </p>
-
-          <Link href="/about" data-mascot-target="about-btn" className="mt-16 flex items-center gap-3 border border-neutral-700 rounded-full px-8 py-4 hover:bg-white hover:text-black hover:border-white transition-all duration-300 font-display text-lg uppercase tracking-wider">
-            Get to know me more <ArrowRight size={20} />
-          </Link>
-        </div>
-      </ScrollReveal>
-
-
+      {/* Hero & About Combined Smooth Transition */}
+      <HeroAndAboutSection />
 
       {/* Projects */}
       <div id="work">
-        <WorkSection />
+        <div id="projects" className="scroll-mt-24">
+          <WorkSection />
+        </div>
       </div>
 
       {/* Experience */}
-      <ScrollReveal as="section" id="experience" className="py-32 md:py-48 px-6 md:px-12 bg-neutral-950/50">
-        <div className="w-full relative">
+      <ScrollReveal as="section" id="experience" className="py-24 md:py-36 px-6 md:px-12 bg-dissolve-mask relative overflow-hidden flex flex-col justify-center">
+        <div className="ambient-dissolve-glow" aria-hidden="true" />
+        <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
           <div className="space-y-24 pl-8 ml-2 md:ml-4 relative">
             {[
-              { role: "Lead Multimedia Designer", company: "Studio Void", date: "2024 - Present", desc: "Spearheading the creative direction for high-impact Web3 platforms. Merging 3D aesthetics with performant web technologies." },
-              { role: "Senior Creative Developer", company: "Web3 Innovators", date: "2022 - 2024", desc: "Developed immersive blockchain landing pages and minted interactive NFT experiences." },
-              { role: "Interactive Designer", company: "Digital Arts Inc.", date: "2020 - 2022", desc: "Designed experimental UI patterns for digital art galleries." },
-              { role: "Motion Graphics Intern", company: "Creative Tech Lab", date: "2019 - 2020", desc: "Created kinetic typography and video mapping assets." }
+              { 
+                role: "Freelance App Developer & UI/UX Designer", 
+                company: "Independent Practice", 
+                date: "Nov 2024 - Present", 
+                desc: "Architecting and developing client web and mobile applications across diverse industries (MapuOne, IoTrack Learning Kit, StudyCircle, Erehwon Art Center, Gathr, IntelliStock, KuraStock, Muntinlupa UPA). Delivering full-stack solutions with Next.js, React Native, Supabase, and Tailwind CSS." 
+              },
+              { 
+                role: "Founder & Creative Director", 
+                company: "EstudyantEdits", 
+                date: "Jul 2023 - Present", 
+                desc: "Founded and directing a creative digital collective delivering photo and video editing, branding, graphic design, and custom web development for academic bodies and commercial brands." 
+              },
+              { 
+                role: "Freelance Multimedia & Video Lead", 
+                company: "Erovoutika", 
+                date: "Dec 2025 - Jan 2026", 
+                desc: "Spearheaded video production, motion graphics, and event media documentation for premier national robotics events, including the 4th Robolution and Minoan Robotsports Competition Philippines." 
+              },
+              { 
+                role: "Student Intern — Broadcast Production", 
+                company: "DOSTv", 
+                date: "Jun 2023 - Jul 2023", 
+                desc: "Executed news videography, B-roll cinematography, and post-production for national television broadcasts and digital science communication." 
+              },
+              { 
+                role: "Video Editing Head", 
+                company: "Multimedia and Information Technology Society (MITS)", 
+                date: "Jun 2021 - Jul 2023", 
+                desc: "Supervised the video editing department, creating promotional reels, event coverage, and multimedia design assets for campus IT initiatives." 
+              }
             ].map((exp, i, arr) => (
               <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
             ))}
@@ -558,9 +1139,9 @@ export default function Home() {
           {/* Marquee-style Tech Display */}
           <div className="flex flex-col gap-6 w-full mt-4">
             {[
-              ["Next.js", "React", "TypeScript", "Tailwind", "Motion", "GSAP"],
-              ["WebGL", "Three.js", "GLSL", "Canvas", "PixiJS"],
-              ["Cinema4D", "Blender", "Figma", "Web3", "Solidity"]
+              ["Next.js", "React", "TypeScript", "Tailwind CSS", "React Native", "Expo"],
+              ["Python", "Java", "C#", "Kotlin", "SQL", "PostgreSQL", "Supabase", "Prisma"],
+              ["Figma", "Premiere Pro", "After Effects", "Photoshop", "Android Studio", "GCP", "Vercel"]
             ].map((row, i) => (
               <div key={i} className={`flex gap-8 whitespace-nowrap w-max ${i % 2 === 0 ? "animate-[marquee_120s_linear_infinite]" : "animate-[marquee-reverse_150s_linear_infinite]"} `}>
                 {[...row, ...row, ...row, ...row, ...row, ...row].map((tech, j) => (
@@ -578,19 +1159,18 @@ export default function Home() {
       </ScrollReveal>
 
       {/* Certifications */}
-      <ScrollReveal as="section" id="certifications" className="py-32 md:py-48 px-6 md:px-12 bg-neutral-950/50">
-        <div className="w-full">
+      <ScrollReveal as="section" id="certifications" className="py-24 md:py-36 px-6 md:px-12 bg-dissolve-mask relative overflow-hidden flex flex-col justify-center">
+        <div className="ambient-dissolve-glow" aria-hidden="true" />
+        <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-fr">
             {[
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Three.js_Icon.svg", name: "Advanced WebGL Patterns", issuer: "Creative Coding Course", date: "Aug 2024", link: "#" },
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg", name: "Blockchain Architecture", issuer: "Web3 Institute", date: "Dec 2023", link: "#" },
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg", name: "Awwwards Masterclass", issuer: "Typography in Web", date: "Oct 2022", link: "#" },
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg", name: "Google UX Design", issuer: "Professional Certificate", date: "Mar 2022", link: "#" },
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg", name: "3D Motion Graphics", issuer: "School of Motion", date: "Nov 2021", link: "#" },
-              { logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", name: "Frontend Architecture", issuer: "Frontend Masters", date: "Jan 2021", link: "#" }
+              { logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Pearson_logo.svg", name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
+              { logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Confluent_logo.svg", name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
+              { logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg", name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" },
+              { logo: "https://upload.wikimedia.org/wikipedia/en/e/eb/University_of_Makati_logo.png", name: "BS Computer Science (AppDev)", issuer: "University of Makati", date: "2023 - Present", link: "https://www.umak.edu.ph" }
             ].map((cert, i) => (
-              <a href={cert.link} key={i} className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+              <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
                 {/* Link Icon */}
                 <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                   <ArrowUpRight size={24} />
@@ -610,40 +1190,14 @@ export default function Home() {
       </ScrollReveal>
 
       {/* Awards */}
-      <ScrollReveal as="section" id="awards" className="py-40 md:py-48 px-6 md:px-12 border-t border-neutral-900">
-        <div className="w-full">
-          <div className="flex justify-between items-end mb-12 border-b border-neutral-800 pb-6">
-            <h2 className="font-display text-4xl md:text-6xl tracking-tight uppercase">AWARDS</h2>
-            <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden md:block">Competitions & Recognition</span>
-          </div>
-          <div className="flex flex-col">
-            {[
-              { award: "Site of the Day", competition: "Awwwards", year: "2025", project: "Ethereal Echoes" },
-              { award: "Gold Pencil", competition: "The One Show", year: "2024", project: "Brutal Genesis" },
-              { award: "FWA of the Month", competition: "FWA", year: "2024", project: "Void Analytics" },
-              { award: "Best Interaction", competition: "Webby Awards", year: "2023", project: "Chromatic Shift" }
-            ].map((item, i) => (
-              <div key={i} className="group flex flex-col md:flex-row justify-between items-start md:items-center py-8 border-b border-neutral-900 hover:bg-white hover:text-black hover:px-6 transition-all duration-300 cursor-crosshair">
-                <div className="flex flex-col md:flex-row gap-2 md:gap-12 md:items-center">
-                  <span className="font-mono text-xs tracking-widest text-neutral-600 group-hover:text-black/50 transition-colors">0{i + 1}</span>
-                  <h3 className="font-display text-2xl md:text-4xl uppercase tracking-tighter">{item.award}</h3>
-                </div>
-                <div className="flex flex-col md:flex-row gap-2 md:gap-16 md:items-center mt-4 md:mt-0 w-full md:w-auto">
-                  <p className="font-mono text-sm tracking-widest uppercase text-neutral-400 group-hover:text-black/70 transition-colors w-40">{item.competition}</p>
-                  <p className="font-sans text-sm tracking-wide text-neutral-500 group-hover:text-black/60 transition-colors w-32 hidden md:block">{item.project}</p>
-                  <span className="font-mono text-xl tracking-tighter font-bold">{item.year}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
+      <AwardsSection />
 
 
 
       {/* Footer / Contact */}
-      <ScrollReveal as="footer" id="contact" className="pt-32 pb-12 px-6 md:px-12 bg-neutral-950">
-        <div className="w-full flex flex-col gap-24">
+      <ScrollReveal as="footer" id="contact" className="pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 bg-dissolve-mask-top relative overflow-hidden flex flex-col justify-between">
+        <div className="ambient-dissolve-glow" aria-hidden="true" />
+        <div className="w-full flex flex-col gap-24 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-8 flex flex-col justify-between" data-mascot-target="footer-talk">
@@ -652,9 +1206,9 @@ export default function Home() {
                 <span className="text-neutral-500 italic hover:text-white transition-colors cursor-crosshair">Let's build it.</span>
               </h2>
               <div className="mt-16 md:mt-24">
-                <a href="mailto:hello@johnjervys.com" className="inline-flex items-center gap-6 group">
+                <a href="mailto:johnjervyscabalo08@gmail.com" className="inline-flex items-center gap-6 group">
                   <span className="font-mono text-xl md:text-3xl text-neutral-300 uppercase tracking-widest border-b-2 border-transparent group-hover:border-white transition-all pb-2 break-all">
-                    hello@johnjervys.com
+                    johnjervyscabalo08@gmail.com
                   </span>
                   <div className="w-12 h-12 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0">
                     <ArrowUpRight size={24} />
@@ -667,12 +1221,12 @@ export default function Home() {
               <div className="flex flex-col gap-6 w-full">
                 <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2">Socials</h3>
                 {[
-                  { name: "Instagram", handle: "@johnjervys" },
-                  { name: "Twitter", handle: "@jervys_code" },
-                  { name: "LinkedIn", handle: "/in/johnjervys" },
-                  { name: "GitHub", handle: "/johnjervys" }
+                  { name: "Instagram", handle: "@not_jrvys", href: "https://instagram.com/not_jrvys" },
+                  { name: "Twitter", handle: "@not_jrvys", href: "https://twitter.com/not_jrvys" },
+                  { name: "GitHub", handle: "/jjcabalo", href: "https://github.com/jjcabalo" },
+                  { name: "LinkedIn", handle: "/in/john-jervys-cabalo", href: "https://linkedin.com/in/john-jervys-cabalo" }
                 ].map((social, i) => (
-                  <a key={i} href="#" className="flex justify-between items-end border-b border-neutral-800 pb-4 group">
+                  <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex justify-between items-end border-b border-neutral-800 pb-4 group">
                     <span className="font-display text-2xl uppercase tracking-wider group-hover:text-neutral-400 transition-colors">{social.name}</span>
                     <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors">{social.handle}</span>
                   </a>
@@ -680,19 +1234,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-neutral-600 font-mono text-xs uppercase tracking-widest gap-4">
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
-              <span>Ã‚Â© {new Date().getFullYear()} JOHN JERVYS</span>
-              <span>Based in NY</span>
-            </div>
-            <div className="flex flex-wrap gap-4 sm:gap-8">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <span>Built with Next.js</span>
-            </div>
-          </div>
-
         </div>
       </ScrollReveal>
     </main>

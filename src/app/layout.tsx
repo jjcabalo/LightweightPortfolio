@@ -17,8 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "JOHN | Multimedia Artist",
-  description: "Portfolio of JOHN, a minimal and modern multimedia artist.",
+  title: "JOHN of All Trades",
+  description: "Portfolio of John Jervys — Application Developer, UI/UX Designer & Multimedia Specialist.",
 };
 
 export default function RootLayout({

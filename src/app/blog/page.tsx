@@ -34,7 +34,7 @@ export default function BlogIndex() {
           href="/" 
           className="font-display font-bold text-2xl tracking-tighter hover:opacity-60 transition-opacity text-[#ffffff]"
         >
-          JOHN.BLOG
+          JOHN.GALLERY
         </Link>
         <button 
           className="relative z-[60] w-12 h-12 flex flex-col items-end justify-center gap-[6px] group" 
@@ -62,7 +62,7 @@ export default function BlogIndex() {
                 {[
                   { label: "Home", href: "/#" },
                   { label: "About", href: "/#about" },
-                  { label: "Work", href: "/#work" },
+                  { label: "Projects", href: "/#work" },
                   { label: "Experience", href: "/#experience" },
                   { label: "Credentials", href: "/#certifications" },
                   { label: "Awards", href: "/#awards" },
@@ -102,9 +102,9 @@ export default function BlogIndex() {
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: 0.6, duration: 0.4 }}
                 >
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">Writings</h3>
-                  <Link href="/blog" onClick={() => setMenuOpen(false)} className="group flex items-center gap-4 text-2xl md:text-3xl font-display uppercase tracking-wider text-white hover:text-neutral-400 transition-colors pr-4">
-                    Read the Blog <ArrowUpRight size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">Multimedia Archive</h3>
+                  <Link href="/gallery" onClick={() => setMenuOpen(false)} className="group flex items-center gap-4 text-2xl md:text-3xl font-display uppercase tracking-wider text-white hover:text-neutral-400 transition-colors pr-4">
+                    View Gallery <ArrowUpRight size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>
                 </motion.div>
               </div>

@@ -73,10 +73,10 @@ export default function AboutPage() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none">
-            JOHN <span className="text-neutral-500 italic">JERVYS</span>
+            JOHN <span className="text-neutral-500 italic">JERVYS CABALO</span>
           </h1>
           
-          <a href="/resume.pdf" download title="Download Resume" className="group flex items-center justify-center gap-3 border border-neutral-700 rounded-full w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-4 hover:bg-white hover:text-black hover:border-white transition-all duration-300 font-display text-lg uppercase tracking-wider shrink-0">
+          <a href="/resume.pdf" download="John_Jervys_Cabalo_Resume.pdf" title="Download Resume" className="group flex items-center justify-center gap-3 border border-neutral-700 rounded-full w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-4 hover:bg-white hover:text-black hover:border-white transition-all duration-300 font-display text-lg uppercase tracking-wider shrink-0">
             <span className="hidden md:inline">Download Resume</span>
             <Download size={20} className="group-hover:translate-y-1 transition-transform" />
           </a>
@@ -96,17 +96,20 @@ export default function AboutPage() {
             <div className="lg:col-span-9 flex flex-col gap-20">
               <div>
                 <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-neutral-300 leading-tight mb-12">
-                  I am a multimedia artist and creative developer blurring the line between code and art. With over 5 years of experience, I specialize in crafting digital experiences that utilize brutalist structures, striking typography, and precise motion.
+                  I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology. Currently a 4th-year BS Computer Science student majoring in Application Development at the University of Makati and a consistent Dean&apos;s Lister.
                 </p>
                 <div className="flex gap-4">
-                  <a href="#" aria-label="LinkedIn" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                  <a href="https://linkedin.com/in/john-jervys-cabalo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                   </a>
-                  <a href="#" aria-label="GitHub" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                  <a href="https://github.com/jjcabalo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                   </a>
-                  <a href="#" aria-label="Instagram" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                  <a href="https://instagram.com/not_jrvys" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </a>
+                  <a href="https://twitter.com/not_jrvys" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="w-14 h-14 flex items-center justify-center border border-neutral-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
                   </a>
                 </div>
               </div>
@@ -115,16 +118,16 @@ export default function AboutPage() {
                 <div>
                   <h3 className="font-display text-2xl uppercase tracking-tighter mb-8 text-white">Technical Skills</h3>
                   <div className="flex flex-wrap gap-3">
-                    {["React", "Next.js", "TypeScript", "Tailwind CSS", "Three.js", "WebGL", "GSAP"].map((skill, i) => (
+                    {["TypeScript", "Python", "Java", "C#", "SQL", "Kotlin", "React", "Next.js", "React Native", "Tailwind CSS", "Supabase", "PostgreSQL", "Prisma", "ASP.NET Core"].map((skill, i) => (
                       <span key={i} className="px-4 py-2 border border-neutral-700 rounded-full text-sm font-mono text-neutral-300">{skill}</span>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-display text-2xl uppercase tracking-tighter mb-8 text-white">Dev Tools</h3>
+                  <h3 className="font-display text-2xl uppercase tracking-tighter mb-8 text-white">Dev Tools & Media</h3>
                   <div className="flex flex-wrap gap-3">
-                    {["VS Code", "Figma", "Git", "Webpack", "Vercel", "Cinema4D", "Blender"].map((tool, i) => (
+                    {["Android Studio", "GitHub", "Figma", "VS Code", "Vercel", "Supabase", "GCP", "Adobe Premiere Pro", "After Effects", "Photoshop"].map((tool, i) => (
                       <span key={i} className="px-4 py-2 border border-neutral-700 rounded-full text-sm font-mono text-neutral-300">{tool}</span>
                     ))}
                   </div>
@@ -133,10 +136,10 @@ export default function AboutPage() {
                 <div className="md:col-span-2">
                   <h3 className="font-display text-2xl uppercase tracking-tighter mb-8 text-white">Core Competencies</h3>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 font-mono text-base text-neutral-400">
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Creative Direction & UI/UX</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Motion Graphics & Animation</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Frontend Architecture</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Web3 Integration</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Full-Stack Web &amp; Mobile App Development</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> UI/UX &amp; Human-Centered Interaction Design</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Creative Direction &amp; Broadcast Video Production</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-neutral-600 rounded-full" /> Database Architecture &amp; Data Streaming Pipelines</li>
                   </ul>
                 </div>
               </div>
@@ -155,10 +158,36 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-9 space-y-24 pl-8 ml-2 md:ml-4 relative">
               {[
-                { role: "Lead Multimedia Designer", company: "Studio Void", date: "2024 - Present", desc: "Spearheaded creative direction for over 20+ digital campaigns. Managed a team of 5 designers to deliver award-winning interactive web experiences." },
-                { role: "Senior Creative Developer", company: "Web3 Innovators", date: "2022 - 2024", desc: "Engineered high-performance WebGL interfaces for decentralized applications. Bridged the gap between conceptual design and technical execution." },
-                { role: "Interactive Designer", company: "Digital Arts Inc.", date: "2020 - 2022", desc: "Prototyped and developed immersive brand experiences. Specialized in motion design and fluid user interactions using GSAP and Three.js." },
-                { role: "Motion Graphics Intern", company: "Creative Tech Lab", date: "2019 - 2020", desc: "Assisted in producing motion graphics for commercial clients. Learned industry-standard workflows for 3D modeling and video composition." }
+                { 
+                  role: "Freelance Application Developer & UI/UX Designer", 
+                  company: "Independent Practice", 
+                  date: "Nov 2024 - Present", 
+                  desc: "Architecting and developing client web and mobile applications across diverse industries (MapuOne, IoTrack Learning Kit, StudyCircle, Erehwon Art Center, Gathr, IntelliStock, KuraStock, Muntinlupa UPA). Delivering full-stack solutions with Next.js, React Native, Supabase, and Tailwind CSS." 
+                },
+                { 
+                  role: "Founder & Creative Director", 
+                  company: "EstudyantEdits", 
+                  date: "Jul 2023 - Present", 
+                  desc: "Founded and directing a creative digital collective delivering photo and video editing, branding, graphic design, and custom web development for academic bodies and commercial brands." 
+                },
+                { 
+                  role: "Freelance Multimedia & Video Lead", 
+                  company: "Erovoutika", 
+                  date: "Dec 2025 - Jan 2026", 
+                  desc: "Spearheaded video production, motion graphics, and live event media documentation for premier national robotics events, including the 4th Robolution and Minoan Robotsports Competition Philippines." 
+                },
+                { 
+                  role: "Student Intern — Broadcast Media", 
+                  company: "DOSTv", 
+                  date: "Jun 2023 - Jul 2023", 
+                  desc: "Executed news videography, B-roll cinematography, and post-production for national television broadcasts and digital science communication." 
+                },
+                { 
+                  role: "Video Editing Head", 
+                  company: "Multimedia and Information Technology Society (MITS)", 
+                  date: "Jun 2021 - Jul 2023", 
+                  desc: "Supervised the video editing department, creating promotional reels, event coverage, and multimedia design assets for campus IT initiatives." 
+                }
               ].map((exp, i, arr) => (
                 <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
               ))}
@@ -177,10 +206,14 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-9 space-y-20">
               {[
-                { name: "Ethereal Echoes", category: "Interactive Install", year: "2023", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800", desc: "An audio-reactive WebGL installation exhibited in NYC, allowing users to manipulate soundscapes through physical gestures." },
-                { name: "Brutal Genesis", category: "Web3 Platform", year: "2024", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800", desc: "A minimalist NFT marketplace utilizing a brutalist design system, featuring seamless wallet integrations and gas-optimized contracts." },
-                { name: "Void Analytics", category: "Dashboard UI", year: "2024", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800", desc: "A sleek, dark-mode data visualization dashboard built with React and D3.js for processing massive sets of real-time financial metrics." },
-                { name: "Chromatic Shift", category: "Motion Identity", year: "2025", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800", desc: "A complete brand overhaul including kinetic typography, dynamic color systems, and a WebGL-powered landing page." }
+                { name: "KOMYUTPH", category: "PWA Navigation", year: "2026", desc: "An offline-first, crowdsourced navigation web application designed for informal public transportation in the Philippines (jeepneys, tricycles, UV Express) with fare estimates and transit guides." },
+                { name: "eHANDA", category: "GovTech Platform", year: "2026", desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Top 10 Finalist in eGovPH Hackathon 2026." },
+                { name: "MapuOne", category: "Campus Web App", year: "2026", desc: "A centralized campus incident and complaint management system featuring real-time ticket tracking, administrative dashboards, and automated department dispatch." },
+                { name: "IoTrack Learning Kit", category: "EdTech & IoT", year: "2026", desc: "An interactive educational IoT platform featuring 3D robotic arm simulations, live hardware telemetry streaming, and modular robotics engineering curriculum." },
+                { name: "SilangApp", category: "Civic Mobile App", year: "2025", desc: "A comprehensive barangay governance mobile application for Brgy. Sto. Rosario Silangan, Pateros, offering digital document requests, resident registries, and community alerts." },
+                { name: "StudyBuddy", category: "AI Productivity", year: "2024", desc: "An intelligent student productivity suite featuring an automated AI study assistant, deadline scheduling, and academic workload analytics built in ASP.NET Core & C#." },
+                { name: "StudyCircle", category: "Collaborative Learning", year: "2026", desc: "An AI-enhanced collaborative study platform featuring shared markdown documentation, interactive study lounges, and automated flashcard generation." },
+                { name: "Erehwon Art Center MIS", category: "Arts MIS Platform", year: "2026", desc: "A custom Management Information System (MIS) engineered for Erehwon Center for the Arts to catalog valuable art collections, maintain artist exhibition records, and digitize archives." }
               ].map((proj, i) => (
                 <div key={i} className="group">
                   <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
@@ -211,10 +244,10 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-9 space-y-20">
               {[
-                { title: "Site of the Day", issuer: "Awwwards", date: "2024", desc: "Awarded for exceptional creativity, design, and technical execution on the Void Analytics dashboard platform." },
-                { title: "Gold Winner - Digital Art", issuer: "Indigo Design Awards", date: "2023", desc: "Recognized internationally for the 'Ethereal Echoes' interactive web installation." },
-                { title: "Best Web3 Interface", issuer: "Webby Awards", date: "2024", desc: "Honored for bridging the gap between blockchain complexity and minimalist, accessible UI design on Brutal Genesis." },
-                { title: "Developer of the Year (Nominee)", issuer: "CSS Design Awards", date: "2025", desc: "Nominated for consistently pushing the boundaries of web motion and 3D browser experiences." }
+                { title: "Best in UI and UX; 1st Runner Up", issuer: "Infotechnolympics 2026 — Hackathon Category", date: "Oct 2026", desc: "Recognized for human-centered design excellence and rapid prototyping during the high-pressure Infotechnolympics 2026 Hackathon." },
+                { title: "Top 10 Finalists", issuer: "eGovPH Hackathon 2026", date: "Jul 2026", desc: "Selected among the top 10 national finalists for eHANDA, a post-disaster household needs assessment platform integrating directly with the eGovPH app." },
+                { title: "Most Commercially Viable", issuer: "UMak 7th Hackathon 2025", date: "May 2025", desc: "Awarded for exceptional market readiness, sustainable product viability, and streamlined digital product architecture." },
+                { title: "1st Runner Up — C# Category", issuer: "Infotechnolympics 2025", date: "Oct 2024", desc: "Demonstrated advanced algorithmic problem-solving, clean software architecture, and rapid C# development under contest constraints." }
               ].map((award, i) => (
                 <div key={i} className="group">
                   <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
@@ -246,8 +279,7 @@ export default function AboutPage() {
             <div className="lg:col-span-9 flex flex-col gap-24">
               <div className="space-y-20">
                 {[
-                  { degree: "BFA in Design & Technology", school: "Parsons School of Design", date: "2016 - 2020", desc: "Graduated with honors. Focused on the intersection of physical computing, generative art, and modern web architecture." },
-                  { degree: "Creative Coding Cert", school: "Creative Coding Institute", date: "2021", desc: "Intensive 6-month program focusing on advanced GLSL shaders, procedural generation, and real-time rendering pipelines." }
+                  { degree: "BS in Computer Science (Major in Application Development)", school: "University of Makati", date: "Aug 2023 - Present", desc: "Dean's Lister with a running GWA of 1.243. Relevant coursework in Data Structures and Algorithms, OOP, Database Systems, Web & Mobile Application Development, and Software Engineering." }
                 ].map((edu, i) => (
                   <div key={i} className="group">
                     <div className="flex flex-col md:flex-row justify-between md:items-start gap-4">
@@ -266,14 +298,12 @@ export default function AboutPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-neutral-800">
                 {[
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Three.js_Icon.svg", name: "Advanced WebGL Patterns", issuer: "Creative Coding Course", date: "Aug 2024", link: "#" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg", name: "Blockchain Architecture", issuer: "Web3 Institute", date: "Dec 2023", link: "#" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg", name: "Awwwards Masterclass", issuer: "Typography in Web", date: "Oct 2022", link: "#" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg", name: "Google UX Design", issuer: "Professional Certificate", date: "Mar 2022", link: "#" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg", name: "3D Motion Graphics", issuer: "School of Motion", date: "Nov 2021", link: "#" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", name: "Frontend Architecture", issuer: "Frontend Masters", date: "Jan 2021", link: "#" }
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Pearson_logo.svg", name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Confluent_logo.svg", name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg", name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" },
+                  { logo: "https://upload.wikimedia.org/wikipedia/en/e/eb/University_of_Makati_logo.png", name: "Dean's Lister Honor (GWA 1.243)", issuer: "University of Makati", date: "2023 - Present", link: "https://www.umak.edu.ph" }
                 ].map((cert, i) => (
-                  <a href={cert.link} key={i} className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+                  <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
                     <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                       <ArrowUpRight size={24} />
                     </div>
