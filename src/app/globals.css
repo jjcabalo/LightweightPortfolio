@@ -83,84 +83,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   mix-blend-mode: normal;
 }
 
-/* Seamless Uneven Dissolving Section Background */
-.bg-dissolve-mask {
-  background-color: var(--theme-neutral-950);
-  -webkit-mask-image: 
-    linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%),
-    radial-gradient(135% 100% at 35% 0%, black 65%, transparent 100%),
-    radial-gradient(145% 100% at 75% 100%, black 65%, transparent 100%);
-  mask-image: 
-    linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%),
-    radial-gradient(135% 100% at 35% 0%, black 65%, transparent 100%),
-    radial-gradient(145% 100% at 75% 100%, black 65%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-
+/* Solid Section Background */
+.bg-dissolve-mask,
 .bg-dissolve-mask-top {
   background-color: var(--theme-neutral-950);
-  -webkit-mask-image: 
-    linear-gradient(to bottom, transparent 0%, black 18%, black 100%),
-    radial-gradient(140% 100% at 40% 0%, black 60%, transparent 100%);
-  mask-image: 
-    linear-gradient(to bottom, transparent 0%, black 18%, black 100%),
-    radial-gradient(140% 100% at 40% 0%, black 60%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
 }
 
-/* Subtle Monochrome Gray Atmospheric Glow */
 .ambient-dissolve-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-/* Top subtle monochrome gray wave */
-.ambient-dissolve-glow::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 120%;
-  height: 65%;
-  background: 
-    radial-gradient(55% 85% at 28% 15%, rgba(255, 255, 255, 0.05) 0%, rgba(150, 150, 150, 0.02) 40%, transparent 75%),
-    radial-gradient(45% 75% at 75% 20%, rgba(200, 200, 200, 0.04) 0%, rgba(100, 100, 100, 0.01) 45%, transparent 70%);
-  filter: blur(85px);
-  mix-blend-mode: screen;
-}
-
-/* Bottom subtle monochrome gray wave */
-.ambient-dissolve-glow::after {
-  content: "";
-  position: absolute;
-  bottom: -22%;
-  right: -10%;
-  width: 125%;
-  height: 65%;
-  background: 
-    radial-gradient(60% 80% at 72% 85%, rgba(255, 255, 255, 0.04) 0%, rgba(160, 160, 160, 0.02) 42%, transparent 75%),
-    radial-gradient(40% 65% at 22% 80%, rgba(180, 180, 180, 0.03) 0%, rgba(120, 120, 120, 0.01) 35%, transparent 65%);
-  filter: blur(90px);
-  mix-blend-mode: screen;
-}
-
-html.light-mode .ambient-dissolve-glow::before {
-  background: 
-    radial-gradient(55% 85% at 28% 15%, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.02) 40%, transparent 75%),
-    radial-gradient(45% 75% at 75% 20%, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.01) 45%, transparent 70%);
-  mix-blend-mode: multiply;
-}
-
-html.light-mode .ambient-dissolve-glow::after {
-  background: 
-    radial-gradient(60% 80% at 72% 85%, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.02) 42%, transparent 75%),
-    radial-gradient(40% 65% at 22% 80%, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 35%, transparent 65%);
-  mix-blend-mode: multiply;
+  display: none;
 }
 
 ::view-transition-old(root) {

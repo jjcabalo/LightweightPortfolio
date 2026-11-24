@@ -296,24 +296,22 @@ export default function AboutPage() {
                 ))}
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-neutral-800">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-neutral-800">
                 {[
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Pearson_logo.svg", name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Confluent_logo.svg", name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg", name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" },
-                  { logo: "https://upload.wikimedia.org/wikipedia/en/e/eb/University_of_Makati_logo.png", name: "Dean's Lister Honor (GWA 1.243)", issuer: "University of Makati", date: "2023 - Present", link: "https://www.umak.edu.ph" }
+                  { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
+                  { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
+                  { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" }
                 ].map((cert, i) => (
-                  <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[300px]">
+                  <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[260px]">
                     <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                       <ArrowUpRight size={24} />
                     </div>
-                    <div>
-                      <img src={cert.logo} alt={cert.issuer} className="w-10 h-10 object-contain grayscale opacity-50 group-hover:opacity-100 transition-opacity brightness-200 contrast-200" />
-                      <h3 className="font-display text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-6 leading-tight group-hover:text-white text-neutral-300 tracking-tighter uppercase break-words pr-8">{cert.name}</h3>
+                    <div className="pt-2">
+                      <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4 block">{cert.issuer}</span>
+                      <h3 className="font-display text-2xl md:text-3xl mt-2 leading-snug group-hover:text-white text-neutral-100 tracking-tight uppercase break-words pr-8">{cert.name}</h3>
                     </div>
                     <div className="mt-8 border-t border-neutral-800 pt-4">
-                      <p className="text-sm font-sans text-neutral-400 uppercase tracking-widest break-words">{cert.issuer}</p>
-                      <p className="font-mono text-xs text-neutral-500 mt-2 uppercase tracking-widest">{cert.date}</p>
+                      <p className="font-mono text-xs text-neutral-500 uppercase tracking-widest">{cert.date}</p>
                     </div>
                   </a>
                 ))}
