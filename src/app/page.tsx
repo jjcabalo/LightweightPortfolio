@@ -907,37 +907,28 @@ function HeroAndAboutSection() {
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <motion.div 
           style={isDesktop ? { y: aboutContentY, opacity: aboutContentOpacity } : undefined}
-          className="w-full max-w-7xl mx-auto flex flex-col relative z-10"
+          className="w-full max-w-5xl mx-auto flex flex-col items-center text-center relative z-10"
         >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12 md:gap-y-16 lg:gap-y-24 items-end">
-            {/* Row 1: Massive Lede Headline (Spans all 12 cols) */}
-            <div className="col-span-1 md:col-span-12">
-              <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.12] tracking-tighter text-[var(--theme-fg)] text-left">
-                I&apos;m John Jervys — a multimedia creative and aspiring software engineer who enjoys bringing ideas to life through visuals, storytelling, design, and technology.
-              </h3>
-            </div>
+          {/* Little Title on Top */}
+          <span className="font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-500 mb-6 border border-neutral-800 bg-neutral-900/60 px-4 py-1.5 rounded-full">
+            Who Am I?
+          </span>
 
-            {/* Row 2, Left: CTA Link Button (Cols 1-6 on desktop, placed after paragraphs on mobile) */}
-            <div className="col-span-1 md:col-span-6 order-3 md:order-2 flex flex-col justify-end items-start pt-4 md:pt-0">
-              <Link 
-                href="/about" 
-                data-mascot-target="about-btn" 
-                className="group inline-flex items-center gap-3 border border-neutral-300 dark:border-neutral-700 rounded-full px-6 py-3.5 md:px-8 md:py-4 hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-fg)] transition-all duration-300 font-display text-sm md:text-base uppercase tracking-wider text-neutral-700 dark:text-neutral-300 hover:text-[var(--theme-bg)]"
-              >
-                <span>Get to know me more</span>
-                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
+          {/* Statement */}
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.15] tracking-tighter text-[var(--theme-fg)] mb-12">
+            I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
+          </h3>
 
-            {/* Row 2, Right: 2 Bio Paragraphs (Cols 7-12 on desktop, 2-column subgrid) */}
-            <div className="col-span-1 md:col-span-6 order-2 md:order-3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 text-neutral-600 dark:text-neutral-400 font-sans text-sm md:text-base leading-relaxed">
-              <p>
-                Currently a 4th-year BS Computer Science student at the University of Makati, a Freelancer, and founder of EstudyantEdits. I work across multimedia production, video editing, photography, UI/UX design, and software development.
-              </p>
-              <p>
-                I&apos;m working towards becoming a well-rounded software engineer specializing in UI/UX and product design, bridging creative thinking with functional technology.
-              </p>
-            </div>
+          {/* Centered CTA Link Button */}
+          <div className="flex justify-center items-center">
+            <Link 
+              href="/about" 
+              data-mascot-target="about-btn" 
+              className="group inline-flex items-center gap-3 border border-neutral-300 dark:border-neutral-700 rounded-full px-6 py-3.5 md:px-8 md:py-4 hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-fg)] transition-all duration-300 font-display text-sm md:text-base uppercase tracking-wider text-neutral-700 dark:text-neutral-300 hover:text-[var(--theme-bg)]"
+            >
+              <span>Get to know me more</span>
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </div>
         </motion.div>
       </section>
