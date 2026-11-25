@@ -1484,7 +1484,7 @@ export default function Home() {
                 </div>
                 <div className="pt-2">
                   <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4 block">{cert.issuer}</span>
-                  <h3 className="font-display text-2xl md:text-3xl lg:text-3xl mt-2 leading-snug group-hover:text-white text-neutral-100 tracking-tight uppercase break-words pr-8">{cert.name}</h3>
+                  <h3 className="font-display text-2xl md:text-3xl lg:text-3xl mt-2 leading-snug group-hover:text-white text-[var(--theme-fg)] tracking-tight uppercase break-words pr-8">{cert.name}</h3>
                 </div>
                 <div className="mt-8 border-t border-neutral-800 pt-4">
                   <p className="font-mono text-xs text-neutral-500 uppercase tracking-widest">{cert.date}</p>
