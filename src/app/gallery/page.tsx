@@ -37,124 +37,82 @@ interface GalleryItem {
 
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    id: "erovoutika-robotics",
-    title: "4th Robolution Film Coverage",
+    id: "mock-cut-01",
+    title: "[MOCK] Narrative Film Reel 01",
     category: "Motion & Video",
     type: "video",
-    mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    posterUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80",
+    mediaUrl: "",
     year: "2026",
     orientation: "landscape",
-    tools: ["Sony Cinema Line", "Premiere Pro", "After Effects"],
-    client: "Erovoutika Philippines",
-    resolution: "3840 x 2160 (4K 60fps)",
-    description: "Cinematic broadcast coverage, dynamic event highlight reels, and kinetic motion graphics for the 4th Robolution and Minoan Robotsports Competition Philippines."
+    tools: ["DaVinci Resolve", "Cinema Camera"],
+    client: "Sample Production House",
+    resolution: "4K DCI (24fps)",
+    description: "Sample mock entry: High-contrast cinematic narrative sequence showcasing pacing, multi-cam grading, and atmospheric sound design."
   },
   {
-    id: "estudyantedits-brand",
-    title: "EstudyantEdits Visual Identity",
-    category: "Visual Identity",
-    type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80",
-    year: "2024",
-    orientation: "portrait",
-    tools: ["Illustrator", "Photoshop", "After Effects"],
-    client: "EstudyantEdits",
-    resolution: "4000 x 5000",
-    description: "Comprehensive brand identity system, editorial layouts, and kinetic social templates designed for EstudyantEdits creative collective."
-  },
-  {
-    id: "dostv-broadcast",
-    title: "DOSTv Broadcast Cinematography",
+    id: "mock-reel-02",
+    title: "[MOCK] Vertical Social Edit 02",
     category: "Motion & Video",
     type: "video",
-    mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    posterUrl: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80",
-    year: "2023",
-    orientation: "landscape",
-    tools: ["Broadcast Cameras", "B-Roll", "Premiere Pro"],
-    client: "DOSTv — Department of Science & Technology",
-    resolution: "1920 x 1080 (HD Broadcast)",
-    description: "On-site news videography, B-roll cinematography, and post-production video editing for national science and tech broadcast features."
-  },
-  {
-    id: "komyutph-transit-ui",
-    title: "KOMYUTPH Transit Cartography",
-    category: "Visual Identity",
-    type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80",
-    year: "2026",
-    orientation: "square",
-    tools: ["Figma", "Leaflet GIS", "Tailwind CSS"],
-    client: "KOMYUTPH Initiative",
-    resolution: "Vector & Digital Map Assets",
-    description: "Informal transit route mapping symbology, fare matrix charts, and high-legibility mobile iconography tailored for Philippine public transport."
-  },
-  {
-    id: "mits-kinetic-package",
-    title: "MITS Media & Motion Package",
-    category: "Motion & Video",
-    type: "video",
-    mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-    posterUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80",
-    year: "2023",
+    mediaUrl: "",
+    year: "2025",
     orientation: "portrait",
-    tools: ["After Effects", "Premiere Pro", "Audition"],
-    client: "Multimedia & IT Society (MITS)",
-    resolution: "1080 x 1920 (Vertical Reel)",
-    description: "High-energy promotional trailers, motion graphics bumpers, and kinetic typography for campus technology summits and workshops."
+    tools: ["Premiere Pro", "After Effects"],
+    client: "Sample Creative Collective",
+    resolution: "1080 x 1920 (9:16)",
+    description: "Sample mock entry: Fast-paced short-form motion rhythm featuring kinetic typography, match-cuts, and bass-synced motion graphics."
   },
   {
-    id: "ehanda-govtech-ui",
-    title: "eHANDA Disaster Relief System",
-    category: "Visual Identity",
-    type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80",
-    year: "2026",
-    orientation: "portrait",
-    tools: ["Figma", "Design Tokens", "Next.js"],
-    client: "eGovPH Hackathon 2026 Finalist",
-    resolution: "Complete Mobile & Web System",
-    description: "Accessible, high-contrast disaster response dashboard UI designed for rapid household needs assessment and emergency aid dispatch."
-  },
-  {
-    id: "iotrack-simulation",
-    title: "IoTrack 3D Arm Telemetry",
+    id: "mock-still-03",
+    title: "[MOCK] Color Grading Still 03",
     category: "Creative Code",
     type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1600&q=80",
-    year: "2026",
-    orientation: "landscape",
-    tools: ["Three.js", "React", "Supabase"],
-    client: "IoTrack Learning Kit",
-    resolution: "Real-time WebGL Telemetry",
-    description: "Browser-based 3D simulation of a robotic arm paired with live hardware telemetry feeds, forward/inverse kinematics, and telemetry logs."
-  },
-  {
-    id: "studycircle-design",
-    title: "StudyCircle Collaborative UI",
-    category: "Visual Identity",
-    type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80",
-    year: "2026",
+    mediaUrl: "",
+    year: "2025",
     orientation: "square",
-    tools: ["Figma", "Tailwind CSS", "Component Library"],
-    client: "StudyCircle Platform",
-    resolution: "Component Design System",
-    description: "Complete UI design system and collaborative interface components engineered for collegiate virtual study lounges and markdown notes."
+    tools: ["Photoshop", "Lightroom"],
+    client: "Studio Showcase",
+    resolution: "4000 x 4000",
+    description: "Sample mock entry: Editorial still capture highlighting natural low-light film emulation and volumetric exposure curves."
   },
   {
-    id: "erehwon-art-mis",
-    title: "Erehwon Art Center Archival",
+    id: "mock-cut-04",
+    title: "[MOCK] Broadcast Documentary 04",
+    category: "Motion & Video",
+    type: "video",
+    mediaUrl: "",
+    year: "2025",
+    orientation: "landscape",
+    tools: ["Sony Cinema Line", "Audition"],
+    client: "Broadcast Media Lab",
+    resolution: "1080p Broadcast",
+    description: "Sample mock entry: Observational field documentary cut highlighting natural soundscapes, ambient B-roll, and narrative interviews."
+  },
+  {
+    id: "mock-reel-05",
+    title: "[MOCK] Dynamic Fashion Reel 05",
+    category: "Motion & Video",
+    type: "video",
+    mediaUrl: "",
+    year: "2024",
+    orientation: "portrait",
+    tools: ["After Effects", "Speed Ramping"],
+    client: "Apparel Brand Concept",
+    resolution: "1080 x 1920 (9:16)",
+    description: "Sample mock entry: Rhythmic vertical showcase with dynamic speed-ramping, graphic overlays, and editorial transitions."
+  },
+  {
+    id: "mock-still-06",
+    title: "[MOCK] Archival Portrait Series 06",
     category: "Visual Identity",
     type: "image",
-    mediaUrl: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80",
-    year: "2026",
-    orientation: "portrait",
-    tools: ["PostgreSQL", "React", "Typography"],
-    client: "Erehwon Center for the Arts",
-    resolution: "Digital Archive System",
-    description: "Digital cataloging interface and visual database architecture preserving fine art collections, historic murals, and artist registries."
+    mediaUrl: "",
+    year: "2024",
+    orientation: "square",
+    tools: ["35mm Emulation", "Lightroom"],
+    client: "Independent Archive",
+    resolution: "2048 x 2048",
+    description: "Sample mock entry: Monochrome archival portraiture study focusing on contrast ratios and organic grain texture."
   }
 ];
 
@@ -531,10 +489,35 @@ export default function GalleryPage() {
             GALLERY
           </h1>
 
-          <div className="border-t border-neutral-800 pt-8 mt-2">
+          <div className="border-t border-neutral-800 pt-8 mt-2 flex flex-col gap-8">
             <p className="max-w-4xl font-sans text-xl sm:text-2xl md:text-3xl font-normal leading-tight opacity-80 uppercase tracking-tight text-white">
               A collection of work across video editing, photography, videography, and creative production. This is where my creative side takes the spotlight.
             </p>
+
+            {/* Under Development Minimal Notice & Drive CTA Button */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-6 md:p-8 rounded-2xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-md">
+              <div className="flex items-start gap-4">
+                <span className="flex h-2.5 w-2.5 translate-y-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+                <div>
+                  <p className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                    STATUS / UNDER DEVELOPMENT
+                  </p>
+                  <p className="font-sans text-sm md:text-base text-neutral-300 mt-1">
+                    Native CDN streaming integration is in progress. The cards below display mock placeholders — browse the complete full-resolution video archive and raw cuts directly on Google Drive.
+                  </p>
+                </div>
+              </div>
+
+              <a 
+                href="https://drive.google.com/drive/folders/1MtdUv8EoTQYlKFlJFslAXy5Uw3J-y4QN?usp=sharing"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group shrink-0 inline-flex items-center justify-center gap-3 border border-neutral-700 hover:border-white bg-white text-black hover:bg-neutral-200 rounded-full px-6 py-3.5 font-mono text-xs md:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl"
+              >
+                <span>Open Video Drive</span>
+                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -559,43 +542,28 @@ export default function GalleryPage() {
                 onClick={() => setActiveMedia(item)}
                 className="group relative break-inside-avoid rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/70 backdrop-blur-md flex flex-col justify-between transition-all duration-500 hover:border-white cursor-pointer"
               >
-                {/* Visual Media Container */}
-                <div className={`w-full ${aspectClass} relative overflow-hidden bg-black flex items-center justify-center`}>
-                  {item.type === "video" ? (
-                    <video
-                      src={item.mediaUrl}
-                      poster={item.posterUrl}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                    />
-                  ) : (
-                    <img
-                      src={item.mediaUrl}
-                      alt={item.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-                    />
-                  )}
-
-                  {/* Dark subtle overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
+                {/* Visual Media Container — Minimalist Abstract Mock Card */}
+                <div className={`w-full ${aspectClass} relative overflow-hidden bg-neutral-950 flex flex-col items-center justify-center p-6 text-center border-b border-neutral-900 group-hover:bg-neutral-900/40 transition-colors duration-500`}>
+                  {/* Subtle radial dot grid */}
+                  <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:16px_16px] opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
 
                   {/* Top Badge */}
                   <div className="absolute top-4 left-4 flex items-center z-20 pointer-events-none">
-                    <span className="px-3 py-1 bg-black/80 backdrop-blur-md text-white font-mono text-[10px] uppercase tracking-widest rounded-full border border-white/20 flex items-center gap-1.5">
+                    <span className="px-3 py-1 bg-black/80 backdrop-blur-md text-neutral-400 font-mono text-[10px] uppercase tracking-widest rounded-full border border-neutral-800 flex items-center gap-1.5">
                       {item.type === "video" ? <Film size={12} /> : <Eye size={12} />}
-                      {item.type === "video" ? (item.orientation === "portrait" ? "REEL" : "CINEMA") : "STILL"}
+                      {item.orientation === "portrait" ? "VERTICAL REEL" : item.orientation === "landscape" ? "WIDESCREEN" : "SQUARE STILL"}
                     </span>
                   </div>
 
-                  {/* Hover Play/View Indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-300">
-                      {item.type === "video" ? <Play size={20} className="fill-white translate-x-0.5" /> : <Eye size={20} />}
+                  {/* Mock Indicator */}
+                  <div className="relative z-20 flex flex-col items-center justify-center gap-3">
+                    <div className="w-12 h-12 rounded-full border border-neutral-800 bg-neutral-900/80 flex items-center justify-center text-neutral-500 group-hover:text-white group-hover:border-neutral-600 transition-all duration-300">
+                      {item.type === "video" ? <Play size={18} className="translate-x-0.5" /> : <Eye size={18} />}
                     </div>
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500">
+                      MOCK ENTRY / SAMPLE
+                    </span>
                   </div>
                 </div>
 
