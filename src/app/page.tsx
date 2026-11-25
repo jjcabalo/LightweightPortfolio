@@ -872,18 +872,18 @@ function HeroAndAboutSection() {
                 From{" "}
                 <TypewriterRole 
                   roles={[
+                    "cinematography",
+                    "direction",
                     "video editing", 
-                    "cinematography", 
                     "videography", 
                     "creative storytelling", 
                     "production"
                   ]} 
                 />{" "}
-                and direction to
+                to software engineering
               </span>
               <span className="md:block">
-                software engineering specializing in{" "}
-                <span className="italic font-light opacity-65">UI/UX design</span>.
+                SPECIALIZING IN <span className="italic font-light opacity-65">UI/UX DESIGN</span>
               </span>
             </p>
           </motion.div>
