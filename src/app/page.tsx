@@ -527,13 +527,13 @@ function AwardListItem({ item, i, onClick }: { item: any, i: number, onClick: ()
         </span>
         <h3 className="font-display text-2xl md:text-4xl uppercase tracking-tighter">{item.award}</h3>
       </div>
-      <div className="flex flex-col md:flex-row gap-2 md:gap-16 md:items-center mt-4 md:mt-0 w-full md:w-auto">
-        <p className={`font-mono text-sm tracking-widest uppercase transition-colors w-40 ${
+      <div className="flex flex-col md:flex-row gap-2 md:gap-12 md:items-center mt-4 md:mt-0 w-full md:w-auto">
+        <p className={`font-mono text-sm tracking-widest uppercase transition-colors md:w-64 ${
           isInView ? "max-md:text-[var(--theme-bg)]/70" : "max-md:text-[var(--theme-fg)]/60"
         } md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
           {item.competition}
         </p>
-        <p className={`font-mono text-xs tracking-wider uppercase transition-colors w-48 hidden md:block md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
+        <p className={`font-mono text-xs tracking-wider uppercase transition-colors md:w-48 hidden md:block md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
           {item.role}
         </p>
         <span className="font-mono text-xl tracking-tighter font-bold">{item.year}</span>
@@ -558,7 +558,7 @@ function AwardsSection() {
   const awards = [
     { 
       award: "Best in UI and UX; 1st Runner Up", 
-      competition: "Infotechnolympics 2026", 
+      competition: "Infotechnolympics 2026 — Hackathon Category", 
       year: "2026", 
       project: "Hackathon Category", 
       prize: "Trophy + Cash Prize", 
@@ -596,8 +596,8 @@ function AwardsSection() {
       ]
     },
     { 
-      award: "1st Runner Up — C# Category", 
-      competition: "Infotechnolympics 2025", 
+      award: "1st Runner Up", 
+      competition: "Infotechnolympics 2025 — C# Category", 
       year: "2024", 
       project: "C# Algorithmic Challenge", 
       prize: "Trophy + Certificate", 
