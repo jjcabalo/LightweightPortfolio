@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useMotionValueEvent, useAnimation } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Sun, Moon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Sun, Moon, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,7 @@ function WorkSection() {
     target: targetRef,
   });
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [activeDemoUrl, setActiveDemoUrl] = useState<string | null>(null);
 
   // Uses dynamic calculation to stop exactly at the end of the content regardless of screen size
   const x = useTransform(scrollYProgress, (p) => `calc(-${p * 100}% + ${p * 100}vw)`);
@@ -99,6 +100,7 @@ function WorkSection() {
       desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility.",
       deployed: true,
       liveUrl: "https://komyutph.com",
+      demoEmbedUrl: "https://drive.google.com/file/d/1m-DLGness2mJhEhNfd03-ZLFejDWzvqJ/preview",
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
       deviceImage: "/projects/KOMYUTPH-M.png",
@@ -132,16 +134,16 @@ function WorkSection() {
     }
   ];
 
-  // Prevent scrolling when popup is open
+  // Prevent scrolling when popup or demo is open
   useEffect(() => {
-    if (selectedProject) {
+    if (selectedProject || activeDemoUrl) {
       document.body.style.overflow = "hidden";
       (window as any).lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
       (window as any).lenis?.start();
     }
-  }, [selectedProject]);
+  }, [selectedProject, activeDemoUrl]);
 
   return (
     <>
@@ -199,6 +201,21 @@ function WorkSection() {
                         <h3 className="font-display text-3xl md:text-5xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
                         <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
                       </div>
+
+                      {project.demoEmbedUrl && (
+                        <div className="mt-4 pointer-events-auto">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveDemoUrl(project.demoEmbedUrl);
+                            }}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-md shadow-sm"
+                          >
+                            <Play size={12} className="fill-current" />
+                            View Demo
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -220,6 +237,7 @@ function WorkSection() {
               project={project} 
               i={i} 
               onClick={() => setSelectedProject({...project, index: i})} 
+              onDemoClick={project.demoEmbedUrl ? () => setActiveDemoUrl(project.demoEmbedUrl) : undefined}
             />
           ))}
         </div>
@@ -317,6 +335,15 @@ function WorkSection() {
                     </div>
 
                     <div className="flex flex-wrap items-center justify-end gap-4 w-full mb-12">
+                      {selectedProject.demoEmbedUrl && (
+                        <button
+                          onClick={() => setActiveDemoUrl(selectedProject.demoEmbedUrl)}
+                          className="inline-flex items-center gap-3 px-6 py-4 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-sm uppercase tracking-widest transition-all duration-300 group w-fit backdrop-blur-md"
+                        >
+                          <Play size={16} className="fill-current" />
+                          View Demo
+                        </button>
+                      )}
                       {selectedProject.liveUrl && (
                         <a
                           href={selectedProject.liveUrl}
@@ -348,6 +375,52 @@ function WorkSection() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Embedded Demo Modal */}
+      <AnimatePresence>
+        {activeDemoUrl && (
+          <motion.div
+            className="fixed inset-0 z-[120] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveDemoUrl(null)}
+          >
+            <motion.div
+              className="relative w-full max-w-4xl h-[75vh] md:h-[80vh] bg-[#0c0c0c] border border-neutral-800 rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.9)] flex flex-col"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800/80 bg-neutral-950/60">
+                <div className="flex items-center gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                  <span className="font-mono text-xs uppercase tracking-widest text-neutral-300">KOMYUTPH — Interactive Demo</span>
+                </div>
+                <button
+                  onClick={() => setActiveDemoUrl(null)}
+                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Embedded Frame */}
+              <div className="flex-1 w-full h-full bg-black relative">
+                <iframe
+                  src={activeDemoUrl}
+                  className="w-full h-full border-0"
+                  allow="autoplay; encrypted-media; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1472,7 +1545,7 @@ export default function Home() {
   );
 }
 
-function MobileProjectCard({ project, i, onClick }: { project: any, i: number, onClick: () => void }) {
+function MobileProjectCard({ project, i, onClick, onDemoClick }: { project: any, i: number, onClick: () => void, onDemoClick?: () => void }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
 
@@ -1521,6 +1594,21 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
         <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 block mb-1">{project.category}</span>
         <h3 className="font-display text-2xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
         <p className="text-[#a3a3a3] mt-1 font-mono text-xs uppercase tracking-widest">{project.year}</p>
+
+        {project.demoEmbedUrl && (
+          <div className="mt-3 pointer-events-auto">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDemoClick?.();
+              }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-[11px] uppercase tracking-wider transition-all duration-300 backdrop-blur-md"
+            >
+              <Play size={10} className="fill-current" />
+              View Demo
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
