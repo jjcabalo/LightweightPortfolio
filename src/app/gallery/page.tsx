@@ -38,7 +38,7 @@ interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "mock-cut-01",
-    title: "[MOCK] Narrative Film Reel 01",
+    title: "Narrative Film Reel 01",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -51,7 +51,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mock-reel-02",
-    title: "[MOCK] Vertical Social Edit 02",
+    title: "Vertical Social Edit 02",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -64,7 +64,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mock-still-03",
-    title: "[MOCK] Color Grading Still 03",
+    title: "Color Grading Still 03",
     category: "Creative Code",
     type: "image",
     mediaUrl: "",
@@ -77,7 +77,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mock-cut-04",
-    title: "[MOCK] Broadcast Documentary 04",
+    title: "Broadcast Documentary 04",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -90,7 +90,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mock-reel-05",
-    title: "[MOCK] Dynamic Fashion Reel 05",
+    title: "Dynamic Fashion Reel 05",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -103,7 +103,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "mock-still-06",
-    title: "[MOCK] Archival Portrait Series 06",
+    title: "Archival Portrait Series 06",
     category: "Visual Identity",
     type: "image",
     mediaUrl: "",
@@ -500,7 +500,7 @@ export default function GalleryPage() {
                 <span className="flex h-2.5 w-2.5 translate-y-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
                 <div>
                   <p className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                    STATUS / UNDER DEVELOPMENT
+                    UNDER DEVELOPMENT
                   </p>
                   <p className="font-sans text-sm md:text-base text-neutral-300 mt-1">
                     Native CDN streaming integration is in progress. The cards below display mock placeholders — browse the complete full-resolution video archive and raw cuts directly on Google Drive.
@@ -550,20 +550,17 @@ export default function GalleryPage() {
 
                   {/* Top Badge */}
                   <div className="absolute top-4 left-4 flex items-center z-20 pointer-events-none">
-                    <span className="px-3 py-1 bg-black/80 backdrop-blur-md text-neutral-400 font-mono text-[10px] uppercase tracking-widest rounded-full border border-neutral-800 flex items-center gap-1.5">
-                      {item.type === "video" ? <Film size={12} /> : <Eye size={12} />}
-                      {item.orientation === "portrait" ? "VERTICAL REEL" : item.orientation === "landscape" ? "WIDESCREEN" : "SQUARE STILL"}
+                    <span className="px-3 py-1 bg-black/80 backdrop-blur-md text-neutral-300 font-mono text-[10px] uppercase tracking-widest rounded-full border border-neutral-700/60 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
+                      MOCK
                     </span>
                   </div>
 
-                  {/* Mock Indicator */}
-                  <div className="relative z-20 flex flex-col items-center justify-center gap-3">
-                    <div className="w-12 h-12 rounded-full border border-neutral-800 bg-neutral-900/80 flex items-center justify-center text-neutral-500 group-hover:text-white group-hover:border-neutral-600 transition-all duration-300">
-                      {item.type === "video" ? <Play size={18} className="translate-x-0.5" /> : <Eye size={18} />}
+                  {/* Center Eye Indicator on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <Eye size={20} />
                     </div>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500">
-                      MOCK ENTRY / SAMPLE
-                    </span>
                   </div>
                 </div>
 

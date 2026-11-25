@@ -122,17 +122,33 @@ function WorkSection() {
                     <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
                     
-                    {/* Center Typography & Category Badge watermark */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-20 transition-transform duration-500 group-hover:scale-105">
-                      <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3 border border-neutral-800 bg-neutral-900/80 px-3 py-1 rounded-full">
-                        {project.category}
-                      </span>
-                      <h4 className="font-display text-4xl lg:text-5xl xl:text-6xl text-white tracking-tighter uppercase max-w-sm">
-                        {project.title}
-                      </h4>
-                      <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">
-                        {project.role}
-                      </p>
+                    {/* Center Device Mockups */}
+                    <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none scale-[0.75] lg:scale-90 xl:scale-100 transition-transform duration-500">
+                      {i % 2 === 0 ? (
+                        /* Phone Mockup (iPhone Style) */
+                        <div className="w-[144px] h-[284px] md:w-[164px] md:h-[324px] p-[2px] rounded-[26px] md:rounded-[34px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
+                          {/* Front Black Bezel */}
+                          <div className="w-full h-full rounded-[24px] md:rounded-[32px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                            {/* Screen */}
+                            <div className="w-full h-full rounded-[20px] md:rounded-[26px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                              <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.07] to-white/0 z-40 pointer-events-none" />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        /* Monitor/Tablet Mockup (iPad Style) */
+                        <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
+                          {/* Front Black Bezel */}
+                          <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                            {/* Screen */}
+                            <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                              <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                              <div className="absolute inset-0 bg-gradient-to-bl from-white/[0.12] via-white/0 to-white/0 z-40 pointer-events-none" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Content overlay — always visible */}
@@ -194,20 +210,36 @@ function WorkSection() {
             <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
               <div className="flex flex-col md:flex-row min-h-full relative">
                 
-                {/* Project Branding Display */}
+                {/* Project Device Display */}
                 <div className="w-full md:w-1/2 h-[45vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
-                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:24px_24px] opacity-30" />
+                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:24px_24px] opacity-40" />
                   
-                  <div className="relative z-20 flex flex-col items-center justify-center max-w-md">
-                    <span className="font-mono text-xs uppercase tracking-widest text-neutral-400 mb-4 border border-neutral-800 bg-neutral-900/90 px-4 py-1.5 rounded-full">
-                      {selectedProject.category}
-                    </span>
-                    <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase text-white leading-none">
-                      {selectedProject.title}
-                    </h2>
-                    <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-4">
-                      {selectedProject.year} — {selectedProject.role}
-                    </p>
+                  <div className="relative z-20 scale-[0.85] sm:scale-100 md:scale-[1.1] lg:scale-[1.3] xl:scale-[1.5] flex items-center justify-center pointer-events-none transition-transform duration-500">
+                    {selectedProject.index % 2 === 0 ? (
+                      /* Phone Mockup (iPhone Style) */
+                      <div className="w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                            <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.07] to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Monitor/Tablet Mockup (iPad Style) */
+                      <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+                        {/* Front Black Bezel */}
+                        <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+                          {/* Screen */}
+                          <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                            <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-white/[0.12] via-white/0 to-white/0 z-40 pointer-events-none" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -1214,17 +1246,33 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
       <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 transition-opacity duration-700" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
 
-      {/* Center Typography */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500 mb-2 border border-neutral-800 bg-neutral-900/80 px-2.5 py-0.5 rounded-full">
-          {project.category}
-        </span>
-        <h4 className="font-display text-3xl sm:text-4xl text-white tracking-tighter uppercase">
-          {project.title}
-        </h4>
-        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-2">
-          {project.role}
-        </p>
+      {/* Center Device Mockups */}
+      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        {i % 2 === 0 ? (
+          /* Phone Mockup (iPhone Style) */
+          <div className={`w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+            {/* Front Black Bezel */}
+            <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+              {/* Screen */}
+              <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.07] to-white/0 z-40 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Monitor/Tablet Mockup (iPad Style) */
+          <div className={`w-[244px] h-[164px] p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+            {/* Front Black Bezel */}
+            <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
+              {/* Screen */}
+              <div className="w-full h-full rounded-[10px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
+                <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-bl from-white/[0.12] via-white/0 to-white/0 z-40 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="flex justify-between items-start relative z-30 p-6 pointer-events-none">
