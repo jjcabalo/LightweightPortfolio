@@ -533,8 +533,8 @@ function AwardListItem({ item, i, onClick }: { item: any, i: number, onClick: ()
         } md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
           {item.competition}
         </p>
-        <p className={`font-sans text-sm tracking-wide transition-colors w-32 hidden md:block md:text-[var(--theme-fg)]/50 md:group-hover:text-[var(--theme-bg)]/60`}>
-          {item.project}
+        <p className={`font-mono text-xs tracking-wider uppercase transition-colors w-48 hidden md:block md:text-[var(--theme-fg)]/60 md:group-hover:text-[var(--theme-bg)]/70`}>
+          {item.role}
         </p>
         <span className="font-mono text-xl tracking-tighter font-bold">{item.year}</span>
       </div>
@@ -601,7 +601,7 @@ function AwardsSection() {
       year: "2024", 
       project: "C# Algorithmic Challenge", 
       prize: "Trophy + Certificate", 
-      role: "Software Developer", 
+      role: "Algorithm Engineer", 
       desc: "Won 1st Runner Up in the C# Category at Infotechnolympics 2025, demonstrating advanced computational problem solving, data structure proficiency, and rapid algorithmic software development.", 
       media: [
         { type: 'image', url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80" },
