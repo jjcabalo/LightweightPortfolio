@@ -20,47 +20,6 @@ function WorkSection() {
 
   const projects = [
     { 
-      title: "KOMYUTPH", 
-      category: "PWA Navigation", 
-      year: "2026", 
-      date: "2026 – PRESENT", 
-      role: "FrontEnd Developer & Lead UI/UX Designer", 
-      tech: "React, PWA, Tailwind CSS, Leaflet", 
-      desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility.",
-      deployed: true,
-      liveUrl: "https://komyutph.com",
-      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
-      deviceType: "mobile",
-      deviceImage: "/projects/KOMYUTPH-M.png",
-      bgImage: "/projects/KOMYUTPH-BG.png"
-    },
-    { 
-      title: "MapuOne", 
-      category: "Campus Web App", 
-      year: "2026", 
-      date: "OCT 2026", 
-      role: "Full-Stack Developer", 
-      tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
-      desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch.",
-      deployed: true,
-      liveUrl: "https://mapuone-app.vercel.app/login",
-      deviceType: "none",
-      bgImage: "/projects/MAPUONE-THUMBNAIL.png"
-    },
-    { 
-      title: "IoTrack", 
-      category: "EdTech & IoT", 
-      year: "2026", 
-      date: "OCT 2026", 
-      role: "Full-Stack Developer & UI/UX Designer", 
-      tech: "React, Tailwind CSS, Supabase, PostgreSQL", 
-      desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible.",
-      deployed: true,
-      liveUrl: "https://iotrack-website.vercel.app",
-      deviceType: "none",
-      bgImage: "/projects/IOTRACK-THUMBNAIL.png"
-    },
-    { 
       title: "Erehwon Art Center", 
       category: "Arts MIS Platform", 
       year: "2026", 
@@ -129,6 +88,47 @@ function WorkSection() {
       deviceType: "mobile",
       deviceImage: "/projects/SILANGAPP-M-NEW.jpg",
       bgImage: "/projects/SILANGAPP-BG-NEW.png"
+    },
+    { 
+      title: "KOMYUTPH", 
+      category: "PWA Navigation", 
+      year: "2026", 
+      date: "2026 – PRESENT", 
+      role: "FrontEnd Developer & Lead UI/UX Designer", 
+      tech: "React, PWA, Tailwind CSS, Leaflet", 
+      desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility.",
+      deployed: true,
+      liveUrl: "https://komyutph.com",
+      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      deviceType: "mobile",
+      deviceImage: "/projects/KOMYUTPH-M.png",
+      bgImage: "/projects/KOMYUTPH-BG.png"
+    },
+    { 
+      title: "IoTrack", 
+      category: "EdTech & IoT", 
+      year: "2026", 
+      date: "OCT 2026", 
+      role: "Full-Stack Developer & UI/UX Designer", 
+      tech: "React, Tailwind CSS, Supabase, PostgreSQL", 
+      desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible.",
+      deployed: true,
+      liveUrl: "https://iotrack-website.vercel.app",
+      deviceType: "none",
+      bgImage: "/projects/IOTRACK-THUMBNAIL.png"
+    },
+    { 
+      title: "MapuOne", 
+      category: "Campus Web App", 
+      year: "2026", 
+      date: "OCT 2026", 
+      role: "Full-Stack Developer", 
+      tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
+      desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch.",
+      deployed: true,
+      liveUrl: "https://mapuone-app.vercel.app/login",
+      deviceType: "none",
+      bgImage: "/projects/MAPUONE-THUMBNAIL.png"
     }
   ];
 
