@@ -268,7 +268,7 @@ function MinimalistVideoPlayer({ item, onClose }: { item: GalleryItem; onClose: 
       className="fixed inset-0 z-[120] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
-      {/* Top Header & Close button */}
+      {/* Top Header */}
       <div 
         className="fixed top-6 left-6 right-6 z-[130] flex justify-between items-center pointer-events-auto"
         onClick={(e) => e.stopPropagation()}
@@ -281,15 +281,6 @@ function MinimalistVideoPlayer({ item, onClose }: { item: GalleryItem; onClose: 
             {item.title}
           </h2>
         </div>
-
-        <button
-          onClick={onClose}
-          className="w-12 h-12 rounded-full border border-neutral-700 bg-neutral-900/80 backdrop-blur-md flex items-center justify-center text-neutral-400 hover:text-white hover:border-white transition-all duration-300 group"
-          aria-label="Close video"
-        >
-          <span className="block h-[2px] bg-current w-5 rotate-45 translate-y-[1px]" />
-          <span className="block h-[2px] bg-current w-5 -rotate-45 -translate-y-[1px] -mt-[2px]" />
-        </button>
       </div>
 
       {/* Video Presentation Window */}
@@ -384,10 +375,6 @@ function MinimalistVideoPlayer({ item, onClose }: { item: GalleryItem; onClose: 
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <span className="hidden sm:inline-block font-mono text-[10px] uppercase tracking-widest text-neutral-500 border border-neutral-800 px-2.5 py-1 rounded-full">
-                    {item.resolution}
-                  </span>
-                  
                   {/* Fullscreen */}
                   <button
                     onClick={toggleFullscreen}
