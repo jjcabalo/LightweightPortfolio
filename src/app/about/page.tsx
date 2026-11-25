@@ -159,6 +159,12 @@ export default function AboutPage() {
             <div className="lg:col-span-9 space-y-24 pl-8 ml-2 md:ml-4 relative">
               {[
                 { 
+                  role: "Publicity and Ads Head & Research and Development Committee Member", 
+                  company: "University of Makati - Society of Innovative Computing", 
+                  date: "Oct 2026 - Present", 
+                  desc: "Spearheading creative direction, scriptwriting, video editing, pre-production, production, and post-production for college multimedia campaigns and technological research initiatives." 
+                },
+                { 
                   role: "Freelance Application Developer & UI/UX Designer", 
                   company: "Independent Practice", 
                   date: "Nov 2024 - Present", 
