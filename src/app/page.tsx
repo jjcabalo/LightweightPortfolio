@@ -1224,7 +1224,7 @@ function HeroAndAboutSection() {
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#000000" }}
-              className="inline-block bg-yellow-400 !text-black px-2.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold -rotate-2 hover:bg-yellow-300 transition-colors"
+              className="inline-block bg-yellow-400 px-2.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold -rotate-2 hover:bg-yellow-300 transition-colors"
             >
               Jervys
             </a>{" "}
