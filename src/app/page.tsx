@@ -158,7 +158,7 @@ function WorkSection() {
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-24 pb-12">
           <ScrollReveal className="w-full h-full flex flex-col justify-center">
             <div className="px-12 mb-12 flex justify-between items-end shrink-0">
-              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SOFTWARE PROJECTS</h2>
+              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
               <span className="text-neutral-500 font-mono">(0{projects.length})</span>
             </div>
             
@@ -219,7 +219,7 @@ function WorkSection() {
       {/* Mobile Normal Scroll */}
       <ScrollReveal as="section" id="work-mobile" className="block md:hidden py-24 ">
         <div className="px-6 mb-12 flex justify-between items-end">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white uppercase">SOFTWARE PROJECTS</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
         </div>
         <div className="flex flex-col gap-6 px-6">
           {projects.map((project, i) => (
