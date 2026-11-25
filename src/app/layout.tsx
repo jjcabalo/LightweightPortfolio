@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk, Playfair_Display } from "next/font/google";
+import { Archivo, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroller from "@/components/SmoothScroller";
 import Scene from "@/components/Scene";
@@ -14,11 +14,10 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  style: ["italic"],
-  weight: ["600", "700"],
+  weight: ["400", "600", "700", "900"],
 });
 
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -34,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${spaceGrotesk.variable} ${playfairDisplay.variable} antialiased scroll-smooth`}>
+    <html lang="en" className={`${archivo.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased scroll-smooth`}>
       <body className="bg-transparent text-white font-sans min-h-screen selection:bg-white selection:text-black">
         <ThemeProvider>
           <SmoothScroller>

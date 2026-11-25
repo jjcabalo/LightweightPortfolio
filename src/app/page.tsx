@@ -1223,7 +1223,7 @@ function HeroAndAboutSection() {
               href="https://jervys.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-yellow-400 text-black px-2 py-0.5 rounded-none font-[family-name:var(--font-playfair)] italic font-bold hover:bg-yellow-300 transition-colors"
+              className="inline-block bg-yellow-400 text-black px-2.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold -rotate-2 hover:bg-yellow-300 transition-colors"
             >
               Jervys
             </a>{" "}
