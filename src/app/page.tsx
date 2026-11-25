@@ -1218,7 +1218,16 @@ function HeroAndAboutSection() {
 
           {/* Statement */}
           <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.15] tracking-tighter text-[var(--theme-fg)] mb-12">
-            I&apos;m John Jervys — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
+            I&apos;m John{" "}
+            <a
+              href="https://jervys.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-yellow-400 text-black px-2 py-0.5 rounded-none font-[family-name:var(--font-playfair)] italic font-bold hover:bg-yellow-300 transition-colors"
+            >
+              Jervys
+            </a>{" "}
+            — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
           </h3>
 
           {/* Centered CTA Link Button */}
