@@ -1678,7 +1678,7 @@ export default function Home() {
       <ScrollReveal as="section" id="experience" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
         <AcidDissolveBg />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
-        <div className="w-full relative z-10">
+        <div className="w-full max-w-6xl mx-auto relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
           <div className="space-y-24">
             {/* Software Engineering */}
@@ -1784,7 +1784,7 @@ export default function Home() {
       {/* Certifications */}
       <ScrollReveal as="section" id="certifications" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
         <AcidDissolveBg />
-        <div className="w-full relative z-10">
+        <div className="w-full max-w-6xl mx-auto relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-fr">
             {[
