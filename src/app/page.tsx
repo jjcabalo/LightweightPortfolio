@@ -35,20 +35,6 @@ function WorkSection() {
       bgImage: "/projects/KOMYUTPH-BG.png"
     },
     { 
-      title: "eHANDA", 
-      category: "GovTech Platform", 
-      year: "2026", 
-      date: "JUL 2026", 
-      role: "UI/UX Designer & Media Director", 
-      tech: "Next.js, Supabase, Tailwind CSS, Figma", 
-      desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026).",
-      deployed: false,
-      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
-      deviceType: "tablet",
-      deviceImage: "/projects/EHAND-T.jpg",
-      bgImage: "/projects/EHANDA-BG.png"
-    },
-    { 
       title: "MapuOne", 
       category: "Campus Web App", 
       year: "2026", 
@@ -58,11 +44,11 @@ function WorkSection() {
       desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch.",
       deployed: true,
       liveUrl: "https://mapuone-app.vercel.app/login",
-      deviceType: "thumbnail",
-      thumbnailImage: "/projects/MAPUONE-THUMBNAIL.png"
+      deviceType: "none",
+      bgImage: "/projects/MAPUONE-THUMBNAIL.png"
     },
     { 
-      title: "IoTrack Learning Kit", 
+      title: "IoTrack", 
       category: "EdTech & IoT", 
       year: "2026", 
       date: "OCT 2026", 
@@ -71,22 +57,8 @@ function WorkSection() {
       desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible.",
       deployed: true,
       liveUrl: "https://iotrack-website.vercel.app",
-      deviceType: "thumbnail",
-      thumbnailImage: "/projects/IOTRACK-THUMBNAIL.png"
-    },
-    { 
-      title: "SilangApp", 
-      category: "Civic Mobile App", 
-      year: "2025", 
-      date: "SEP – DEC 2025", 
-      role: "Full-Stack Developer & Lead UI/UX Designer", 
-      tech: "React Native, Expo, Prisma, PostgreSQL", 
-      desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories.",
-      deployed: false,
-      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
-      deviceType: "mobile",
-      deviceImage: "/projects/SILANGAPP-M.png",
-      bgImage: "/projects/SILANGAPP-BG.png"
+      deviceType: "none",
+      bgImage: "/projects/IOTRACK-THUMBNAIL.png"
     },
     { 
       title: "Erehwon Art Center", 
@@ -129,6 +101,34 @@ function WorkSection() {
       deviceType: "tablet",
       deviceImage: "/projects/STUDYCIRCLE-T.png",
       bgImage: "/projects/STUDYCIRCLE-BG.png"
+    },
+    { 
+      title: "eHANDA", 
+      category: "GovTech Platform", 
+      year: "2026", 
+      date: "JUL 2026", 
+      role: "UI/UX Designer & Media Director", 
+      tech: "Next.js, Supabase, Tailwind CSS, Figma", 
+      desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026).",
+      deployed: false,
+      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      deviceType: "tablet",
+      deviceImage: "/projects/EHAND-T.jpg",
+      bgImage: "/projects/EHANDA-BG.png"
+    },
+    { 
+      title: "SilangApp", 
+      category: "Civic Mobile App", 
+      year: "2025", 
+      date: "SEP – DEC 2025", 
+      role: "Full-Stack Developer & Lead UI/UX Designer", 
+      tech: "React Native, Expo, Prisma, PostgreSQL", 
+      desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories.",
+      deployed: false,
+      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      deviceType: "mobile",
+      deviceImage: "/projects/SILANGAPP-M.png",
+      bgImage: "/projects/SILANGAPP-BG.png"
     }
   ];
 
@@ -164,7 +164,11 @@ function WorkSection() {
                           src={project.bgImage}
                           alt={`${project.title} background`}
                           fill
-                          className="object-cover opacity-25 grayscale group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700"
+                          className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ${
+                            project.deviceType === "none"
+                              ? "opacity-50 group-hover:opacity-75"
+                              : "opacity-25 group-hover:opacity-40"
+                          }`}
                         />
                       </div>
                     )}
@@ -253,7 +257,7 @@ function WorkSection() {
                         src={selectedProject.bgImage}
                         alt={`${selectedProject.title} background`}
                         fill
-                        className="object-cover opacity-20"
+                        className={`object-cover ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
                       />
                     </div>
                   )}
@@ -352,6 +356,10 @@ function WorkSection() {
 }
 
 function ProjectDeviceVisual({ project }: { project: any }) {
+  if (project.deviceType === "none") {
+    return null;
+  }
+
   if (project.deviceType === "thumbnail" && project.thumbnailImage) {
     return (
       <div className="w-[300px] h-[190px] md:w-[380px] md:h-[240px] rounded-xl overflow-hidden border border-white/20 shadow-2xl relative bg-neutral-900 group-hover:scale-105 transition-all duration-700">
@@ -469,6 +477,10 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
 }
 
 function PopupDeviceVisual({ project }: { project: any }) {
+  if (project.deviceType === "none") {
+    return null;
+  }
+
   if (project.deviceType === "thumbnail" && project.thumbnailImage) {
     return (
       <div className="w-[320px] h-[200px] sm:w-[460px] sm:h-[290px] rounded-xl overflow-hidden border border-white/20 shadow-2xl relative bg-neutral-900">
@@ -1477,7 +1489,11 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
             src={project.bgImage}
             alt={`${project.title} background`}
             fill
-            className={`object-cover opacity-25 group-hover/card:opacity-40 transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
+            className={`object-cover transition-all duration-700 ${
+              project.deviceType === "none"
+                ? "opacity-50 group-hover/card:opacity-75"
+                : "opacity-25 group-hover/card:opacity-40"
+            } ${isInView ? "grayscale-0" : "grayscale"}`}
           />
         </div>
       )}
