@@ -164,7 +164,7 @@ function WorkSection() {
                           src={project.bgImage}
                           alt={`${project.title} background`}
                           fill
-                          className="object-cover opacity-25 group-hover:opacity-40 transition-opacity duration-700"
+                          className="object-cover opacity-25 grayscale group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700"
                         />
                       </div>
                     )}
@@ -183,7 +183,7 @@ function WorkSection() {
                       <div className="flex justify-between items-start">
                         <span className={`px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-full ${
                           project.deployed
-                            ? "bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+                            ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                             : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
                         }`}>
                           {project.deployed ? "DEPLOYED" : "DESIGN ONLY"}
@@ -276,7 +276,7 @@ function WorkSection() {
                     <div className="flex items-center gap-3 mb-6 xl:mb-8 flex-wrap">
                       <span className={`px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider rounded-full ${
                         selectedProject.deployed
-                          ? "bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+                          ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                           : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
                       }`}>
                         {selectedProject.deployed ? "DEPLOYED" : "DESIGN ONLY"}
@@ -318,7 +318,7 @@ function WorkSection() {
                           href={selectedProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-3 px-6 py-4 bg-emerald-500 text-black border border-emerald-400 rounded-full font-mono text-sm font-bold uppercase tracking-widest hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] transition-all duration-300 group w-fit"
+                          className="inline-flex items-center gap-3 px-6 py-4 bg-white text-black border border-white rounded-full font-mono text-sm font-bold uppercase tracking-widest hover:bg-neutral-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 group w-fit"
                         >
                           View Live Site
                           <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -359,7 +359,7 @@ function ProjectDeviceVisual({ project }: { project: any }) {
           src={project.thumbnailImage}
           alt={project.title}
           fill
-          className="object-cover"
+          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 pointer-events-none" />
       </div>
@@ -376,7 +376,7 @@ function ProjectDeviceVisual({ project }: { project: any }) {
                 src={project.deviceImage}
                 alt={project.title}
                 fill
-                className="object-cover object-top"
+                className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             ) : (
               <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
@@ -398,7 +398,7 @@ function ProjectDeviceVisual({ project }: { project: any }) {
               src={project.deviceImage}
               alt={project.title}
               fill
-              className="object-cover object-top"
+              className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
             />
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
@@ -418,7 +418,7 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
           src={project.thumbnailImage}
           alt={project.title}
           fill
-          className="object-cover"
+          className={`object-cover transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
         />
         <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 pointer-events-none" />
       </div>
@@ -435,7 +435,7 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
                 src={project.deviceImage}
                 alt={project.title}
                 fill
-                className="object-cover object-top"
+                className={`object-cover object-top transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
               />
             ) : (
               <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
@@ -456,7 +456,7 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
               src={project.deviceImage}
               alt={project.title}
               fill
-              className="object-cover object-top"
+              className={`object-cover object-top transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
             />
           ) : (
             <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
@@ -1477,7 +1477,7 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
             src={project.bgImage}
             alt={`${project.title} background`}
             fill
-            className="object-cover opacity-25 group-hover/card:opacity-40 transition-opacity duration-700"
+            className={`object-cover opacity-25 group-hover/card:opacity-40 transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
           />
         </div>
       )}
@@ -1494,7 +1494,7 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
       <div className="flex justify-between items-start relative z-30 p-6 pointer-events-none">
         <span className={`px-3 py-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider rounded-full ${
           project.deployed
-            ? "bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+            ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
         }`}>
           {project.deployed ? "DEPLOYED" : "DESIGN ONLY"}
