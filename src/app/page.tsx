@@ -127,8 +127,8 @@ function WorkSection() {
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
-      deviceImage: "/projects/SILANGAPP-M.png",
-      bgImage: "/projects/SILANGAPP-BG.png"
+      deviceImage: "/projects/SILANGAPP-M-NEW.jpg",
+      bgImage: "/projects/SILANGAPP-BG-NEW.png"
     }
   ];
 
