@@ -1792,7 +1792,7 @@ export default function Home() {
               { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", id: "194864572", link: "https://certificates.confluent.io/d5141679-eb48-476c-9c34-7238a52022f4#acc.wt2KV9ae" },
               { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", id: "3QLGFJ176B1C", link: "https://www.coursera.org/account/accomplishments/verify/3QLGFJ176B1C" }
             ].map((cert, i) => (
-              <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-6 md:p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between aspect-[7/5]">
+              <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-6 md:p-8 border border-[var(--theme-fg)]/15 bg-neutral-950 hover:bg-neutral-900 hover:border-[var(--theme-fg)]/40 transition-all group flex flex-col justify-between aspect-[7/5]">
                 {/* Link Icon */}
                 <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                   <ArrowUpRight size={24} />
