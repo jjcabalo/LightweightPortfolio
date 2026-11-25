@@ -1,8 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowRight, Film, Eye, Sun, Moon } from "lucide-react";
+import { 
+  ArrowUpRight, 
+  ArrowRight, 
+  Film, 
+  Eye, 
+  Sun, 
+  Moon, 
+  Play, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  Maximize, 
+  Minimize,
+  RotateCcw
+} from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -14,7 +28,7 @@ interface GalleryItem {
   mediaUrl: string;
   posterUrl?: string;
   year: string;
-  aspect: string;
+  orientation: "landscape" | "portrait" | "square";
   tools: string[];
   client: string;
   resolution: string;
@@ -30,7 +44,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     posterUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80",
     year: "2026",
-    aspect: "aspect-video",
+    orientation: "landscape",
     tools: ["Sony Cinema Line", "Premiere Pro", "After Effects"],
     client: "Erovoutika Philippines",
     resolution: "3840 x 2160 (4K 60fps)",
@@ -43,7 +57,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80",
     year: "2024",
-    aspect: "aspect-[4/5]",
+    orientation: "portrait",
     tools: ["Illustrator", "Photoshop", "After Effects"],
     client: "EstudyantEdits",
     resolution: "4000 x 5000",
@@ -57,7 +71,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     posterUrl: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80",
     year: "2023",
-    aspect: "aspect-video",
+    orientation: "landscape",
     tools: ["Broadcast Cameras", "B-Roll", "Premiere Pro"],
     client: "DOSTv — Department of Science & Technology",
     resolution: "1920 x 1080 (HD Broadcast)",
@@ -70,7 +84,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80",
     year: "2026",
-    aspect: "aspect-square",
+    orientation: "square",
     tools: ["Figma", "Leaflet GIS", "Tailwind CSS"],
     client: "KOMYUTPH Initiative",
     resolution: "Vector & Digital Map Assets",
@@ -81,13 +95,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
     title: "MITS Media & Motion Package",
     category: "Motion & Video",
     type: "video",
-    mediaUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+    mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
     posterUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80",
     year: "2023",
-    aspect: "aspect-square",
+    orientation: "portrait",
     tools: ["After Effects", "Premiere Pro", "Audition"],
     client: "Multimedia & IT Society (MITS)",
-    resolution: "1080 x 1080 (Kinetic Loop)",
+    resolution: "1080 x 1920 (Vertical Reel)",
     description: "High-energy promotional trailers, motion graphics bumpers, and kinetic typography for campus technology summits and workshops."
   },
   {
@@ -97,7 +111,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80",
     year: "2026",
-    aspect: "aspect-[4/5]",
+    orientation: "portrait",
     tools: ["Figma", "Design Tokens", "Next.js"],
     client: "eGovPH Hackathon 2026 Finalist",
     resolution: "Complete Mobile & Web System",
@@ -110,7 +124,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1600&q=80",
     year: "2026",
-    aspect: "aspect-video",
+    orientation: "landscape",
     tools: ["Three.js", "React", "Supabase"],
     client: "IoTrack Learning Kit",
     resolution: "Real-time WebGL Telemetry",
@@ -123,7 +137,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80",
     year: "2026",
-    aspect: "aspect-square",
+    orientation: "square",
     tools: ["Figma", "Tailwind CSS", "Component Library"],
     client: "StudyCircle Platform",
     resolution: "Component Design System",
@@ -131,12 +145,12 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "erehwon-art-mis",
-    title: "Erehwon Art Center MIS Archival",
+    title: "Erehwon Art Center Archival",
     category: "Visual Identity",
     type: "image",
     mediaUrl: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80",
     year: "2026",
-    aspect: "aspect-[4/5]",
+    orientation: "portrait",
     tools: ["PostgreSQL", "React", "Typography"],
     client: "Erehwon Center for the Arts",
     resolution: "Digital Archive System",
@@ -144,20 +158,269 @@ const GALLERY_ITEMS: GalleryItem[] = [
   }
 ];
 
+function MinimalistVideoPlayer({ item, onClose }: { item: GalleryItem; onClose: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [showControls, setShowControls] = useState<boolean>(true);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          onClose();
+        }
+      } else if (e.key === " " || e.key === "k") {
+        e.preventDefault();
+        togglePlay();
+      } else if (e.key === "m") {
+        toggleMute();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  const resetHideTimer = () => {
+    setShowControls(true);
+    if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+    hideTimeoutRef.current = setTimeout(() => {
+      if (isPlaying) setShowControls(false);
+    }, 2800);
+  };
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+    resetHideTimer();
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+    resetHideTimer();
+  };
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch(() => {});
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen().catch(() => {});
+      setIsFullscreen(false);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const current = videoRef.current.currentTime;
+    const total = videoRef.current.duration || 1;
+    setCurrentTime(current);
+    setProgress((current / total) * 100);
+  };
+
+  const handleLoadedMetadata = () => {
+    if (!videoRef.current) return;
+    setDuration(videoRef.current.duration);
+    videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!videoRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    const clamped = Math.max(0, Math.min(1, pos));
+    videoRef.current.currentTime = clamped * (videoRef.current.duration || 0);
+    resetHideTimer();
+  };
+
+  const formatTime = (secs: number) => {
+    if (isNaN(secs)) return "00:00";
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  const isPortrait = item.orientation === "portrait";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-[120] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 md:p-8"
+      onClick={onClose}
+    >
+      {/* Top Header & Close button */}
+      <div 
+        className="fixed top-6 left-6 right-6 z-[130] flex justify-between items-center pointer-events-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex flex-col">
+          <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-neutral-400">
+            {item.year} / {item.client}
+          </span>
+          <h2 className="font-display text-lg md:text-2xl text-white uppercase tracking-tight">
+            {item.title}
+          </h2>
+        </div>
+
+        <button
+          onClick={onClose}
+          className="w-12 h-12 rounded-full border border-neutral-700 bg-neutral-900/80 backdrop-blur-md flex items-center justify-center text-neutral-400 hover:text-white hover:border-white transition-all duration-300 group"
+          aria-label="Close video"
+        >
+          <span className="block h-[2px] bg-current w-5 rotate-45 translate-y-[1px]" />
+          <span className="block h-[2px] bg-current w-5 -rotate-45 -translate-y-[1px] -mt-[2px]" />
+        </button>
+      </div>
+
+      {/* Video Presentation Window */}
+      <div
+        ref={containerRef}
+        onMouseMove={resetHideTimer}
+        onClick={(e) => {
+          e.stopPropagation();
+          togglePlay();
+        }}
+        className={`relative rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950 shadow-2xl flex items-center justify-center ${
+          isPortrait 
+            ? "w-auto h-[78vh] aspect-[9/16] max-w-[90vw]" 
+            : "w-full max-w-5xl aspect-video max-h-[80vh]"
+        }`}
+      >
+        <video
+          ref={videoRef}
+          src={item.mediaUrl}
+          poster={item.posterUrl}
+          playsInline
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={() => setIsPlaying(false)}
+          className="w-full h-full object-contain bg-black cursor-pointer"
+        />
+
+        {/* Minimalist Floating Controls */}
+        <AnimatePresence>
+          {showControls && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 15 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="absolute bottom-4 left-4 right-4 z-30 p-3 md:p-4 rounded-xl bg-neutral-950/85 backdrop-blur-md border border-neutral-800/80 flex flex-col gap-2.5"
+            >
+              {/* Sleek Scrubber Bar */}
+              <div
+                onClick={handleSeek}
+                className="w-full h-2 rounded-full bg-neutral-800/90 hover:h-2.5 transition-all duration-200 cursor-pointer relative flex items-center group"
+              >
+                <div
+                  className="h-full bg-white rounded-full transition-all relative"
+                  style={{ width: `${progress}%` }}
+                >
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity shadow-md" />
+                </div>
+              </div>
+
+              {/* Action Buttons Row */}
+              <div className="flex justify-between items-center text-neutral-300">
+                <div className="flex items-center gap-4">
+                  {/* Play / Pause */}
+                  <button
+                    onClick={togglePlay}
+                    className="p-1.5 hover:text-white transition-colors"
+                    aria-label={isPlaying ? "Pause" : "Play"}
+                  >
+                    {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+                  </button>
+
+                  {/* Replay */}
+                  <button
+                    onClick={() => {
+                      if (!videoRef.current) return;
+                      videoRef.current.currentTime = 0;
+                      videoRef.current.play();
+                      setIsPlaying(true);
+                      resetHideTimer();
+                    }}
+                    className="p-1.5 hover:text-white transition-colors"
+                    aria-label="Replay"
+                  >
+                    <RotateCcw size={16} />
+                  </button>
+
+                  {/* Mute / Unmute */}
+                  <button
+                    onClick={toggleMute}
+                    className="p-1.5 hover:text-white transition-colors"
+                    aria-label={isMuted ? "Unmute" : "Mute"}
+                  >
+                    {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                  </button>
+
+                  {/* Time indicator */}
+                  <span className="font-mono text-xs tracking-wider text-neutral-400">
+                    {formatTime(currentTime)} <span className="opacity-40">/</span> {formatTime(duration)}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="hidden sm:inline-block font-mono text-[10px] uppercase tracking-widest text-neutral-500 border border-neutral-800 px-2.5 py-1 rounded-full">
+                    {item.resolution}
+                  </span>
+                  
+                  {/* Fullscreen */}
+                  <button
+                    onClick={toggleFullscreen}
+                    className="p-1.5 hover:text-white transition-colors"
+                    aria-label="Fullscreen"
+                  >
+                    {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function GalleryPage() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [activeMedia, setActiveMedia] = useState<GalleryItem | null>(null);
 
-  // Stop Lenis/body scroll when menu is active
+  // Stop Lenis/body scroll when menu or video modal is active
   useEffect(() => {
-    if (menuOpen) {
+    if (menuOpen || activeMedia) {
       document.body.style.overflow = "hidden";
       (window as any).lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
       (window as any).lenis?.start();
     }
-  }, [menuOpen]);
+  }, [menuOpen, activeMedia]);
 
   return (
     <main className="min-h-screen text-white selection:bg-white selection:text-black pt-28 md:pt-36 relative overflow-x-hidden">
@@ -181,7 +444,7 @@ export default function GalleryPage() {
         </button>
       </nav>
 
-      {/* Fullscreen Overlay Menu — EXACT Home Layout, Dark Mode & Resume */}
+      {/* Fullscreen Overlay Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -289,25 +552,28 @@ export default function GalleryPage() {
         </motion.div>
       </section>
 
-      {/* Gallery Media Grid */}
+      {/* Gallery Media Grid (Fluid Multi-column Masonry Layout) */}
       <section className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10">
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-        >
-          <AnimatePresence>
-            {GALLERY_ITEMS.map((item, index) => (
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          {GALLERY_ITEMS.map((item, index) => {
+            const aspectClass = 
+              item.orientation === "landscape" 
+                ? "aspect-video" 
+                : item.orientation === "portrait" 
+                ? "aspect-[9/16]" 
+                : "aspect-square";
+
+            return (
               <motion.div
                 key={item.id}
-                layout
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, delay: index * 0.04 }}
-                className="group relative rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/70 backdrop-blur-md flex flex-col justify-between transition-all duration-500 hover:border-white"
+                onClick={() => setActiveMedia(item)}
+                className="group relative break-inside-avoid rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/70 backdrop-blur-md flex flex-col justify-between transition-all duration-500 hover:border-white cursor-pointer"
               >
                 {/* Visual Media Container */}
-                <div className={`w-full ${item.aspect} relative overflow-hidden bg-black flex items-center justify-center`}>
+                <div className={`w-full ${aspectClass} relative overflow-hidden bg-black flex items-center justify-center`}>
                   {item.type === "video" ? (
                     <video
                       src={item.mediaUrl}
@@ -316,14 +582,14 @@ export default function GalleryPage() {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
                     />
                   ) : (
                     <img
                       src={item.mediaUrl}
                       alt={item.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
                     />
                   )}
 
@@ -334,8 +600,15 @@ export default function GalleryPage() {
                   <div className="absolute top-4 left-4 flex items-center z-20 pointer-events-none">
                     <span className="px-3 py-1 bg-black/80 backdrop-blur-md text-white font-mono text-[10px] uppercase tracking-widest rounded-full border border-white/20 flex items-center gap-1.5">
                       {item.type === "video" ? <Film size={12} /> : <Eye size={12} />}
-                      {item.type === "video" ? "MOTION" : "STILL"}
+                      {item.type === "video" ? (item.orientation === "portrait" ? "REEL" : "CINEMA") : "STILL"}
                     </span>
+                  </div>
+
+                  {/* Hover Play/View Indicator */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-300">
+                      {item.type === "video" ? <Play size={20} className="fill-white translate-x-0.5" /> : <Eye size={20} />}
+                    </div>
                   </div>
                 </div>
 
@@ -345,7 +618,7 @@ export default function GalleryPage() {
                     <h3 className="font-display text-2xl uppercase tracking-tighter text-white group-hover:text-neutral-400 transition-colors">
                       {item.title}
                     </h3>
-                    <span className="font-mono text-xs text-neutral-500">{item.year}</span>
+                    <span className="font-mono text-xs text-neutral-500 shrink-0">{item.year}</span>
                   </div>
 
                   <p className="font-sans text-xs text-neutral-400 line-clamp-2 leading-relaxed">
@@ -353,12 +626,22 @@ export default function GalleryPage() {
                   </p>
                 </div>
               </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+            );
+          })}
+        </div>
       </section>
 
-      {/* Footer / Contact — EXACT Home Page Footer Layout & Sizing */}
+      {/* Video Popup Modal */}
+      <AnimatePresence>
+        {activeMedia && (
+          <MinimalistVideoPlayer
+            item={activeMedia}
+            onClose={() => setActiveMedia(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Footer / Contact */}
       <footer id="contact" className="mt-32 pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 bg-dissolve-mask-top relative overflow-hidden flex flex-col justify-between">
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full flex flex-col gap-24 relative z-10">
