@@ -3,6 +3,7 @@ import { Archivo, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroller from "@/components/SmoothScroller";
 import Scene from "@/components/Scene";
+import CustomCursor from "@/components/CustomCursor";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <ThemeProvider>
           <SmoothScroller>
             <Scene />
+            <CustomCursor />
             {children}
           </SmoothScroller>
         </ThemeProvider>

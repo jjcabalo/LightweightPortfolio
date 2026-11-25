@@ -1,12 +1,35 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useMotionValueEvent, useAnimation } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Mail, Sun, Moon, Play } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, Sun, Moon, Play, Layers, Layout, Zap, SlidersHorizontal, Eye, Info } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import { useTheme } from "@/components/ThemeProvider";
+
+function AcidDissolveBg({ topOnly = false }: { topOnly?: boolean }) {
+  const fullMask =
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,530 C2850,545 2815,475 2780,512 C2715,590 2665,564 2595,532 C2520,498 2455,605 2385,565 C2305,475 2260,522 2195,548 C2115,578 2050,460 1975,515 C1895,595 1855,575 1785,535 C1710,492 1645,595 1575,542 C1505,485 1470,565 1440,530 C1410,545 1375,475 1340,512 C1275,590 1225,564 1155,532 C1080,498 1015,605 945,565 C865,475 820,522 755,548 C675,578 610,460 535,515 C455,595 415,575 345,535 C270,492 205,595 135,542 C65,485 25,565 0,530 Z'/%3E%3C/svg%3E\")";
+  const topOnlyMask =
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,640 L0,640 Z'/%3E%3C/svg%3E\")";
+  const mask = topOnly ? topOnlyMask : fullMask;
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      animate={{ x: ["0%", "-50%"] }}
+      transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      className="pointer-events-none absolute inset-y-0 left-0 w-[200%] min-w-[1440px] z-0 bg-[var(--theme-neutral-950)]"
+      style={{
+        WebkitMaskImage: mask,
+        maskImage: mask,
+        WebkitMaskSize: "100% 100%",
+        maskSize: "100% 100%",
+      }}
+    />
+  );
+}
 
 function WorkSection() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -15,6 +38,22 @@ function WorkSection() {
   });
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [activeMediaModal, setActiveMediaModal] = useState<{ title: string; url: string } | null>(null);
+  const [showAiWorkflow, setShowAiWorkflow] = useState(false);
+  const [activeInfoStep, setActiveInfoStep] = useState<string | null>(null);
+  const [workflowStepIdx, setWorkflowStepIdx] = useState(0);
+  const workflowSequence = ["01", "02", "03", "04", "05", "iterate", "03", "04", "05"];
+  const activeWorkflowNode = workflowSequence[workflowStepIdx];
+
+  useEffect(() => {
+    if (!showAiWorkflow) {
+      setWorkflowStepIdx(0);
+      return;
+    }
+    const timer = setInterval(() => {
+      setWorkflowStepIdx((prev) => (prev + 1) % workflowSequence.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [showAiWorkflow]);
 
   // Uses dynamic calculation to stop exactly at the end of the content regardless of screen size
   const x = useTransform(scrollYProgress, (p) => `calc(-${p * 100}% + ${p * 100}vw)`);
@@ -142,23 +181,32 @@ function WorkSection() {
 
   // Prevent scrolling when popup or demo is open
   useEffect(() => {
-    if (selectedProject || activeMediaModal) {
+    if (selectedProject || activeMediaModal || showAiWorkflow) {
       document.body.style.overflow = "hidden";
       (window as any).lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
       (window as any).lenis?.start();
     }
-  }, [selectedProject, activeMediaModal]);
+  }, [selectedProject, activeMediaModal, showAiWorkflow]);
 
   return (
     <>
       {/* Desktop Sticky Scroll */}
       <section ref={targetRef} id="work-desktop" className="hidden md:block relative h-[400vh]">
-        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-24 pb-12">
+        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-32 pb-12">
           <ScrollReveal className="w-full h-full flex flex-col justify-center">
             <div className="px-12 mb-12 flex justify-between items-end shrink-0">
-              <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
+              <div className="flex flex-col items-start gap-4">
+                <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
+                <button
+                  onClick={() => setShowAiWorkflow(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--theme-fg)]/25 rounded-full font-mono text-xs uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors cursor-pointer"
+                >
+                  <span>MY DESIGN AI WORKFLOW</span>
+                  <ArrowUpRight size={14} />
+                </button>
+              </div>
               <span className="text-neutral-500 font-mono">(0{projects.length})</span>
             </div>
             
@@ -217,9 +265,16 @@ function WorkSection() {
       </section>
 
       {/* Mobile Normal Scroll */}
-      <ScrollReveal as="section" id="work-mobile" className="block md:hidden py-24 ">
-        <div className="px-6 mb-12 flex justify-between items-end">
+      <ScrollReveal as="section" id="work-mobile" className="block md:hidden pt-32 pb-24 ">
+        <div className="px-6 mb-12 flex flex-col items-start gap-4">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
+          <button
+            onClick={() => setShowAiWorkflow(true)}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[var(--theme-fg)]/25 rounded-full font-mono text-[11px] uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors shrink-0 cursor-pointer"
+          >
+            <span>MY DESIGN AI WORKFLOW</span>
+            <ArrowUpRight size={13} />
+          </button>
         </div>
         <div className="flex flex-col gap-6 px-6">
           {projects.map((project, i) => (
@@ -363,6 +418,240 @@ function WorkSection() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* AI Workflow Modal */}
+      <AnimatePresence>
+        {showAiWorkflow && (
+          <motion.div
+            className="fixed inset-0 z-[110] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowAiWorkflow(false)}
+          >
+            <motion.div
+              className="relative w-full max-w-7xl max-h-[88vh] bg-[var(--theme-bg)] text-[var(--theme-fg)] border border-[var(--theme-fg)]/20 flex flex-col overflow-hidden"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between px-8 md:px-14 pt-6 lg:pt-14 pb-4 lg:pb-2 border-b border-[var(--theme-fg)]/15 lg:border-b-0 shrink-0">
+                <div>
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500 block mb-1">
+                    From Figma to Production
+                  </span>
+                  <h3 className="font-display text-2xl md:text-4xl uppercase tracking-tight">
+                    How I Build With AI
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowAiWorkflow(false)}
+                  aria-label="Close AI Workflow"
+                  className="w-10 h-10 flex flex-col items-center justify-center gap-[5px] hover:opacity-70 transition-opacity cursor-pointer"
+                >
+                  <span className="block h-[2px] bg-[var(--theme-fg)] w-6 rotate-45 translate-y-[3.5px]" />
+                  <span className="block h-[2px] bg-[var(--theme-fg)] w-6 -rotate-45 -translate-y-[3.5px]" />
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="px-8 pb-8 pt-4 md:px-14 md:pb-12 md:pt-4 overflow-y-auto overscroll-contain space-y-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
+                {/* Flowchart: Horizontal Process on Desktop, Vertical on Mobile */}
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-[var(--theme-fg)]/20">
+                  {[
+                    {
+                      step: "01",
+                      phase: "DESIGN",
+                      tool: "Figma",
+                      summary: "Wireframes, layouts, components, design tokens, prototypes.",
+                      detail: "Create the UI designs either from scratch using Figma or with AI design tools such as Google Stitch, Figma AI, Uizard, or Lovable. Explore layouts, generate design concepts, and refine the selected direction into polished screens, reusable components, and a consistent design system."
+                    },
+                    {
+                      step: "02",
+                      phase: "UNDERSTAND",
+                      tool: "Claude Code / Antigravity",
+                      summary: "Read design context, inspect existing code, plan implementation.",
+                      detail: "Connect Figma to your coding agent using Figma MCP so it can read your designs and understand their structure. Let it inspect the existing codebase, identify reusable components, understand how the system works, and prepare a plan before making changes."
+                    },
+                    {
+                      step: "03",
+                      phase: "BUILD",
+                      tool: "Frontend Agent Skills",
+                      summary: "Components, responsive layouts, interactions, animations.",
+                      detail: "Use frontend skills to guide AI in turning the designs into actual code. Build the pages, reusable components, responsive layouts, and interactions while keeping the existing system and backend functionality intact."
+                    },
+                    {
+                      step: "04",
+                      phase: "REVIEW",
+                      tool: "Browser Preview",
+                      summary: "Compare against Figma, inspect breakpoints, spot visual issues.",
+                      detail: "Run the system locally and open it in the browser. Check how the implementation looks compared to the original design, review different screen sizes, and identify anything that looks or behaves incorrectly."
+                    },
+                    {
+                      step: "05",
+                      phase: "REFINE & TEST",
+                      tool: "AI + Creative Direction",
+                      summary: "Polish details, accessibility, performance, and functionality.",
+                      detail: "Give AI feedback and let it fix the identified issues. Fine-tune the spacing, typography, colors, and interactions, then test responsiveness, accessibility, performance, and existing functionality before considering the work complete."
+                    }
+                  ].map((node, idx, arr) => {
+                    const isActive = activeWorkflowNode === node.step;
+                    const isInfoOpen = activeInfoStep === node.step;
+                    return (
+                    <div
+                      key={node.step}
+                      className={`relative p-5 md:p-6 flex flex-col justify-between transition-colors duration-300 ${
+                        isActive
+                          ? "bg-[var(--theme-fg)] text-[var(--theme-bg)]"
+                          : "bg-[var(--theme-bg)] text-[var(--theme-fg)]"
+                      } ${
+                        idx < arr.length - 1 ? "border-b lg:border-b-0 lg:border-r border-[var(--theme-fg)]/20" : ""
+                      }`}
+                    >
+                      <div>
+                        <div className="flex flex-col gap-1 mb-4">
+                          <span className={`font-display text-3xl md:text-4xl tracking-tighter leading-none transition-opacity duration-300 ${isActive ? "opacity-90" : "opacity-30"}`}>
+                            {node.step}
+                          </span>
+                          <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors duration-300 ${isActive ? "text-[var(--theme-bg)]/70" : "text-neutral-500"}`}>
+                            {node.tool}
+                          </span>
+                        </div>
+                        <h4 className="font-display text-xl uppercase tracking-tight mb-2">
+                          {node.phase}
+                        </h4>
+                        <p className="font-sans text-xs md:text-sm opacity-75 leading-relaxed">
+                          {node.summary}
+                        </p>
+                      </div>
+                      <div className="flex justify-end mt-5 pt-2">
+                        <div
+                          className="relative"
+                          onMouseEnter={() => setActiveInfoStep(node.step)}
+                          onMouseLeave={() => setActiveInfoStep(null)}
+                        >
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveInfoStep(isInfoOpen ? null : node.step);
+                            }}
+                            aria-label={`Info for ${node.phase}`}
+                            className={`p-1 transition-opacity cursor-pointer ${
+                              isActive ? "text-[var(--theme-bg)]/70 hover:text-[var(--theme-bg)]" : "text-neutral-500 hover:text-[var(--theme-fg)]"
+                            }`}
+                          >
+                            <Info size={14} />
+                          </button>
+                          {isInfoOpen && (
+                            <div className="absolute right-0 bottom-7 z-30 w-60 p-3.5 bg-[var(--theme-bg)] text-[var(--theme-fg)] border border-[var(--theme-fg)]/30 shadow-xl font-sans text-xs leading-relaxed">
+                              {node.detail}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                  })}
+                </div>
+
+                {/* Feedback Loop Connector under 03–05 */}
+                <div className="hidden lg:grid grid-cols-5 -mt-10">
+                  <div className="col-span-2" />
+                  <div className={`col-span-3 border-x border-b h-8 relative flex items-center justify-center transition-colors duration-300 ${
+                    activeWorkflowNode === "iterate" ? "border-[var(--theme-fg)]" : "border-[var(--theme-fg)]/20"
+                  }`}>
+                    <span className={`px-4 font-display text-xl uppercase tracking-tight translate-y-4 transition-colors duration-300 ${
+                      activeWorkflowNode === "iterate"
+                        ? "bg-[var(--theme-fg)] text-[var(--theme-bg)]"
+                        : "bg-[var(--theme-bg)] text-[var(--theme-fg)]"
+                    }`}>
+                      ↺ Iterate
+                    </span>
+                  </div>
+                </div>
+
+                {/* Clickable Frontend Agent Skills */}
+                <div>
+                  <div className="mb-4">
+                    <h4 className="font-display text-xl md:text-2xl uppercase tracking-tight">
+                      Frontend Agent Skills
+                    </h4>
+                  </div>
+                  <div className="flex flex-col">
+                    {[
+                      {
+                        name: "Frontend Design",
+                        author: "Anthropic",
+                        role: "Aesthetic thesis, typography & layout identity",
+                        url: "https://github.com/anthropics/skills",
+                        Icon: Layout
+                      },
+                      {
+                        name: "UI/UX Designer",
+                        author: "Antigravity Library",
+                        role: "WCAG accessibility, color palettes & type pairing",
+                        url: "https://antigravityskills.com",
+                        Icon: Layers
+                      },
+                      {
+                        name: "Design Engineering",
+                        author: "Emil Kowalski",
+                        role: "Physics-based transitions & micro-interactions",
+                        url: "https://antigravityskills.com",
+                        Icon: Zap
+                      },
+                      {
+                        name: "Impeccable",
+                        author: "Paul Bakaus",
+                        role: "Spacing, hierarchy & alignment audit",
+                        url: "https://antigravityskills.com",
+                        Icon: SlidersHorizontal
+                      },
+                      {
+                        name: "Taste Skill",
+                        author: "Community",
+                        role: "Editorial & minimalist visual direction",
+                        url: "https://antigravityskills.com",
+                        Icon: Eye
+                      }
+                    ].map(({ Icon, ...skill }) => (
+                      <a
+                        key={skill.name}
+                        href={skill.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between gap-4 py-4 transition-all duration-300 cursor-crosshair hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] hover:px-6"
+                      >
+                        <div className="flex items-center gap-4">
+                          <Icon size={18} className="shrink-0 opacity-50 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                            <span className="font-display text-lg uppercase tracking-tight">
+                              {skill.name}
+                            </span>
+                            <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--theme-fg)]/40 group-hover:text-[var(--theme-bg)]/50 transition-colors">
+                              {skill.author}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <span className="hidden md:inline font-sans text-xs text-[var(--theme-fg)]/60 group-hover:text-[var(--theme-bg)]/70 transition-colors">
+                            {skill.role}
+                          </span>
+                          <ArrowUpRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1201,8 +1490,9 @@ function HeroAndAboutSection() {
       <section 
         ref={aboutRef} 
         id="about" 
-        className="relative z-10 py-24 md:py-36 px-6 md:px-12 flex flex-col justify-center bg-dissolve-mask overflow-hidden"
+        className="relative z-10 py-36 md:py-52 px-6 md:px-12 flex flex-col justify-center overflow-hidden"
       >
+        <AcidDissolveBg />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <motion.div 
           style={isDesktop ? { y: aboutContentY, opacity: aboutContentOpacity } : undefined}
@@ -1220,8 +1510,7 @@ function HeroAndAboutSection() {
               href="https://jervys.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#000000" }}
-              className="inline-block bg-yellow-400 px-2.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold -rotate-2 hover:bg-yellow-300 transition-colors"
+              className="inline-block bg-[var(--theme-fg)] text-[var(--theme-bg)] hover:bg-yellow-400 hover:text-[#000000] px-2.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold -rotate-2 transition-colors"
             >
               Jervys
             </a>{" "}
@@ -1386,7 +1675,8 @@ export default function Home() {
       </div>
 
       {/* Experience */}
-      <ScrollReveal as="section" id="experience" className="py-24 md:py-36 px-6 md:px-12 bg-dissolve-mask relative overflow-hidden flex flex-col justify-center">
+      <ScrollReveal as="section" id="experience" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
+        <AcidDissolveBg />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
@@ -1492,16 +1782,17 @@ export default function Home() {
       </ScrollReveal>
 
       {/* Certifications */}
-      <ScrollReveal as="section" id="certifications" className="py-24 md:py-36 px-6 md:px-12 bg-dissolve-mask relative overflow-hidden flex flex-col justify-center">
+      <ScrollReveal as="section" id="certifications" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
+        <AcidDissolveBg />
         <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-fr">
             {[
-              { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
-              { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
-              { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" }
+              { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", id: "r6wo-uSrC", link: "https://www.certiport.com/portal/Pages/CredentialVerification.aspx" },
+              { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", id: "194864572", link: "https://certificates.confluent.io/d5141679-eb48-476c-9c34-7238a52022f4#acc.wt2KV9ae" },
+              { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", id: "3QLGFJ176B1C", link: "https://www.coursera.org/account/accomplishments/verify/3QLGFJ176B1C" }
             ].map((cert, i) => (
-              <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[260px]">
+              <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-6 md:p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between aspect-[7/5]">
                 {/* Link Icon */}
                 <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                   <ArrowUpRight size={24} />
@@ -1510,8 +1801,9 @@ export default function Home() {
                   <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4 block">{cert.issuer}</span>
                   <h3 className="font-display text-2xl md:text-3xl lg:text-3xl mt-2 leading-snug group-hover:text-white text-[var(--theme-fg)] tracking-tight uppercase break-words pr-8">{cert.name}</h3>
                 </div>
-                <div className="mt-8 border-t border-neutral-800 pt-4">
+                <div className="mt-8 border-t border-neutral-800 pt-4 flex items-center justify-between gap-2">
                   <p className="font-mono text-xs text-neutral-500 uppercase tracking-widest">{cert.date}</p>
+                  <p className="font-mono text-xs text-neutral-500 tracking-wider">ID: {cert.id}</p>
                 </div>
               </a>
             ))}
@@ -1525,7 +1817,8 @@ export default function Home() {
 
 
       {/* Footer / Contact */}
-      <ScrollReveal as="footer" id="contact" className="pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 bg-dissolve-mask-top relative overflow-hidden flex flex-col justify-between">
+      <ScrollReveal as="footer" id="contact" className="pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 relative overflow-hidden flex flex-col justify-between">
+        <AcidDissolveBg topOnly />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full flex flex-col gap-24 relative z-10">
           

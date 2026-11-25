@@ -304,11 +304,11 @@ export default function AboutPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-neutral-800">
                 {[
-                  { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", link: "https://www.pearsonvue.com" },
-                  { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", link: "https://www.confluent.io" },
-                  { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", link: "https://www.lgresearch.ai" }
+                  { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", id: "r6wo-uSrC", link: "https://www.certiport.com/portal/Pages/CredentialVerification.aspx" },
+                  { name: "Data Streaming Engineer", issuer: "Confluent", date: "Jul 2026", id: "194864572", link: "https://certificates.confluent.io/d5141679-eb48-476c-9c34-7238a52022f4#acc.wt2KV9ae" },
+                  { name: "Global MOOC on Ethics of AI", issuer: "LG AI Research", date: "May 2025", id: "3QLGFJ176B1C", link: "https://www.coursera.org/account/accomplishments/verify/3QLGFJ176B1C" }
                 ].map((cert, i) => (
-                  <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between h-full min-h-[260px]">
+                  <a href={cert.link} key={i} target="_blank" rel="noopener noreferrer" className="relative p-6 md:p-8 border border-neutral-900 bg-neutral-950 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between aspect-[7/5]">
                     <div className="absolute top-8 right-8 text-neutral-700 group-hover:text-white transition-colors">
                       <ArrowUpRight size={24} />
                     </div>
@@ -316,8 +316,9 @@ export default function AboutPage() {
                       <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4 block">{cert.issuer}</span>
                       <h3 className="font-display text-2xl md:text-3xl mt-2 leading-snug group-hover:text-white text-[var(--theme-fg)] tracking-tight uppercase break-words pr-8">{cert.name}</h3>
                     </div>
-                    <div className="mt-8 border-t border-neutral-800 pt-4">
+                    <div className="mt-8 border-t border-neutral-800 pt-4 flex items-center justify-between gap-2">
                       <p className="font-mono text-xs text-neutral-500 uppercase tracking-widest">{cert.date}</p>
+                      <p className="font-mono text-xs text-neutral-500 tracking-wider">ID: {cert.id}</p>
                     </div>
                   </a>
                 ))}

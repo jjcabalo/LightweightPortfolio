@@ -594,7 +594,21 @@ export default function GalleryPage() {
       </AnimatePresence>
 
       {/* Footer / Contact */}
-      <footer id="contact" className="mt-32 pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 bg-dissolve-mask-top relative overflow-hidden flex flex-col justify-between">
+      <footer id="contact" className="mt-32 pt-28 md:pt-40 pb-16 md:pb-24 px-6 md:px-12 relative overflow-hidden flex flex-col justify-between">
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+          className="pointer-events-none absolute inset-y-0 left-0 w-[200%] min-w-[1440px] z-0 bg-[var(--theme-neutral-950)]"
+          style={{
+            WebkitMaskImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,640 L0,640 Z'/%3E%3C/svg%3E\")",
+            maskImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,640 L0,640 Z'/%3E%3C/svg%3E\")",
+            WebkitMaskSize: "100% 100%",
+            maskSize: "100% 100%",
+          }}
+        />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full flex flex-col gap-24 relative z-10">
           
