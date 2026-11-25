@@ -207,24 +207,6 @@ function WorkSection() {
                         <h3 className="font-display text-3xl md:text-5xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
                         <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
                       </div>
-
-                      {project.mediaButtons && project.mediaButtons.length > 0 && (
-                        <div className="mt-4 flex flex-wrap gap-2 pointer-events-auto">
-                          {project.mediaButtons.map((btn: any, btnIdx: number) => (
-                            <button
-                              key={btnIdx}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveMediaModal({ title: btn.modalTitle, url: btn.url });
-                              }}
-                              className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-md shadow-sm"
-                            >
-                              <Play size={11} className="fill-current" />
-                              {btn.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))}
@@ -246,7 +228,6 @@ function WorkSection() {
               project={project} 
               i={i} 
               onClick={() => setSelectedProject({...project, index: i})} 
-              onMediaClick={(btn) => setActiveMediaModal({ title: btn.modalTitle, url: btn.url })}
             />
           ))}
         </div>
@@ -1555,7 +1536,7 @@ export default function Home() {
   );
 }
 
-function MobileProjectCard({ project, i, onClick, onMediaClick }: { project: any, i: number, onClick: () => void, onMediaClick?: (btn: any) => void }) {
+function MobileProjectCard({ project, i, onClick }: { project: any, i: number, onClick: () => void }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
 
@@ -1604,24 +1585,6 @@ function MobileProjectCard({ project, i, onClick, onMediaClick }: { project: any
         <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 block mb-1">{project.category}</span>
         <h3 className="font-display text-2xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
         <p className="text-[#a3a3a3] mt-1 font-mono text-xs uppercase tracking-widest">{project.year}</p>
-
-        {project.mediaButtons && project.mediaButtons.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2 pointer-events-auto">
-            {project.mediaButtons.map((btn: any, btnIdx: number) => (
-              <button
-                key={btnIdx}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onMediaClick?.(btn);
-                }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-[11px] uppercase tracking-wider transition-all duration-300 backdrop-blur-md"
-              >
-                <Play size={10} className="fill-current" />
-                {btn.label}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
