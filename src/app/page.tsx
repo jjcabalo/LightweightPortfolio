@@ -14,7 +14,7 @@ function WorkSection() {
     target: targetRef,
   });
   const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [activeDemoUrl, setActiveDemoUrl] = useState<string | null>(null);
+  const [activeMediaModal, setActiveMediaModal] = useState<{ title: string; url: string } | null>(null);
 
   // Uses dynamic calculation to stop exactly at the end of the content regardless of screen size
   const x = useTransform(scrollYProgress, (p) => `calc(-${p * 100}% + ${p * 100}vw)`);
@@ -72,6 +72,10 @@ function WorkSection() {
       desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026).",
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      mediaButtons: [
+        { label: "Team Intro", url: "https://drive.google.com/file/d/1ShdxqYEtxZd84gDpCY0g7HzBfOpyCxpD/preview", modalTitle: "eHANDA — Team Intro" },
+        { label: "System Demo", url: "https://drive.google.com/file/d/1FK6x0YO0V-Yn2HI7G71mx2DzUvJhq9z4/preview", modalTitle: "eHANDA — System Demo" }
+      ],
       deviceType: "tablet",
       deviceImage: "/projects/EHAND-T.jpg",
       bgImage: "/projects/EHANDA-BG.png"
@@ -100,7 +104,9 @@ function WorkSection() {
       desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility.",
       deployed: true,
       liveUrl: "https://komyutph.com",
-      demoEmbedUrl: "https://drive.google.com/file/d/1m-DLGness2mJhEhNfd03-ZLFejDWzvqJ/preview",
+      mediaButtons: [
+        { label: "View Demo", url: "https://drive.google.com/file/d/1m-DLGness2mJhEhNfd03-ZLFejDWzvqJ/preview", modalTitle: "KOMYUTPH — Interactive Demo" }
+      ],
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
       deviceImage: "/projects/KOMYUTPH-M.png",
@@ -136,14 +142,14 @@ function WorkSection() {
 
   // Prevent scrolling when popup or demo is open
   useEffect(() => {
-    if (selectedProject || activeDemoUrl) {
+    if (selectedProject || activeMediaModal) {
       document.body.style.overflow = "hidden";
       (window as any).lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
       (window as any).lenis?.start();
     }
-  }, [selectedProject, activeDemoUrl]);
+  }, [selectedProject, activeMediaModal]);
 
   return (
     <>
@@ -202,18 +208,21 @@ function WorkSection() {
                         <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
                       </div>
 
-                      {project.demoEmbedUrl && (
-                        <div className="mt-4 pointer-events-auto">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveDemoUrl(project.demoEmbedUrl);
-                            }}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-md shadow-sm"
-                          >
-                            <Play size={12} className="fill-current" />
-                            View Demo
-                          </button>
+                      {project.mediaButtons && project.mediaButtons.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-2 pointer-events-auto">
+                          {project.mediaButtons.map((btn: any, btnIdx: number) => (
+                            <button
+                              key={btnIdx}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveMediaModal({ title: btn.modalTitle, url: btn.url });
+                              }}
+                              className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-md shadow-sm"
+                            >
+                              <Play size={11} className="fill-current" />
+                              {btn.label}
+                            </button>
+                          ))}
                         </div>
                       )}
                     </div>
@@ -237,7 +246,7 @@ function WorkSection() {
               project={project} 
               i={i} 
               onClick={() => setSelectedProject({...project, index: i})} 
-              onDemoClick={project.demoEmbedUrl ? () => setActiveDemoUrl(project.demoEmbedUrl) : undefined}
+              onMediaClick={(btn) => setActiveMediaModal({ title: btn.modalTitle, url: btn.url })}
             />
           ))}
         </div>
@@ -335,15 +344,16 @@ function WorkSection() {
                     </div>
 
                     <div className="flex flex-wrap items-center justify-end gap-4 w-full mb-12">
-                      {selectedProject.demoEmbedUrl && (
+                      {selectedProject.mediaButtons && selectedProject.mediaButtons.map((btn: any, btnIdx: number) => (
                         <button
-                          onClick={() => setActiveDemoUrl(selectedProject.demoEmbedUrl)}
+                          key={btnIdx}
+                          onClick={() => setActiveMediaModal({ title: btn.modalTitle, url: btn.url })}
                           className="inline-flex items-center gap-3 px-6 py-4 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-sm uppercase tracking-widest transition-all duration-300 group w-fit backdrop-blur-md"
                         >
                           <Play size={16} className="fill-current" />
-                          View Demo
+                          {btn.label}
                         </button>
-                      )}
+                      ))}
                       {selectedProject.liveUrl && (
                         <a
                           href={selectedProject.liveUrl}
@@ -379,15 +389,15 @@ function WorkSection() {
         )}
       </AnimatePresence>
 
-      {/* Embedded Demo Modal */}
+      {/* Embedded Media / Demo Modal */}
       <AnimatePresence>
-        {activeDemoUrl && (
+        {activeMediaModal && (
           <motion.div
             className="fixed inset-0 z-[120] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActiveDemoUrl(null)}
+            onClick={() => setActiveMediaModal(null)}
           >
             <motion.div
               className="relative w-full max-w-4xl h-[75vh] md:h-[80vh] bg-[#0c0c0c] border border-neutral-800 rounded-2xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.9)] flex flex-col"
@@ -401,10 +411,10 @@ function WorkSection() {
               <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800/80 bg-neutral-950/60">
                 <div className="flex items-center gap-3">
                   <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-                  <span className="font-mono text-xs uppercase tracking-widest text-neutral-300">KOMYUTPH — Interactive Demo</span>
+                  <span className="font-mono text-xs uppercase tracking-widest text-neutral-300">{activeMediaModal.title}</span>
                 </div>
                 <button
-                  onClick={() => setActiveDemoUrl(null)}
+                  onClick={() => setActiveMediaModal(null)}
                   className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white hover:border-white transition-colors"
                 >
                   ✕
@@ -414,7 +424,7 @@ function WorkSection() {
               {/* Embedded Frame */}
               <div className="flex-1 w-full h-full bg-black relative">
                 <iframe
-                  src={activeDemoUrl}
+                  src={activeMediaModal.url}
                   className="w-full h-full border-0"
                   allow="autoplay; encrypted-media; fullscreen"
                   allowFullScreen
@@ -1545,7 +1555,7 @@ export default function Home() {
   );
 }
 
-function MobileProjectCard({ project, i, onClick, onDemoClick }: { project: any, i: number, onClick: () => void, onDemoClick?: () => void }) {
+function MobileProjectCard({ project, i, onClick, onMediaClick }: { project: any, i: number, onClick: () => void, onMediaClick?: (btn: any) => void }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
 
@@ -1595,18 +1605,21 @@ function MobileProjectCard({ project, i, onClick, onDemoClick }: { project: any,
         <h3 className="font-display text-2xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
         <p className="text-[#a3a3a3] mt-1 font-mono text-xs uppercase tracking-widest">{project.year}</p>
 
-        {project.demoEmbedUrl && (
-          <div className="mt-3 pointer-events-auto">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onDemoClick?.();
-              }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-[11px] uppercase tracking-wider transition-all duration-300 backdrop-blur-md"
-            >
-              <Play size={10} className="fill-current" />
-              View Demo
-            </button>
+        {project.mediaButtons && project.mediaButtons.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-2 pointer-events-auto">
+            {project.mediaButtons.map((btn: any, btnIdx: number) => (
+              <button
+                key={btnIdx}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onMediaClick?.(btn);
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white rounded-full font-mono text-[11px] uppercase tracking-wider transition-all duration-300 backdrop-blur-md"
+              >
+                <Play size={10} className="fill-current" />
+                {btn.label}
+              </button>
+            ))}
           </div>
         )}
       </div>
