@@ -70,14 +70,24 @@ function WorkSection() {
       desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories." 
     },
     { 
-      title: "StudyBuddy", 
-      category: "AI Productivity", 
-      year: "2024", 
-      date: "SEP – DEC 2024", 
-      img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=80", 
-      role: "Backend Developer & Software Architect", 
-      tech: "ASP.NET Core, C#, MySQL, OpenAI API", 
-      desc: "An intelligent student productivity ecosystem featuring an integrated AI study assistant, automated deadline scheduling, and predictive academic workload analytics built on a robust ASP.NET Core backend." 
+      title: "Erehwon Art Center", 
+      category: "Arts MIS Platform", 
+      year: "2026", 
+      date: "FEB 2026", 
+      img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80", 
+      role: "Full-Stack Developer & UI/UX Designer", 
+      tech: "React, Node.js, Express, PostgreSQL", 
+      desc: "A comprehensive management information system engineered for Erehwon Center for the Arts to catalog valuable art collections, manage studio reservations, maintain artist exhibition records, and digitize cultural archives." 
+    },
+    { 
+      title: "Gathr", 
+      category: "Event Management", 
+      year: "2025", 
+      date: "AUG 2025", 
+      img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80", 
+      role: "UI/UX Designer & Brand Strategist", 
+      tech: "Figma, React, Tailwind CSS, QR Verification", 
+      desc: "An end-to-end event management platform developed for university collegiate bodies. Features streamlined event creation, participant registration workflows, custom brand identities, and real-time QR-based attendance tracking." 
     },
     { 
       title: "StudyCircle", 
@@ -88,16 +98,6 @@ function WorkSection() {
       role: "Lead UI/UX & Web Developer", 
       tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
       desc: "An AI-enhanced collaborative study platform featuring shared markdown documentation, interactive virtual study lounges, and automated flashcard generation for collegiate peer study groups." 
-    },
-    { 
-      title: "Erehwon Art Center MIS", 
-      category: "Arts MIS Platform", 
-      year: "2026", 
-      date: "FEB 2026", 
-      img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80", 
-      role: "Full-Stack Developer", 
-      tech: "React, Node.js, Express, PostgreSQL", 
-      desc: "A custom Management Information System (MIS) engineered for Erehwon Center for the Arts to catalog valuable art collections, maintain artist exhibition records, and digitize national cultural archives." 
     }
   ];
 
