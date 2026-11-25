@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionV
 import { ArrowRight, ArrowUpRight, Mail, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -704,6 +705,24 @@ function HeroAndAboutSection() {
   const aboutRef = useRef<HTMLElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const { theme } = useTheme();
+  const router = useRouter();
+
+  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href.startsWith("#")) {
+      const target = document.querySelector(href);
+      if (target) {
+        if (typeof window !== "undefined" && (window as any).lenis) {
+          (window as any).lenis.scrollTo(target, { offset: -20 });
+        } else {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", href);
+      }
+    } else {
+      router.push(href);
+    }
+  };
 
   useEffect(() => {
     const media = window.matchMedia("(min-width: 768px)");
@@ -774,7 +793,7 @@ function HeroAndAboutSection() {
             {/* Left Floating Cards (Desktop) */}
             <div className="hidden lg:flex flex-col gap-6 xl:gap-8 flex-1 items-end pr-8 xl:pr-12 pt-8 xl:pt-12 z-30">
               {leftCards.map((card, idx) => (
-                <Link key={idx} href={card.href} className="group">
+                <Link key={idx} href={card.href} onClick={(e) => handleCardClick(e, card.href)} className="group">
                   <motion.div 
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -816,7 +835,7 @@ function HeroAndAboutSection() {
             {/* Right Floating Cards (Desktop) */}
             <div className="hidden lg:flex flex-col gap-6 xl:gap-8 flex-1 items-start pl-8 xl:pl-12 pt-8 xl:pt-12 z-30">
               {rightCards.map((card, idx) => (
-                <Link key={idx} href={card.href} className="group">
+                <Link key={idx} href={card.href} onClick={(e) => handleCardClick(e, card.href)} className="group">
                   <motion.div 
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -843,6 +862,7 @@ function HeroAndAboutSection() {
               <Link 
                 key={idx} 
                 href={c.href}
+                onClick={(e) => handleCardClick(e, c.href)}
                 className="group relative p-4 rounded-xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100/70 dark:bg-neutral-950/70 backdrop-blur-sm text-center cursor-pointer transition-all active:scale-95 hover:border-[var(--theme-fg)]/40"
               >
                 <div className="absolute top-3 right-3 w-5 h-5 rounded-full border border-neutral-300 dark:border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-[var(--theme-fg)] group-hover:border-[var(--theme-fg)] transition-colors">
