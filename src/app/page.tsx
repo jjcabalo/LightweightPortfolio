@@ -196,9 +196,9 @@ function WorkSection() {
                         <span className={`px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-full ${
                           project.deployed
                             ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                            : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
+                            : "bg-white/10 text-[#ffffff] border border-[#ffffff] backdrop-blur-md"
                         }`}>
-                          {project.deployed ? "DEPLOYED" : "DESIGN ONLY"}
+                          {project.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
                         </span>
                         <ArrowUpRight size={32} className="text-[#ffffff] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
@@ -291,10 +291,7 @@ function WorkSection() {
                           ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                           : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
                       }`}>
-                        {selectedProject.deployed ? "DEPLOYED" : "DESIGN ONLY"}
-                      </span>
-                      <span className="inline-block px-4 py-1.5 border border-[var(--theme-fg)]/30 text-xs font-mono uppercase tracking-widest rounded-full opacity-70">
-                        {selectedProject.year} / {selectedProject.category}
+                        {selectedProject.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
                       </span>
                     </div>
                     
@@ -1393,47 +1390,74 @@ export default function Home() {
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
-          <div className="space-y-24 pl-8 ml-2 md:ml-4 relative">
-            {[
-              { 
-                role: "Publicity and Ads Head & Research and Development Committee Member", 
-                company: "University of Makati - Society of Innovative Computing", 
-                date: "Oct 2026 - Present", 
-                desc: "Spearheading creative direction, scriptwriting, video editing, pre-production, production, and post-production for college multimedia campaigns and technological research initiatives." 
-              },
-              { 
-                role: "Freelance App Developer & UI/UX Designer", 
-                company: "Independent Practice", 
-                date: "Nov 2024 - Present", 
-                desc: "Architecting and developing client web and mobile applications across diverse industries (MapuOne, IoTrack Learning Kit, StudyCircle, Erehwon Art Center, Gathr, IntelliStock, KuraStock, Muntinlupa UPA). Delivering full-stack solutions with Next.js, React Native, Supabase, and Tailwind CSS." 
-              },
-              { 
-                role: "Founder & Creative Director", 
-                company: "EstudyantEdits", 
-                date: "Jul 2023 - Present", 
-                desc: "Founded and directing a creative digital collective delivering photo and video editing, branding, graphic design, and custom web development for academic bodies and commercial brands." 
-              },
-              { 
-                role: "Freelance Multimedia & Video Lead", 
-                company: "Erovoutika", 
-                date: "Dec 2025 - Jan 2026", 
-                desc: "Spearheaded video production, motion graphics, and event media documentation for premier national robotics events, including the 4th Robolution and Minoan Robotsports Competition Philippines." 
-              },
-              { 
-                role: "Student Intern — Broadcast Production", 
-                company: "DOSTv", 
-                date: "Jun 2023 - Jul 2023", 
-                desc: "Executed news videography, B-roll cinematography, and post-production for national television broadcasts and digital science communication." 
-              },
-              { 
-                role: "Video Editing Head", 
-                company: "Multimedia and Information Technology Society (MITS)", 
-                date: "Jun 2021 - Jul 2023", 
-                desc: "Supervised the video editing department, creating promotional reels, event coverage, and multimedia design assets for campus IT initiatives." 
-              }
-            ].map((exp, i, arr) => (
-              <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
-            ))}
+          <div className="space-y-24">
+            {/* Software Engineering */}
+            <div>
+              <h3 className="font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-500 mb-10 border-b border-[var(--theme-fg)]/15 pb-4">
+                Software Engineering
+              </h3>
+              <div className="space-y-24 pl-8 ml-2 md:ml-4 relative">
+                {[
+                  {
+                    role: "Research and Development Committee Member",
+                    company: "University of Makati - Society of Innovative Computing",
+                    date: "Oct 2026 - Present",
+                    desc: "Contributing to technological research initiatives, software prototyping, and technical development projects."
+                  },
+                  {
+                    role: "Freelance Software Developer & UI/UX Designer",
+                    company: "Independent Practice",
+                    date: "Nov 2024 - Present",
+                    desc: "Architecting and developing client web and mobile applications. Delivering full-stack solutions with Next.js, React Native, Supabase, and Tailwind CSS."
+                  }
+                ].map((exp, i, arr) => (
+                  <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
+                ))}
+              </div>
+            </div>
+
+            {/* Multimedia */}
+            <div>
+              <h3 className="font-mono text-xs md:text-sm uppercase tracking-widest text-neutral-500 mb-10 border-b border-[var(--theme-fg)]/15 pb-4">
+                Multimedia
+              </h3>
+              <div className="space-y-24 pl-8 ml-2 md:ml-4 relative">
+                {[
+                  {
+                    role: "Publicity and Ads Head",
+                    company: "University of Makati - Society of Innovative Computing",
+                    date: "Oct 2026 - Present",
+                    desc: "Spearheading creative direction, scriptwriting, video editing, pre-production, production, and post-production for organization events."
+                  },
+                  {
+                    role: "Founder",
+                    company: "EstudyantEdits",
+                    date: "Jul 2023 - Present",
+                    desc: "Founded and directing a creative digital collective delivering photo and video editing, branding, graphic design, and custom web development for academic bodies and commercial brands."
+                  },
+                  {
+                    role: "Freelance Multimedia & Video Lead",
+                    company: "Erovoutika",
+                    date: "Dec 2025 - Jan 2026",
+                    desc: "Spearheaded video production, motion graphics, and event media documentation for premier national robotics events, including the 4th Robolution and Minoan Robotsports Competition Philippines."
+                  },
+                  {
+                    role: "Student Intern — Broadcast Production",
+                    company: "DOSTv",
+                    date: "Jun 2023 - Jul 2023",
+                    desc: "Executed news videography, B-roll cinematography, and post-production for national television broadcasts and digital science communication."
+                  },
+                  {
+                    role: "Video Editing Head",
+                    company: "Multimedia and Information Technology Society (MITS)",
+                    date: "Jun 2021 - Jul 2023",
+                    desc: "Supervised the video editing department, creating promotional reels, event coverage, and multimedia design assets for organization events."
+                  }
+                ].map((exp, i, arr) => (
+                  <ExperienceItem key={i} exp={exp} i={i} isLast={i === arr.length - 1} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </ScrollReveal>
@@ -1585,9 +1609,9 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
         <span className={`px-3 py-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider rounded-full ${
           project.deployed
             ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-            : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
+            : "bg-white/10 text-[#ffffff] border border-[#ffffff] backdrop-blur-md"
         }`}>
-          {project.deployed ? "DEPLOYED" : "DESIGN ONLY"}
+          {project.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
         </span>
         <ArrowUpRight size={28} className="text-[#ffffff]" />
       </div>
