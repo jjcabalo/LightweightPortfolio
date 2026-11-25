@@ -253,11 +253,11 @@ function WorkSection() {
             </button>
 
             {/* Scrollable Container */}
-            <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
+            <div className="flex-1 w-full overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
               <div className="flex flex-col md:flex-row min-h-full relative">
                 
                 {/* Project Device Display */}
-                <div className="w-full md:w-1/2 h-[45vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
+                <div className="w-full md:w-1/2 h-[42vh] md:h-screen relative md:sticky md:top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
                   {/* Background Image if available */}
                   {selectedProject.bgImage && (
                     <div className="absolute inset-0 z-0">
@@ -278,7 +278,7 @@ function WorkSection() {
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-24 py-12 md:py-24 relative z-10 bg-[var(--theme-bg)] md:bg-transparent min-h-screen mt-[-6vh] md:mt-0">
+                <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-24 py-10 md:py-24 relative z-10 bg-[var(--theme-bg)] md:bg-transparent md:min-h-screen">
                   <motion.div
                     className="my-auto"
                     initial={{ opacity: 0, y: 30 }}
@@ -848,8 +848,8 @@ function AwardsSection() {
       role: "Lead UI/UX Designer & Full-Stack Developer", 
       desc: "Awarded Best in UI and UX and 1st Runner Up in the Hackathon Category at Infotechnolympics 2026. Recognized for exceptional human-centered interaction design, user accessibility, and rapid functional prototyping under intense hackathon time constraints.", 
       media: [
-        { type: 'image', url: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1600&q=80" },
-        { type: 'image', url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80" }
+        { type: 'image', url: "/awards/BESTINUIUX.jpg" },
+        { type: 'image', url: "/awards/BESTINUIUX2.jpg" }
       ]
     },
     { 
@@ -861,8 +861,8 @@ function AwardsSection() {
       role: "UI/UX Designer & Media Director", 
       desc: "Selected as one of the Top 10 Finalists nationwide in the prestigious eGovPH Hackathon 2026 for eHANDA, a rapid post-disaster household assessment platform integrating into the national eGovPH app ecosystem.", 
       media: [
-        { type: 'image', url: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80" },
-        { type: 'image', url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80" }
+        { type: 'image', url: "/awards/TOP10FINALISTS.jpg" },
+        { type: 'image', url: "/awards/TOP10FINALISTS2.png" }
       ]
     },
     { 
@@ -874,8 +874,8 @@ function AwardsSection() {
       role: "UI/UX Designer & Product Lead", 
       desc: "Honored with the Most Commercially Viable Award at the 7th University of Makati Hackathon 2025. Recognized for outstanding business sustainability, market readiness, and an intuitive product experience.", 
       media: [
-        { type: 'image', url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80" },
-        { type: 'image', url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80" }
+        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE.jpg" },
+        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE2.jpg" }
       ]
     },
     { 
@@ -887,8 +887,8 @@ function AwardsSection() {
       role: "Algorithm Engineer", 
       desc: "Won 1st Runner Up in the C# Category at Infotechnolympics 2025, demonstrating advanced computational problem solving, data structure proficiency, and rapid algorithmic software development.", 
       media: [
-        { type: 'image', url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80" },
-        { type: 'image', url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&q=80" }
+        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP.jpg" },
+        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP2.jpg" }
       ]
     }
   ];
