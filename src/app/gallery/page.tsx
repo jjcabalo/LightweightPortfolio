@@ -533,7 +533,7 @@ export default function GalleryPage() {
 
           <div className="border-t border-neutral-800 pt-8 mt-2">
             <p className="max-w-4xl font-sans text-xl sm:text-2xl md:text-3xl font-normal leading-tight opacity-80 uppercase tracking-tight text-white">
-              A collection of work across video editing, photography, videography, graphic design, creative production, and UI/UX. From capturing moments and crafting visual stories to designing digital experiences, this is where my creative side takes the spotlight.
+              A collection of work across video editing, photography, videography, and creative production. This is where my creative side takes the spotlight.
             </p>
           </div>
         </motion.div>
