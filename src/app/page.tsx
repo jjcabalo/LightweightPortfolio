@@ -204,7 +204,7 @@ function WorkSection() {
                       </div>
                       <div>
                         <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 block mb-1">{project.category}</span>
-                        <h3 className="font-display text-3xl md:text-5xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+                        <h3 className="font-display text-3xl md:text-5xl text-[var(--theme-fg)] tracking-tighter uppercase">{project.title}</h3>
                         <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
                       </div>
                     </div>
@@ -1593,7 +1593,7 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
       </div>
       <div className="relative z-30 p-6 pointer-events-none">
         <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 block mb-1">{project.category}</span>
-        <h3 className="font-display text-2xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+        <h3 className="font-display text-2xl text-[var(--theme-fg)] tracking-tighter uppercase">{project.title}</h3>
         <p className="text-[#a3a3a3] mt-1 font-mono text-xs uppercase tracking-widest">{project.year}</p>
       </div>
     </div>
