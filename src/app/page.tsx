@@ -1352,7 +1352,7 @@ function HeroAndAboutSection() {
             className="w-full text-center shrink-0 z-0"
           >
             <h1 className="font-display text-[22vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] font-bold tracking-tighter uppercase leading-[0.75] text-white select-none">
-              JOHN
+              JO<span className="inline-block scale-x-150 origin-center mx-[0.12em]">H</span>N
             </h1>
           </motion.div>
 
