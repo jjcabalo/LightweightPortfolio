@@ -24,8 +24,7 @@ function WorkSection() {
       category: "PWA Navigation", 
       year: "2026", 
       date: "2026 – PRESENT", 
-      img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80", 
-      role: "Lead Developer & UI/UX Designer", 
+      role: "FrontEnd Developer & Lead UI/UX Designer", 
       tech: "React, PWA, Tailwind CSS, Leaflet", 
       desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility." 
     },
@@ -34,7 +33,6 @@ function WorkSection() {
       category: "GovTech Platform", 
       year: "2026", 
       date: "JUL 2026", 
-      img: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1600&q=80", 
       role: "UI/UX Designer & Media Director", 
       tech: "Next.js, Supabase, Tailwind CSS, Figma", 
       desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026)." 
@@ -44,8 +42,7 @@ function WorkSection() {
       category: "Campus Web App", 
       year: "2026", 
       date: "OCT 2026", 
-      img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80", 
-      role: "Full-Stack Developer & UI/UX Designer", 
+      role: "Full-Stack Developer", 
       tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
       desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch." 
     },
@@ -54,8 +51,7 @@ function WorkSection() {
       category: "EdTech & IoT", 
       year: "2026", 
       date: "OCT 2026", 
-      img: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1600&q=80", 
-      role: "Frontend Developer & UI/UX Designer", 
+      role: "Full-Stack Developer & UI/UX Designer", 
       tech: "React, Tailwind CSS, Supabase, PostgreSQL", 
       desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible." 
     },
@@ -64,8 +60,7 @@ function WorkSection() {
       category: "Civic Mobile App", 
       year: "2025", 
       date: "SEP – DEC 2025", 
-      img: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1600&q=80", 
-      role: "Lead Mobile Developer & UI/UX Designer", 
+      role: "Full-Stack Developer & Lead UI/UX Designer", 
       tech: "React Native, Expo, Prisma, PostgreSQL", 
       desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories." 
     },
@@ -74,8 +69,7 @@ function WorkSection() {
       category: "Arts MIS Platform", 
       year: "2026", 
       date: "FEB 2026", 
-      img: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=80", 
-      role: "Full-Stack Developer & UI/UX Designer", 
+      role: "Lead UI/UX Designer", 
       tech: "React, Node.js, Express, PostgreSQL", 
       desc: "A comprehensive management information system engineered for Erehwon Center for the Arts to catalog valuable art collections, manage studio reservations, maintain artist exhibition records, and digitize cultural archives." 
     },
@@ -84,8 +78,7 @@ function WorkSection() {
       category: "Event Management", 
       year: "2025", 
       date: "AUG 2025", 
-      img: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80", 
-      role: "UI/UX Designer & Brand Strategist", 
+      role: "Lead UI/UX Designer & Brand Strategist", 
       tech: "Figma, React, Tailwind CSS, QR Verification", 
       desc: "An end-to-end event management platform developed for university collegiate bodies. Features streamlined event creation, participant registration workflows, custom brand identities, and real-time QR-based attendance tracking." 
     },
@@ -94,8 +87,7 @@ function WorkSection() {
       category: "Collaborative Learning", 
       year: "2026", 
       date: "FEB 2026", 
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80", 
-      role: "Lead UI/UX & Web Developer", 
+      role: "Lead UI/UX Designer & Brand Strategist", 
       tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
       desc: "An AI-enhanced collaborative study platform featuring shared markdown documentation, interactive virtual study lounges, and automated flashcard generation for collegiate peer study groups." 
     }
@@ -124,52 +116,30 @@ function WorkSection() {
             </div>
             
             <div className="flex-1 flex items-center">
-              <motion.div style={{ x }} className="flex gap-4 px-12 w-max">
-                {projects.map((project, i) => (
+              <motion.div style={{ x }} className="flex gap-4 px-12 w-max">                {projects.map((project, i) => (
                   <div key={i} onClick={() => setSelectedProject({...project, index: i})} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[#ffffff] transition-colors group shrink-0 flex items-center justify-center cursor-crosshair">
-                    {/* Background image Ã¢â‚¬â€ grayscale by default, color on hover */}
-                    <img
-                      src={project.img}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 z-0"
-                    />
-                    {/* Dark overlay fades out on hover to reveal background image */}
-                    <div className="absolute inset-0 bg-[#000000]/80 group-hover:bg-[#000000]/40 transition-colors duration-700 z-10" />
+                    {/* Subtle grid pattern background */}
+                    <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
                     
-                    {/* Center Device Mockups */}
-                    <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none scale-[0.75] lg:scale-90 xl:scale-100 transition-transform duration-500">
-                      {i % 2 === 0 ? (
-                        /* Phone Mockup (iPhone Style) */
-                        <div className="w-[144px] h-[284px] md:w-[164px] md:h-[324px] p-[2px] rounded-[26px] md:rounded-[34px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
-                          {/* Front Black Bezel */}
-                          <div className="w-full h-full rounded-[24px] md:rounded-[32px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-                            {/* Screen */}
-                            <div className="w-full h-full rounded-[20px] md:rounded-[26px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                              <img src={project.img} alt="Phone view" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        /* Monitor/Tablet Mockup (iPad Style) */
-                        <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative group-hover:scale-105 transition-all duration-700">
-                          {/* Front Black Bezel */}
-                          <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-                            {/* Screen */}
-                            <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                              <img src={project.img} alt="Monitor view" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                              <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
-                            </div>
-                          </div>
-                        </div>
-                      )}
+                    {/* Center Typography & Category Badge watermark */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-20 transition-transform duration-500 group-hover:scale-105">
+                      <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-3 border border-neutral-800 bg-neutral-900/80 px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                      <h4 className="font-display text-4xl lg:text-5xl xl:text-6xl text-white tracking-tighter uppercase max-w-sm">
+                        {project.title}
+                      </h4>
+                      <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">
+                        {project.role}
+                      </p>
                     </div>
 
-                    {/* Content overlay Ã¢â‚¬â€ always visible */}
-                    <div className="absolute p-6 flex flex-col justify-between h-full w-full z-30">
+                    {/* Content overlay — always visible */}
+                    <div className="absolute p-6 flex flex-col justify-between h-full w-full z-30 pointer-events-none">
                       <div className="flex justify-between items-start">
                         <span className="px-4 py-2 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
-                        <ArrowUpRight size={32} className="text-[#ffffff]" />
+                        <ArrowUpRight size={32} className="text-[#ffffff] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
                       <div>
                         <h3 className="font-display text-3xl md:text-5xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
@@ -224,45 +194,21 @@ function WorkSection() {
             <div className="flex-1 w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
               <div className="flex flex-col md:flex-row min-h-full relative">
                 
-                {/* Image Section */}
-                <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex items-center justify-center overflow-hidden">
-                  <img
-                    src={selectedProject.img}
-                    alt={selectedProject.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/30 z-10" />
-
-                  <div className="relative z-20 -translate-y-[3vh] md:translate-y-0 scale-[0.9] sm:scale-110 md:scale-[1.1] lg:scale-[1.4] xl:scale-[1.7] flex items-center justify-center pointer-events-none transition-transform duration-500">
-                    {selectedProject.index % 2 === 0 ? (
-                      /* Phone Mockup (iPhone Style) */
-                      <div className="w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
-                        {/* Front Black Bezel */}
-                        <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-                          {/* Screen */}
-                          <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                            <img src={selectedProject.img} alt="Phone view" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      /* Monitor/Tablet Mockup (iPad Style) */
-                      <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
-                        {/* Front Black Bezel */}
-                        <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-                          {/* Screen */}
-                          <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                            <img src={selectedProject.img} alt="Monitor view" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                {/* Project Branding Display */}
+                <div className="w-full md:w-1/2 h-[45vh] md:h-screen sticky top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
+                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:24px_24px] opacity-30" />
+                  
+                  <div className="relative z-20 flex flex-col items-center justify-center max-w-md">
+                    <span className="font-mono text-xs uppercase tracking-widest text-neutral-400 mb-4 border border-neutral-800 bg-neutral-900/90 px-4 py-1.5 rounded-full">
+                      {selectedProject.category}
+                    </span>
+                    <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase text-white leading-none">
+                      {selectedProject.title}
+                    </h2>
+                    <p className="font-mono text-xs uppercase tracking-widest text-neutral-500 mt-4">
+                      {selectedProject.year} — {selectedProject.role}
+                    </p>
                   </div>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] via-[var(--theme-bg)]/20 to-transparent md:hidden z-30" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--theme-bg)] hidden md:block z-30" />
                 </div>
 
                 {/* Content Section */}
@@ -1256,60 +1202,38 @@ export default function Home() {
 
 function MobileProjectCard({ project, i, onClick }: { project: any, i: number, onClick: () => void }) {
   const ref = useRef(null);
-  // Trigger ONLY when the element crosses the exact center 2% of the screen.
-  // This guarantees that only one project is colored at a time.
   const isInView = useInView(ref, { margin: "-49% 0px -49% 0px", once: false });
 
   return (
     <div 
       ref={ref} 
       onClick={onClick} 
-      className="w-full relative bg-[#0a0a0a] border border-[#262626] overflow-hidden flex flex-col justify-between h-[400px] cursor-crosshair group/card"
+      className="w-full relative bg-[#0a0a0a] border border-[#262626] overflow-hidden flex flex-col justify-between h-[360px] cursor-crosshair group/card"
     >
-      {/* Background image */}
-      <img
-        src={project.img}
-        alt={project.title}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 z-0 ${isInView ? "grayscale-0 scale-105" : "grayscale scale-100"}`}
-      />
-      <div className={`absolute inset-0 transition-colors duration-700 z-10 ${isInView ? "bg-[#000000]/40" : "bg-[#000000]/80"}`} />
-      
-      {/* Center Device Mockups */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-        {i % 2 === 0 ? (
-          /* Phone Mockup (iPhone Style) */
-          <div className={`w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
-            {/* Front Black Bezel */}
-            <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-              {/* Screen */}
-              <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                <img src={project.img} alt="Phone view" className={`w-full h-full object-cover transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`} />
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 z-40 pointer-events-none" />
-              </div>
-            </div>
-          </div>
-        ) : (
-          /* Monitor/Tablet Mockup (iPad Style) */
-          <div className={`w-[244px] h-[164px] p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-300 via-neutral-500 to-neutral-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
-            {/* Front Black Bezel */}
-            <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
-              {/* Screen */}
-              <div className="w-full h-full rounded-[10px] overflow-hidden relative bg-black shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
-                <img src={project.img} alt="Monitor view" className={`w-full h-full object-cover transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`} />
-                <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-white/0 to-white/0 z-40 pointer-events-none" />
-              </div>
-            </div>
-          </div>
-        )}
+      {/* Subtle grid pattern background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 transition-opacity duration-700" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+
+      {/* Center Typography */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500 mb-2 border border-neutral-800 bg-neutral-900/80 px-2.5 py-0.5 rounded-full">
+          {project.category}
+        </span>
+        <h4 className="font-display text-3xl sm:text-4xl text-white tracking-tighter uppercase">
+          {project.title}
+        </h4>
+        <p className="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-2">
+          {project.role}
+        </p>
       </div>
 
-      <div className="flex justify-between items-start relative z-30 p-6">
+      <div className="flex justify-between items-start relative z-30 p-6 pointer-events-none">
         <span className="px-3 py-1.5 bg-[#ffffff] text-[#000000] text-xs font-bold uppercase tracking-wider rounded-full">{project.category}</span>
         <ArrowUpRight size={28} className="text-[#ffffff]" />
       </div>
-      <div className="relative z-30 p-6">
-        <h3 className="font-display text-3xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
-        <p className="text-[#a3a3a3] mt-2 font-mono text-sm uppercase tracking-widest">{project.year}</p>
+      <div className="relative z-30 p-6 pointer-events-none">
+        <h3 className="font-display text-2xl text-[#ffffff] tracking-tighter uppercase">{project.title}</h3>
+        <p className="text-[#a3a3a3] mt-1 font-mono text-xs uppercase tracking-widest">{project.year}</p>
       </div>
     </div>
   );
