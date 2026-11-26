@@ -887,11 +887,13 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
       <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
           {project.deviceIframeUrl ? (
-            <iframe
-              src={project.deviceIframeUrl}
-              title={project.title}
-              className="w-full h-full border-0 bg-white pointer-events-none"
-            />
+            <div className="w-full h-full overflow-hidden relative bg-white">
+              <iframe
+                src={project.deviceIframeUrl}
+                title={project.title}
+                className="w-[1280px] h-[720px] border-0 origin-top-left scale-[0.34] pointer-events-none"
+              />
+            </div>
           ) : project.deviceImage ? (
             <Image
               src={project.deviceImage}
@@ -987,11 +989,13 @@ function PopupDeviceVisual({ project }: { project: any }) {
       <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
           {project.deviceIframeUrl ? (
-            <iframe
-              src={project.deviceIframeUrl}
-              title={project.title}
-              className="w-full h-full border-0 bg-white"
-            />
+            <div className="w-full h-full overflow-hidden relative bg-white">
+              <iframe
+                src={project.deviceIframeUrl}
+                title={project.title}
+                className="w-[1280px] h-[760px] border-0 origin-top-left scale-[0.26] md:scale-[0.375]"
+              />
+            </div>
           ) : (
             <CyclingDeviceImage
               images={project.deviceImages}
