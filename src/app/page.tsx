@@ -149,8 +149,8 @@ function WorkSection() {
       role: "Full-Stack Developer & Lead UI/UX Designer", 
       tech: "React Native, Expo, Prisma, PostgreSQL", 
       desc: "A comprehensive barangay governance mobile application developed for Barangay Sto. Rosario Silangan, Pateros. Empowers residents with digital clearance requests, incident reporting, and real-time community advisories.",
-      deployed: false,
-      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      deployed: true,
+      liveUrl: "https://admin.silangapp.online",
       deviceType: "mobile",
       deviceImage: "/projects/SILANGAPP-M-NEW.jpg",
       deviceImages: [
