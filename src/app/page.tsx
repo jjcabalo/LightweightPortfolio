@@ -71,6 +71,12 @@ function WorkSection() {
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
       deviceImage: "/projects/EREHWON-T.png",
+      deviceImages: [
+        "/projects/EREHWON-T.png",
+        "/projects/Erehwon/ArtistCommissions.png",
+        "/projects/Erehwon/Billing.png",
+        "/projects/Erehwon/SpaceRentalModalMessage.png"
+      ],
       bgImage: "/projects/EREHWON-BG.png"
     },
     { 
@@ -85,6 +91,15 @@ function WorkSection() {
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
       deviceImage: "/projects/GATHR-M.png",
+      deviceImages: [
+        "/projects/GATHR-M.png",
+        "/projects/Gathr/Splash Screen.png",
+        "/projects/Gathr/Splash Screen (1).png",
+        "/projects/Gathr/Splash Screen (2).png",
+        "/projects/Gathr/Splash Screen (3).png",
+        "/projects/Gathr/Landing Page.png",
+        "/projects/Gathr/Participants - Upcoming Status.png"
+      ],
       bgImage: "/projects/GATHR-BG.png"
     },
     { 
@@ -99,6 +114,13 @@ function WorkSection() {
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
       deviceImage: "/projects/STUDYCIRCLE-T.png",
+      deviceImages: [
+        "/projects/STUDYCIRCLE-T.png",
+        "/projects/StudyCircle/Homepage (Untoggled).png",
+        "/projects/StudyCircle/Main Interface.png",
+        "/projects/StudyCircle/Avatar Customization.png",
+        "/projects/StudyCircle/Profile.png"
+      ],
       bgImage: "/projects/STUDYCIRCLE-BG.png"
     },
     { 
@@ -131,6 +153,14 @@ function WorkSection() {
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
       deviceImage: "/projects/SILANGAPP-M-NEW.jpg",
+      deviceImages: [
+        "/projects/SILANGAPP-M-NEW.jpg",
+        "/projects/SilangApp/Who is using the app_ (1).png",
+        "/projects/SilangApp/Item View Card.png",
+        "/projects/SilangApp/Make new Post.png",
+        "/projects/SilangApp/Make new Post (1).png",
+        "/projects/SilangApp/Profile Tab.png"
+      ],
       bgImage: "/projects/SILANGAPP-BG-NEW.png"
     },
     { 
@@ -232,7 +262,7 @@ function WorkSection() {
             
             <div className="flex-1 flex items-center">
               <motion.div style={{ x }} className="flex gap-4 px-12 w-max">                {projects.map((project, i) => (
-                  <div key={i} onClick={() => setSelectedProject({...project, index: i})} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[#ffffff] transition-colors group shrink-0 flex items-center justify-center cursor-crosshair">
+                  <div key={i} onClick={() => setSelectedProject({...project, index: i})} className="w-[45vw] lg:w-[35vw] h-[60vh] relative bg-[#0a0a0a] overflow-hidden border border-[#262626] hover:border-[var(--theme-fg)] transition-colors group shrink-0 flex items-center justify-center cursor-crosshair">
                     {/* Background Image if available */}
                     {project.bgImage && (
                       <div className="absolute inset-0 z-0">
@@ -947,16 +977,12 @@ function PopupDeviceVisual({ project }: { project: any }) {
     <div className="w-[330px] h-[190px] md:w-[480px] md:h-[280px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
       <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-          {project.deviceImage ? (
-            <Image
-              src={project.deviceImage}
-              alt={project.title}
-              fill
-              className="object-cover object-top"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
-          )}
+          <CyclingDeviceImage
+            images={project.deviceImages}
+            fallback={project.deviceImage}
+            alt={project.title}
+            className="object-cover object-top"
+          />
           <div className="absolute inset-0 bg-gradient-to-bl from-white/[0.12] via-white/0 to-white/0 z-40 pointer-events-none" />
         </div>
       </div>
