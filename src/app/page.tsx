@@ -149,6 +149,26 @@ function WorkSection() {
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
       deviceImage: "/projects/KOMYUTPH-M.png",
+      deviceImages: [
+        "/projects/KOMYUTPH-M.png",
+        "/projects/KomyutPH/SplashScreen.png",
+        "/projects/KomyutPH/Landing Page.png",
+        "/projects/KomyutPH/Home.png",
+        "/projects/KomyutPH/Light Mode.png",
+        "/projects/KomyutPH/Left Panel.png",
+        "/projects/KomyutPH/Selected Location (Collapsed).png",
+        "/projects/KomyutPH/View Route.png",
+        "/projects/KomyutPH/See Journey.png",
+        "/projects/KomyutPH/Terminals.png",
+        "/projects/KomyutPH/Directory.png",
+        "/projects/KomyutPH/Contribute.png",
+        "/projects/KomyutPH/Post.png",
+        "/projects/KomyutPH/Replies.png",
+        "/projects/KomyutPH/Profile.png",
+        "/projects/KomyutPH/Leaderboard.png",
+        "/projects/KomyutPH/Achivements.png",
+        "/projects/KomyutPH/Carousel.png"
+      ],
       bgImage: "/projects/KOMYUTPH-BG.png"
     },
     { 
@@ -198,7 +218,7 @@ function WorkSection() {
           <ScrollReveal className="w-full h-full flex flex-col justify-center">
             <div className="px-12 mb-12 flex justify-between items-end shrink-0">
               <div className="flex flex-col items-start gap-4">
-                <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
+                <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">S<span className="inline-block scale-x-150 origin-center mx-[0.12em]">O</span>FTWARE PROJECTS</h2>
                 <button
                   onClick={() => setShowAiWorkflow(true)}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--theme-fg)]/25 rounded-full font-mono text-xs uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors cursor-pointer"
@@ -267,7 +287,7 @@ function WorkSection() {
       {/* Mobile Normal Scroll */}
       <ScrollReveal as="section" id="work-mobile" className="block md:hidden pt-32 pb-24 ">
         <div className="px-6 mb-12 flex flex-col items-start gap-4">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">SOFTWARE PROJECTS</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">S<span className="inline-block scale-x-150 origin-center mx-[0.12em]">O</span>FTWARE PROJECTS</h2>
           <button
             onClick={() => setShowAiWorkflow(true)}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[var(--theme-fg)]/25 rounded-full font-mono text-[11px] uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors shrink-0 cursor-pointer"
@@ -315,13 +335,41 @@ function WorkSection() {
                 <div className="w-full md:w-1/2 h-[42vh] md:h-screen relative md:sticky md:top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
                   {/* Background Image if available */}
                   {selectedProject.bgImage && (
-                    <div className="absolute inset-0 z-0">
-                      <Image
-                        src={selectedProject.bgImage}
-                        alt={`${selectedProject.title} background`}
-                        fill
-                        className={`object-cover ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
-                      />
+                    <div className="absolute inset-0 z-0 overflow-hidden">
+                      {selectedProject.title === "Erehwon Art Center" || selectedProject.title === "StudyCircle" ? (
+                        <motion.div
+                          className="relative w-full h-[135%] top-0"
+                          animate={{ y: ["0%", "-25.925%", "0%"] }}
+                          transition={{ duration: 14, times: [0, 0.88, 1], repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <Image
+                            src={selectedProject.bgImage}
+                            alt={`${selectedProject.title} background`}
+                            fill
+                            className={`object-cover object-top ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
+                          />
+                        </motion.div>
+                      ) : selectedProject.title === "MapuOne" || selectedProject.title === "IoTrack Learning Kit" ? (
+                        <Image
+                          src={selectedProject.bgImage}
+                          alt={`${selectedProject.title} background`}
+                          fill
+                          className={`object-cover ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
+                        />
+                      ) : (
+                        <motion.div
+                          className="relative h-full w-[135%] left-0"
+                          animate={{ x: ["0%", "-25.925%", "0%"] }}
+                          transition={{ duration: 14, times: [0, 0.88, 1], repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <Image
+                            src={selectedProject.bgImage}
+                            alt={`${selectedProject.title} background`}
+                            fill
+                            className={`object-cover object-left ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
+                          />
+                        </motion.div>
+                      )}
                     </div>
                   )}
 
@@ -785,19 +833,15 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
 
   if (project.deviceType === "mobile") {
     return (
-      <div className={`w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+      <div className={`w-[144px] h-[380px] shrink-0 p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
         <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
           <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-            {project.deviceImage ? (
-              <Image
-                src={project.deviceImage}
-                alt={project.title}
-                fill
-                className={`object-cover object-top transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
-              />
-            ) : (
-              <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
-            )}
+            <CyclingDeviceImage
+              images={project.deviceImages}
+              fallback={project.deviceImage}
+              alt={project.title}
+              className={`object-cover object-top transition-all duration-700 ${isInView ? "grayscale-0" : "grayscale"}`}
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.07] to-white/0 z-40 pointer-events-none" />
           </div>
         </div>
@@ -806,7 +850,7 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
   }
 
   return (
-    <div className={`w-[244px] h-[164px] p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
+    <div className={`w-[440px] h-[164px] shrink-0 p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
       <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
           {project.deviceImage ? (
@@ -823,6 +867,42 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
         </div>
       </div>
     </div>
+  );
+}
+
+function CyclingDeviceImage({
+  images,
+  fallback,
+  alt,
+  className,
+}: {
+  images?: string[];
+  fallback?: string;
+  alt: string;
+  className: string;
+}) {
+  const list = images && images.length > 0 ? images : fallback ? [fallback] : [];
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (list.length <= 1) return;
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % list.length);
+    }, 1750);
+    return () => clearInterval(timer);
+  }, [list.length]);
+
+  if (list.length === 0) {
+    return <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />;
+  }
+
+  return (
+    <Image
+      src={list[idx]}
+      alt={alt}
+      fill
+      className={className}
+    />
   );
 }
 
@@ -847,19 +927,15 @@ function PopupDeviceVisual({ project }: { project: any }) {
 
   if (project.deviceType === "mobile") {
     return (
-      <div className="w-[144px] h-[284px] p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+      <div className={`w-[190px] ${project.title === "KOMYUTPH" ? "h-[404px]" : "h-[380px]"} shrink-0 p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative`}>
         <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
           <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-            {project.deviceImage ? (
-              <Image
-                src={project.deviceImage}
-                alt={project.title}
-                fill
-                className="object-cover object-top"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:12px_12px] opacity-50" />
-            )}
+            <CyclingDeviceImage
+              images={project.deviceImages}
+              fallback={project.deviceImage}
+              alt={project.title}
+              className="object-cover object-top"
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.07] to-white/0 z-40 pointer-events-none" />
           </div>
         </div>
@@ -868,7 +944,7 @@ function PopupDeviceVisual({ project }: { project: any }) {
   }
 
   return (
-    <div className="w-[244px] h-[164px] md:w-[364px] md:h-[244px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
+    <div className="w-[330px] h-[190px] md:w-[480px] md:h-[280px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
       <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
           {project.deviceImage ? (
@@ -1184,7 +1260,7 @@ function AwardsSection() {
       <ScrollReveal as="section" id="awards" className="py-40 md:py-48 px-6 md:px-12">
         <div className="w-full">
           <div className="flex justify-between items-end mb-12 border-b border-[var(--theme-fg)]/20 pb-6">
-            <h2 className="font-display text-4xl md:text-6xl tracking-tight uppercase">AWARDS</h2>
+            <h2 className="font-display text-4xl md:text-6xl tracking-tight uppercase">AWAR<span className="inline-block scale-x-150 origin-center mx-[0.12em]">D</span>S</h2>
             <span className="font-mono text-xs text-[var(--theme-fg)] opacity-50 uppercase tracking-widest hidden md:block">Competitions & Recognition</span>
           </div>
           <div className="flex flex-col">
@@ -1679,7 +1755,7 @@ export default function Home() {
         <AcidDissolveBg />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full max-w-6xl mx-auto relative z-10">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENCE</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENC<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span></h2>
           <div className="space-y-24">
             {/* Software Engineering */}
             <div>
@@ -1756,7 +1832,7 @@ export default function Home() {
       <ScrollReveal as="section" id="tech-stack" className="py-32 md:py-48 overflow-hidden relative flex flex-col gap-12">
         <div className="w-full">
           <div className="px-6 md:px-12 flex justify-center" data-mascot-target="arsenal-header">
-            <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white mb-8 text-center">THE ARSENAL</h2>
+            <h2 className="font-display text-4xl md:text-6xl tracking-tight text-white mb-8 text-center">TH<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span> ARSENAL</h2>
           </div>
           
           {/* Marquee-style Tech Display */}
@@ -1782,10 +1858,10 @@ export default function Home() {
       </ScrollReveal>
 
       {/* Certifications */}
-      <ScrollReveal as="section" id="certifications" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
+      <ScrollReveal as="section" id="certifications" className="py-32 md:py-48 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
         <AcidDissolveBg />
         <div className="w-full relative z-10">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CREDENTIALS</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CRED<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span>NTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-fr">
             {[
               { name: "IT-Specialist — Databases", issuer: "Pearson", date: "Oct 2026", id: "r6wo-uSrC", link: "https://www.certiport.com/portal/Pages/CredentialVerification.aspx" },
