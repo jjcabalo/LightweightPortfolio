@@ -200,7 +200,7 @@ function WorkSection() {
       category: "PWA Navigation", 
       year: "2026", 
       date: "2026 – PRESENT", 
-      role: "FrontEnd Developer & Lead UI/UX Designer", 
+      role: "FrontEnd Developer, Lead UI/UX Designer, Brand Designer", 
       tech: "React, PWA, Tailwind CSS, Leaflet", 
       desc: "An offline-first, crowdsourced navigation web application specifically tailored for informal public transportation in the Philippines (jeepneys, tricycles, and UV Express). Designed with real-time route discovery, fare estimates, and lightweight mobile accessibility.",
       deployed: true,
