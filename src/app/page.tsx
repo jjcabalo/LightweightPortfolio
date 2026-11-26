@@ -131,8 +131,8 @@ function WorkSection() {
       role: "Media Director", 
       tech: "Next.js, Supabase, Tailwind CSS, Figma", 
       desc: "A post-disaster household needs assessment platform integrating directly with the Philippine government's eGovPH app ecosystem. Streamlines relief distribution logistics, citizen verification, and rapid aid dispatch during national emergencies. (Top 10 Finalist, eGovPH Hackathon 2026).",
-      deployed: false,
-      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
+      deployed: true,
+      liveUrl: "https://e-handa.vercel.app",
       mediaButtons: [
         { label: "Team Intro", url: "https://drive.google.com/file/d/1ShdxqYEtxZd84gDpCY0g7HzBfOpyCxpD/preview", modalTitle: "eHANDA — Team Intro" },
         { label: "System Demo", url: "https://drive.google.com/file/d/1FK6x0YO0V-Yn2HI7G71mx2DzUvJhq9z4/preview", modalTitle: "eHANDA — System Demo" }
