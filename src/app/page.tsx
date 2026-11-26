@@ -886,7 +886,13 @@ function MobileDeviceVisual({ project, isInView }: { project: any, isInView: boo
     <div className={`w-[440px] h-[164px] shrink-0 p-[2px] rounded-[18px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative transition-all duration-700 ${isInView ? "scale-105" : "scale-100"}`}>
       <div className="w-full h-full rounded-[16px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-          {project.deviceImage ? (
+          {project.deviceIframeUrl ? (
+            <iframe
+              src={project.deviceIframeUrl}
+              title={project.title}
+              className="w-full h-full border-0 bg-white pointer-events-none"
+            />
+          ) : project.deviceImage ? (
             <Image
               src={project.deviceImage}
               alt={project.title}
