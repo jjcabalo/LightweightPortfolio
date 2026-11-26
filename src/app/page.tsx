@@ -1404,6 +1404,20 @@ function HeroAndAboutSection() {
   const leftCards = heroCards.slice(0, half);
   const rightCards = heroCards.slice(half);
 
+  const heroAwardBadges = [
+    { label: "Top 10 out of 270 Teams", pos: "-top-4 -right-6 rotate-6" },
+    { label: "Best in UI/UX Design", pos: "-top-4 -left-8 -rotate-6" },
+    { label: "Most Commercially Viable", pos: "-bottom-4 left-1/2 -translate-x-1/2 -rotate-2" },
+  ];
+  const [heroAwardIdx, setHeroAwardIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroAwardIdx((prev) => (prev + 1) % heroAwardBadges.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div ref={containerRef} className="relative w-full">
       {/* Hero Section — sticky on desktop, normal relative flow on phone */}
@@ -1452,6 +1466,20 @@ function HeroAndAboutSection() {
                       <ScrambleText text={card.num} />
                     </span>
                     <p className="font-mono text-xs xl:text-sm uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mt-2">{card.label}</p>
+                    {card.label === "Awards" && (
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={heroAwardBadges[heroAwardIdx].label}
+                          initial={{ opacity: 0, scale: 0.7 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.7 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className={`pointer-events-none absolute z-30 px-2.5 py-1 bg-[var(--theme-fg)] text-[var(--theme-bg)] font-mono text-[10px] uppercase tracking-wider whitespace-nowrap shadow-xl ${heroAwardBadges[heroAwardIdx].pos}`}
+                        >
+                          {heroAwardBadges[heroAwardIdx].label}
+                        </motion.span>
+                      </AnimatePresence>
+                    )}
                   </motion.div>
                 </Link>
               ))}
@@ -1494,6 +1522,20 @@ function HeroAndAboutSection() {
                       <ScrambleText text={card.num} />
                     </span>
                     <p className="font-mono text-xs xl:text-sm uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mt-2">{card.label}</p>
+                    {card.label === "Awards" && (
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={heroAwardBadges[heroAwardIdx].label}
+                          initial={{ opacity: 0, scale: 0.7 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.7 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className={`pointer-events-none absolute z-30 px-2.5 py-1 bg-[var(--theme-fg)] text-[var(--theme-bg)] font-mono text-[10px] uppercase tracking-wider whitespace-nowrap shadow-xl ${heroAwardBadges[heroAwardIdx].pos}`}
+                        >
+                          {heroAwardBadges[heroAwardIdx].label}
+                        </motion.span>
+                      </AnimatePresence>
+                    )}
                   </motion.div>
                 </Link>
               ))}
