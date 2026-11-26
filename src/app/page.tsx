@@ -240,7 +240,7 @@ function WorkSection() {
                           src={project.bgImage}
                           alt={`${project.title} background`}
                           fill
-                          className={`object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ${
+                          className={`object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ${
                             project.deviceType === "none"
                               ? "opacity-50 group-hover:opacity-75"
                               : "opacity-25 group-hover:opacity-40"
@@ -1042,14 +1042,14 @@ function TypewriterRole({ roles }: { roles: string[] }) {
     let timeout: NodeJS.Timeout;
 
     if (!isDeleting && currentText === role) {
-      timeout = setTimeout(() => setIsDeleting(true), 2000);
+      timeout = setTimeout(() => setIsDeleting(true), 1400);
     } else if (isDeleting && currentText === "") {
       setIsDeleting(false);
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
     } else {
       timeout = setTimeout(() => {
         setCurrentText(role.substring(0, currentText.length + (isDeleting ? -1 : 1)));
-      }, isDeleting ? 30 : 80);
+      }, isDeleting ? 24 : 58);
     }
 
     return () => clearTimeout(timeout);
