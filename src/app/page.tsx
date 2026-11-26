@@ -123,6 +123,27 @@ function WorkSection() {
       ],
       bgImage: "/projects/STUDYCIRCLE-BG.png"
     },
+    {
+      title: "KokoMyut",
+      category: "Offline AI Mobile App",
+      year: "2026",
+      date: "2026",
+      role: "UI/UX Designer",
+      tech: "On-Device LLM, Figma",
+      desc: "KokoMyut is an offline-first, AI-powered commuter assistant designed for the Taguig and Makati corridor. Powered by an on-device language model, it understands Tagalog and English queries to provide route recommendations, fare and schedule information, and drop-off alerts using locally stored transportation data, even without an internet connection. I led the UI/UX design, shaping the user flows, interface, and overall mobile experience.",
+      deployed: false,
+      figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0",
+      mediaButtons: [
+        {
+          label: "View Demo",
+          url: "https://www.linkedin.com/posts/jjcabalo_appbuildersph-localai-kokomyut-ugcPost-7514503407764959233-AjN1"
+        }
+      ],
+      deviceType: "mobile",
+      deviceImage: "/projects/KOMYUTPH-M.png",
+      deviceImages: [],
+      bgImage: "/projects/KOMYUTPH-BG.png"
+    },
     { 
       title: "eHANDA", 
       category: "GovTech Platform", 
@@ -969,7 +990,7 @@ function PopupDeviceVisual({ project }: { project: any }) {
 
   if (project.deviceType === "mobile") {
     return (
-      <div className={`w-[190px] ${project.title === "KOMYUTPH" ? "h-[404px]" : "h-[380px]"} shrink-0 p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative`}>
+      <div className={`w-[190px] ${project.title === "KOMYUTPH" || project.title === "KokoMyut" ? "h-[404px]" : "h-[380px]"} shrink-0 p-[2px] rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative`}>
         <div className="w-full h-full rounded-[24px] p-[4px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
           <div className="w-full h-full rounded-[20px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
             <CyclingDeviceImage
@@ -1442,7 +1463,7 @@ function HeroAndAboutSection() {
 
   // Adaptive Hero Stat Cards
   const heroCards = [
-    { num: "8+", label: "Projects", href: "#work" },
+    { num: "9+", label: "Projects", href: "#work" },
     { num: "4", label: "Awards", href: "#awards" },
     { num: "100+", label: "Gallery", href: "/gallery" },
     { num: "4+", label: "Years Exp.", href: "#experience" }
