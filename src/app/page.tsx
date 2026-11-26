@@ -140,9 +140,19 @@ function WorkSection() {
         }
       ],
       deviceType: "mobile",
-      deviceImage: "/projects/KOMYUTPH-M.png",
-      deviceImages: [],
-      bgImage: "/projects/KOMYUTPH-BG.png"
+      deviceImage: "/projects/KokoMyut/Landing New With Choices.png",
+      deviceImages: [
+        "/projects/KokoMyut/SplashScreen.png",
+        "/projects/KokoMyut/Landing New With Choices.png",
+        "/projects/KokoMyut/Typing.png",
+        "/projects/KokoMyut/Processing.png",
+        "/projects/KokoMyut/Result.png",
+        "/projects/KokoMyut/Chat Route Carousel.png",
+        "/projects/KokoMyut/Detailed (Uncollapsed).png",
+        "/projects/KokoMyut/Manual Mode.png",
+        "/projects/KokoMyut/Ongoing Commute (1).png"
+      ],
+      bgImage: "/projects/KokoMyut/Chat Route Carousel.png"
     },
     { 
       title: "eHANDA", 
