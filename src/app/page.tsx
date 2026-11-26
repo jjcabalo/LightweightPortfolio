@@ -211,7 +211,9 @@ function WorkSection() {
       desc: "An interactive educational IoT learning platform featuring 3D robotic arm simulations, real-time hardware telemetry feeds, and structured engineering modules designed to make embedded robotics accessible.",
       deployed: true,
       liveUrl: "https://iotrack-website.vercel.app",
-      deviceType: "none",
+      deviceType: "tablet",
+      deviceImage: "/projects/IOTRACK-THUMBNAIL.png",
+      deviceIframeUrl: "https://iotrack-learning-kit.vercel.app",
       bgImage: "/projects/IOTRACK-THUMBNAIL.png"
     },
     { 
@@ -224,7 +226,8 @@ function WorkSection() {
       desc: "A centralized campus incident and complaint management system engineered for educational institutions. Features live grievance tracking, role-based administrative dashboards, and automated department ticket dispatch.",
       deployed: true,
       liveUrl: "https://mapuone-app.vercel.app/login",
-      deviceType: "none",
+      deviceType: "tablet",
+      deviceImage: "/projects/MAPUONE-THUMBNAIL.png",
       bgImage: "/projects/MAPUONE-THUMBNAIL.png"
     }
   ];
@@ -977,12 +980,20 @@ function PopupDeviceVisual({ project }: { project: any }) {
     <div className="w-[330px] h-[190px] md:w-[480px] md:h-[280px] p-[2px] rounded-[18px] md:rounded-[26px] bg-gradient-to-br from-neutral-400 via-neutral-600 to-neutral-300 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative">
       <div className="w-full h-full rounded-[16px] md:rounded-[24px] p-[4px] md:p-[6px] bg-[#0a0a0a] shadow-[inset_0_0_2px_rgba(255,255,255,0.15)] relative">
         <div className="w-full h-full rounded-[10px] md:rounded-[16px] overflow-hidden relative bg-neutral-950 shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-          <CyclingDeviceImage
-            images={project.deviceImages}
-            fallback={project.deviceImage}
-            alt={project.title}
-            className="object-cover object-top"
-          />
+          {project.deviceIframeUrl ? (
+            <iframe
+              src={project.deviceIframeUrl}
+              title={project.title}
+              className="w-full h-full border-0 bg-white"
+            />
+          ) : (
+            <CyclingDeviceImage
+              images={project.deviceImages}
+              fallback={project.deviceImage}
+              alt={project.title}
+              className="object-cover object-top"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-bl from-white/[0.12] via-white/0 to-white/0 z-40 pointer-events-none" />
         </div>
       </div>
