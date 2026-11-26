@@ -8,6 +8,28 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 
+function renderHighlightedDesc(desc: string, highlights?: string[]) {
+  if (!highlights || highlights.length === 0) return desc;
+  const escaped = highlights.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const regex = new RegExp(`(${escaped.join("|")})`, "gi");
+  const parts = desc.split(regex);
+  let matchIndex = 0;
+  return parts.map((part, idx) => {
+    const isMatch = highlights.some((h) => h.toLowerCase() === part.toLowerCase());
+    if (!isMatch) return part;
+    const tilt = matchIndex % 2 === 0 ? "-rotate-1" : "rotate-1";
+    matchIndex++;
+    return (
+      <span
+        key={idx}
+        className={`inline-block bg-[var(--theme-fg)] text-[var(--theme-bg)] px-1.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold text-[0.85em] ${tilt} mx-0.5`}
+      >
+        {part}
+      </span>
+    );
+  });
+}
+
 function AcidDissolveBg({ topOnly = false }: { topOnly?: boolean }) {
   const fullMask =
     "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,530 C2850,545 2815,475 2780,512 C2715,590 2665,564 2595,532 C2520,498 2455,605 2385,565 C2305,475 2260,522 2195,548 C2115,578 2050,460 1975,515 C1895,595 1855,575 1785,535 C1710,492 1645,595 1575,542 C1505,485 1470,565 1440,530 C1410,545 1375,475 1340,512 C1275,590 1225,564 1155,532 C1080,498 1015,605 945,565 C865,475 820,522 755,548 C675,578 610,460 535,515 C455,595 415,575 345,535 C270,492 205,595 135,542 C65,485 25,565 0,530 Z'/%3E%3C/svg%3E\")";
@@ -67,6 +89,7 @@ function WorkSection() {
       role: "Lead UI/UX Designer", 
       tech: "Figma MCP, Google's Antigravity", 
       desc: "Erehwon Art Center is an art management system for cataloging collections, managing artist records, handling studio reservations, and maintaining cultural archives. I led its UI/UX design, focusing on structured information architecture and simplified administrative workflows.",
+      highlights: ["administrative workflows"],
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
@@ -87,6 +110,7 @@ function WorkSection() {
       role: "Lead UI/UX Designer & Brand Designer", 
       tech: "Figma MCP, Google's Antigravity", 
       desc: "Gathr is a mobile event management platform for university organizations, featuring event creation, participant registration, and QR-based attendance tracking. I led its UI/UX and brand design, applying a mobile-first approach with streamlined user flows and touch-friendly interactions.",
+      highlights: ["mobile-first approach"],
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
@@ -110,6 +134,7 @@ function WorkSection() {
       role: "Lead UI/UX Designer & Brand Designer", 
       tech: "Figma MCP, Google's Antigravity", 
       desc: "StudyCircle is an AI-powered collaborative learning platform featuring shared notes, virtual study spaces, and automated flashcard generation. I led its UI/UX and brand design, focusing on content hierarchy, intuitive navigation, and organized learning experiences.",
+      highlights: ["content hierarchy", "organized learning"],
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
@@ -131,6 +156,7 @@ function WorkSection() {
       role: "Lead UI/UX Designer, Brand Designer",
       tech: "On-Device LLM, Figma",
       desc: "KokoMyut is an offline-first AI commuter assistant for the Taguig and Makati corridor. Its on-device AI understands Tagalog and English, providing route recommendations, fare and schedule details, and drop-off alerts without internet access. I led its branding and UI/UX design, applying Progressive Disclosure and Recognition Over Recall to simplify information and make route discovery easier.",
+      highlights: ["Progressive Disclosure", "Recognition Over Recall"],
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0",
       mediaButtons: [
@@ -162,6 +188,7 @@ function WorkSection() {
       role: "Media Director", 
       tech: "Next.js, Supabase, Tailwind CSS, Figma", 
       desc: "eHANDA is a post-disaster household needs assessment platform integrated into the eGovPH ecosystem to support emergency response and relief operations. I handled its brand identity, pitch deck direction, presentation flow, and promotional materials to communicate the platform's purpose and value.",
+      highlights: ["brand identity"],
       deployed: true,
       liveUrl: "https://e-handa.vercel.app",
       mediaButtons: [
@@ -180,6 +207,7 @@ function WorkSection() {
       role: "Full-Stack Developer & Lead UI/UX Designer", 
       tech: "React Native, Expo, Prisma, PostgreSQL", 
       desc: "SilangApp is a barangay management application for Barangay Sto. Rosario, Silangan, Pateros, featuring digital service requests, incident reporting, and community announcements. I handled its UI/UX design and full-stack development, from user flows and wireframes to frontend and backend integration.",
+      highlights: ["user flows", "wireframes"],
       deployed: true,
       liveUrl: "https://admin.silangapp.online",
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
@@ -203,6 +231,7 @@ function WorkSection() {
       role: "FrontEnd Developer, Lead UI/UX Designer, Brand Designer", 
       tech: "React, PWA, Tailwind CSS, Leaflet", 
       desc: "KOMYUTPH is an offline-first, crowdsourced navigation platform for discovering informal public transportation routes and estimating fares in the Philippines. I led its branding and UI/UX design, applying Jakob's Law for familiar navigation patterns and the Thumb Zone principle to position frequently used mobile actions within comfortable reach.",
+      highlights: ["Jakob's Law", "Thumb Zone principle"],
       deployed: true,
       liveUrl: "https://komyutph.com",
       mediaButtons: [
@@ -241,6 +270,7 @@ function WorkSection() {
       role: "Full-Stack Developer & UI/UX Designer", 
       tech: "React, Tailwind CSS, Supabase, PostgreSQL", 
       desc: "IoTrack is an interactive IoT learning platform featuring structured engineering lessons, guided activities, and 3D robotic arm simulations. I independently developed and deployed its full-stack application using React, Supabase, and PostgreSQL, including interactive robot controls for hands-on learning.",
+      highlights: ["developed", "deployed"],
       deployed: true,
       liveUrl: "https://iotrack-website.vercel.app",
       deviceType: "tablet",
@@ -256,6 +286,7 @@ function WorkSection() {
       role: "Full-Stack Developer", 
       tech: "Next.js, TypeScript, Tailwind CSS, Supabase", 
       desc: "MapuOne is a centralized campus complaint management system for submitting, tracking, and managing institutional concerns. I independently developed and deployed its full-stack application using Next.js, TypeScript, Tailwind CSS, and Supabase, following client-provided requirements and design specifications.",
+      highlights: ["developed", "deployed"],
       deployed: true,
       liveUrl: "https://mapuone-app.vercel.app/login",
       deviceType: "tablet",
@@ -388,8 +419,8 @@ function WorkSection() {
               onClick={() => setSelectedProject(null)}
               className="absolute top-6 right-6 z-[110] w-12 h-12 flex flex-col items-end justify-center gap-[6px] mix-blend-difference"
             >
-              <span className="block h-[3px] bg-white w-8 rotate-45 translate-y-[4.5px]" />
-              <span className="block h-[3px] bg-white w-8 -rotate-45 -translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-[#ffffff] w-8 rotate-45 translate-y-[4.5px]" />
+              <span className="block h-[3px] bg-[#ffffff] w-8 -rotate-45 -translate-y-[4.5px]" />
             </button>
 
             {/* Scrollable Container */}
@@ -446,7 +477,7 @@ function WorkSection() {
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-24 py-10 md:py-24 relative z-10 bg-[var(--theme-bg)] md:bg-transparent md:min-h-screen">
+                <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-10 lg:px-12 xl:px-16 py-8 md:py-12 relative z-10 bg-[var(--theme-bg)] md:bg-transparent md:min-h-screen">
                   <motion.div
                     className="my-auto"
                     initial={{ opacity: 0, y: 30 }}
@@ -463,7 +494,7 @@ function WorkSection() {
                       </span>
                     </div>
                     
-                    <h2 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] tracking-tighter uppercase leading-[0.85] mb-8 xl:mb-12">
+                    <h2 className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] tracking-tighter uppercase leading-[0.9] mb-5 xl:mb-8">
                       {selectedProject.title}
                     </h2>
 
@@ -485,7 +516,7 @@ function WorkSection() {
                     <div className="mb-12">
                       <h4 className="font-mono text-[10px] xl:text-xs uppercase tracking-widest opacity-60 mb-4 hidden md:block">About the Project</h4>
                       <p className="font-sans text-2xl md:text-3xl lg:text-4xl opacity-80 leading-tight">
-                        {selectedProject.desc}
+                        {renderHighlightedDesc(selectedProject.desc, selectedProject.highlights)}
                       </p>
                     </div>
 
@@ -1711,7 +1742,7 @@ function HeroAndAboutSection() {
             >
               Jervys
             </a>{" "}
-            — an aspiring multimedia artist and software engineer exploring different ways to bring ideas to life through media production and software development. I&apos;ve always enjoyed creating, whether it&apos;s through visuals, storytelling, design, or technology.
+            — an aspiring multimedia artist and software <span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ngineer exploring different ways to bring ideas to life through m<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>dia production and software development. I&apos;ve always enjoyed cr<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ating, whether it&apos;s through visuals, storyt<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>lling, design, or t<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>chnology.
           </h3>
 
           {/* Centered CTA Link Button */}
