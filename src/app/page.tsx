@@ -130,7 +130,7 @@ function WorkSection() {
       date: "2026",
       role: "UI/UX Designer",
       tech: "On-Device LLM, Figma",
-      desc: "KokoMyut is an offline-first, AI-powered commuter assistant designed for the Taguig and Makati corridor. Powered by an on-device language model, it understands Tagalog and English queries to provide route recommendations, fare and schedule information, and drop-off alerts using locally stored transportation data, even without an internet connection. I led the UI/UX design, shaping the user flows, interface, and overall mobile experience.",
+      desc: "KokoMyut is an offline-first AI commuter assistant for the Taguig and Makati corridor. Its on-device AI understands Tagalog and English, providing route recommendations, fare and schedule details, and drop-off alerts without internet access. I led its UI/UX design, from user flows to the mobile interface.",
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0",
       mediaButtons: [
