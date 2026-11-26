@@ -362,7 +362,7 @@ function WorkSection() {
               <div className="flex flex-col md:flex-row min-h-full relative">
                 
                 {/* Project Device Display */}
-                <div className="w-full md:w-1/2 h-[42vh] md:h-screen relative md:sticky md:top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
+                <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative md:sticky md:top-0 shrink-0 z-0 bg-black flex flex-col items-center justify-center p-8 text-center overflow-hidden border-b md:border-b-0 md:border-r border-[var(--theme-fg)]/10">
                   {/* Background Image if available */}
                   {selectedProject.bgImage && (
                     <div className="absolute inset-0 z-0 overflow-hidden">
@@ -2028,7 +2028,7 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
               project.deviceType === "none"
                 ? "opacity-50 group-hover/card:opacity-75"
                 : "opacity-25 group-hover/card:opacity-40"
-            } ${isInView ? "grayscale-0" : "grayscale"}`}
+            } ${isInView ? "grayscale-0 scale-105" : "grayscale scale-100"}`}
           />
         </div>
       )}
