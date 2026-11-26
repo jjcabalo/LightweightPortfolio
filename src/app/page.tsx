@@ -93,14 +93,14 @@ function WorkSection() {
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
-      deviceImage: "/projects/EREHWON-T.png",
+      deviceImage: "/projects/EREHWON-T.webp",
       deviceImages: [
-        "/projects/EREHWON-T.png",
-        "/projects/Erehwon/ArtistCommissions.png",
-        "/projects/Erehwon/Billing.png",
-        "/projects/Erehwon/SpaceRentalModalMessage.png"
+        "/projects/EREHWON-T.webp",
+        "/projects/Erehwon/ArtistCommissions.webp",
+        "/projects/Erehwon/Billing.webp",
+        "/projects/Erehwon/SpaceRentalModalMessage.webp"
       ],
-      bgImage: "/projects/EREHWON-BG.png"
+      bgImage: "/projects/EREHWON-BG.webp"
     },
     { 
       title: "Gathr", 
@@ -114,17 +114,17 @@ function WorkSection() {
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
-      deviceImage: "/projects/GATHR-M.png",
+      deviceImage: "/projects/GATHR-M.webp",
       deviceImages: [
-        "/projects/GATHR-M.png",
-        "/projects/Gathr/Splash Screen.png",
-        "/projects/Gathr/Splash Screen (1).png",
-        "/projects/Gathr/Splash Screen (2).png",
-        "/projects/Gathr/Splash Screen (3).png",
-        "/projects/Gathr/Landing Page.png",
-        "/projects/Gathr/Participants - Upcoming Status.png"
+        "/projects/GATHR-M.webp",
+        "/projects/Gathr/Splash Screen.webp",
+        "/projects/Gathr/Splash Screen (1).webp",
+        "/projects/Gathr/Splash Screen (2).webp",
+        "/projects/Gathr/Splash Screen (3).webp",
+        "/projects/Gathr/Landing Page.webp",
+        "/projects/Gathr/Participants - Upcoming Status.webp"
       ],
-      bgImage: "/projects/GATHR-BG.png"
+      bgImage: "/projects/GATHR-BG.webp"
     },
     { 
       title: "StudyCircle", 
@@ -138,15 +138,15 @@ function WorkSection() {
       deployed: false,
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "tablet",
-      deviceImage: "/projects/STUDYCIRCLE-T.png",
+      deviceImage: "/projects/STUDYCIRCLE-T.webp",
       deviceImages: [
-        "/projects/STUDYCIRCLE-T.png",
-        "/projects/StudyCircle/Homepage (Untoggled).png",
-        "/projects/StudyCircle/Main Interface.png",
-        "/projects/StudyCircle/Avatar Customization.png",
-        "/projects/StudyCircle/Profile.png"
+        "/projects/STUDYCIRCLE-T.webp",
+        "/projects/StudyCircle/Homepage (Untoggled).webp",
+        "/projects/StudyCircle/Main Interface.webp",
+        "/projects/StudyCircle/Avatar Customization.webp",
+        "/projects/StudyCircle/Profile.webp"
       ],
-      bgImage: "/projects/STUDYCIRCLE-BG.png"
+      bgImage: "/projects/STUDYCIRCLE-BG.webp"
     },
     {
       title: "KokoMyut",
@@ -166,19 +166,19 @@ function WorkSection() {
         }
       ],
       deviceType: "mobile",
-      deviceImage: "/projects/KokoMyut/Landing New With Choices.png",
+      deviceImage: "/projects/KokoMyut/Landing New With Choices.webp",
       deviceImages: [
-        "/projects/KokoMyut/SplashScreen.png",
-        "/projects/KokoMyut/Landing New With Choices.png",
-        "/projects/KokoMyut/Typing.png",
-        "/projects/KokoMyut/Processing.png",
-        "/projects/KokoMyut/Result.png",
-        "/projects/KokoMyut/Chat Route Carousel.png",
-        "/projects/KokoMyut/Detailed (Uncollapsed).png",
-        "/projects/KokoMyut/Manual Mode.png",
-        "/projects/KokoMyut/Ongoing Commute (1).png"
+        "/projects/KokoMyut/SplashScreen.webp",
+        "/projects/KokoMyut/Landing New With Choices.webp",
+        "/projects/KokoMyut/Typing.webp",
+        "/projects/KokoMyut/Processing.webp",
+        "/projects/KokoMyut/Result.webp",
+        "/projects/KokoMyut/Chat Route Carousel.webp",
+        "/projects/KokoMyut/Detailed (Uncollapsed).webp",
+        "/projects/KokoMyut/Manual Mode.webp",
+        "/projects/KokoMyut/Ongoing Commute (1).webp"
       ],
-      bgImage: "/projects/KokoMyut/Chat Route Carousel.png"
+      bgImage: "/projects/KokoMyut/Chat Route Carousel.webp"
     },
     { 
       title: "eHANDA", 
@@ -196,8 +196,8 @@ function WorkSection() {
         { label: "System Demo", url: "https://drive.google.com/file/d/1FK6x0YO0V-Yn2HI7G71mx2DzUvJhq9z4/preview", modalTitle: "eHANDA — System Demo" }
       ],
       deviceType: "tablet",
-      deviceImage: "/projects/EHAND-T.jpg",
-      bgImage: "/projects/EHANDA-BG.png"
+      deviceImage: "/projects/EHAND-T.webp",
+      bgImage: "/projects/EHANDA-BG.webp"
     },
     { 
       title: "SilangApp", 
@@ -212,16 +212,16 @@ function WorkSection() {
       liveUrl: "https://admin.silangapp.online",
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
-      deviceImage: "/projects/SILANGAPP-M-NEW.jpg",
+      deviceImage: "/projects/SILANGAPP-M-NEW.webp",
       deviceImages: [
-        "/projects/SILANGAPP-M-NEW.jpg",
-        "/projects/SilangApp/Who is using the app_ (1).png",
-        "/projects/SilangApp/Item View Card.png",
-        "/projects/SilangApp/Make new Post.png",
-        "/projects/SilangApp/Make new Post (1).png",
-        "/projects/SilangApp/Profile Tab.png"
+        "/projects/SILANGAPP-M-NEW.webp",
+        "/projects/SilangApp/Who is using the app_ (1).webp",
+        "/projects/SilangApp/Item View Card.webp",
+        "/projects/SilangApp/Make new Post.webp",
+        "/projects/SilangApp/Make new Post (1).webp",
+        "/projects/SilangApp/Profile Tab.webp"
       ],
-      bgImage: "/projects/SILANGAPP-BG-NEW.png"
+      bgImage: "/projects/SILANGAPP-BG-NEW.webp"
     },
     { 
       title: "KOMYUTPH", 
@@ -239,28 +239,28 @@ function WorkSection() {
       ],
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0/Designs?node-id=166-33392&t=MuQ3a3uLCwHi3pOr-0",
       deviceType: "mobile",
-      deviceImage: "/projects/KOMYUTPH-M.png",
+      deviceImage: "/projects/KOMYUTPH-M.webp",
       deviceImages: [
-        "/projects/KOMYUTPH-M.png",
-        "/projects/KomyutPH/SplashScreen.png",
-        "/projects/KomyutPH/Landing Page.png",
-        "/projects/KomyutPH/Home.png",
-        "/projects/KomyutPH/Light Mode.png",
-        "/projects/KomyutPH/Left Panel.png",
-        "/projects/KomyutPH/Selected Location (Collapsed).png",
-        "/projects/KomyutPH/View Route.png",
-        "/projects/KomyutPH/See Journey.png",
-        "/projects/KomyutPH/Terminals.png",
-        "/projects/KomyutPH/Directory.png",
-        "/projects/KomyutPH/Contribute.png",
-        "/projects/KomyutPH/Post.png",
-        "/projects/KomyutPH/Replies.png",
-        "/projects/KomyutPH/Profile.png",
-        "/projects/KomyutPH/Leaderboard.png",
-        "/projects/KomyutPH/Achivements.png",
-        "/projects/KomyutPH/Carousel.png"
+        "/projects/KOMYUTPH-M.webp",
+        "/projects/KomyutPH/SplashScreen.webp",
+        "/projects/KomyutPH/Landing Page.webp",
+        "/projects/KomyutPH/Home.webp",
+        "/projects/KomyutPH/Light Mode.webp",
+        "/projects/KomyutPH/Left Panel.webp",
+        "/projects/KomyutPH/Selected Location (Collapsed).webp",
+        "/projects/KomyutPH/View Route.webp",
+        "/projects/KomyutPH/See Journey.webp",
+        "/projects/KomyutPH/Terminals.webp",
+        "/projects/KomyutPH/Directory.webp",
+        "/projects/KomyutPH/Contribute.webp",
+        "/projects/KomyutPH/Post.webp",
+        "/projects/KomyutPH/Replies.webp",
+        "/projects/KomyutPH/Profile.webp",
+        "/projects/KomyutPH/Leaderboard.webp",
+        "/projects/KomyutPH/Achivements.webp",
+        "/projects/KomyutPH/Carousel.webp"
       ],
-      bgImage: "/projects/KOMYUTPH-BG.png"
+      bgImage: "/projects/KOMYUTPH-BG.webp"
     },
     { 
       title: "IoTrack", 
@@ -445,7 +445,7 @@ function WorkSection() {
                             className={`object-cover object-top ${selectedProject.deviceType === "none" ? "opacity-75" : "opacity-20"}`}
                           />
                         </motion.div>
-                      ) : selectedProject.title === "MapuOne" || selectedProject.title === "IoTrack Learning Kit" ? (
+                      ) : selectedProject.title === "MapuOne" || selectedProject.title === "IoTrack" ? (
                         <Image
                           src={selectedProject.bgImage}
                           alt={`${selectedProject.title} background`}
@@ -1316,12 +1316,12 @@ function AwardsSection() {
       competition: "Infotechnolympics 2026 — Hackathon Category", 
       year: "2026", 
       project: "Hackathon Category", 
-      prize: "Trophy + Cash Prize", 
+      prize: "Medal", 
       role: "Lead UI/UX Designer & Full-Stack Developer", 
       desc: "Awarded Best in UI and UX and 1st Runner Up in the Hackathon Category at Infotechnolympics 2026. Recognized for exceptional human-centered interaction design, user accessibility, and rapid functional prototyping under intense hackathon time constraints.", 
       media: [
-        { type: 'image', url: "/awards/BESTINUIUX.jpg" },
-        { type: 'image', url: "/awards/BESTINUIUX2.jpg" }
+        { type: 'image', url: "/awards/BESTINUIUX.webp" },
+        { type: 'image', url: "/awards/BESTINUIUX2.webp" }
       ]
     },
     { 
@@ -1329,12 +1329,12 @@ function AwardsSection() {
       competition: "eGovPH Hackathon 2026", 
       year: "2026", 
       project: "eHANDA", 
-      prize: "National Finalist Recognition", 
+      prize: "National Finalist Recognition + ₱100,000 Cash Prize", 
       role: "UI/UX Designer & Media Director", 
-      desc: "Selected as one of the Top 10 Finalists nationwide in the prestigious eGovPH Hackathon 2026 for eHANDA, a rapid post-disaster household assessment platform integrating into the national eGovPH app ecosystem.", 
+      desc: "Selected as one of the Top 10 Finalists nationwide in the prestigious eGovPH Hackathon 2026 for eHANDA, winning ₱100,000 in cash for a rapid post-disaster household assessment platform integrating into the national eGovPH app ecosystem.", 
       media: [
-        { type: 'image', url: "/awards/TOP10FINALISTS.jpg" },
-        { type: 'image', url: "/awards/TOP10FINALISTS2.png" }
+        { type: 'image', url: "/awards/TOP10FINALISTS.webp" },
+        { type: 'image', url: "/awards/TOP10FINALISTS2.webp" }
       ]
     },
     { 
@@ -1342,12 +1342,12 @@ function AwardsSection() {
       competition: "UMak 7th Hackathon 2025", 
       year: "2025", 
       project: "Campus Innovation Track", 
-      prize: "Special Citation & Grant", 
+      prize: "Special Citation + Cash Prize", 
       role: "UI/UX Designer & Product Lead", 
       desc: "Honored with the Most Commercially Viable Award at the 7th University of Makati Hackathon 2025. Recognized for outstanding business sustainability, market readiness, and an intuitive product experience.", 
       media: [
-        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE.jpg" },
-        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE2.jpg" }
+        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE.webp" },
+        { type: 'image', url: "/awards/MOSTCOMMERCIALLYVIABLE2.webp" }
       ]
     },
     { 
@@ -1359,8 +1359,8 @@ function AwardsSection() {
       role: "Algorithm Engineer", 
       desc: "Won 1st Runner Up in the C# Category at Infotechnolympics 2025, demonstrating advanced computational problem solving, data structure proficiency, and rapid algorithmic software development.", 
       media: [
-        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP.jpg" },
-        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP2.jpg" }
+        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP.webp" },
+        { type: 'image', url: "/awards/1STRUNNERUP-CSHARP2.webp" }
       ]
     }
   ];
@@ -1604,7 +1604,7 @@ function HeroAndAboutSection() {
             >
               <div className="relative w-[82vw] sm:w-[68vw] md:w-[54vw] lg:w-[38vw] xl:w-[36vw] max-w-[590px] aspect-square flex items-center justify-center">
                 <Image
-                  src={theme === "light" ? "/lmode.png" : "/dmode.png"}
+                  src={theme === "light" ? "/lmode.webp" : "/dmode.webp"}
                   alt="John"
                   width={1080}
                   height={1080}
