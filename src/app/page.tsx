@@ -63,7 +63,7 @@ function WorkSection() {
   const [showAiWorkflow, setShowAiWorkflow] = useState(false);
   const [activeInfoStep, setActiveInfoStep] = useState<string | null>(null);
   const [workflowStepIdx, setWorkflowStepIdx] = useState(0);
-  const workflowSequence = ["01", "02", "03", "04", "05", "iterate", "03", "04", "05"];
+  const workflowSequence = ["01", "02", "03", "04", "05", "iterate", "03", "04", "05", "06"];
   const activeWorkflowNode = workflowSequence[workflowStepIdx];
 
   useEffect(() => {
@@ -314,12 +314,12 @@ function WorkSection() {
           <ScrollReveal className="w-full h-full flex flex-col justify-center">
             <div className="px-12 mb-12 flex justify-between items-end shrink-0">
               <div className="flex flex-col items-start gap-4">
-                <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">S<span className="inline-block scale-x-150 origin-center mx-[0.12em]">O</span>FTWARE PROJECTS</h2>
+                <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">F<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span>ATURED PROJECTS</h2>
                 <button
                   onClick={() => setShowAiWorkflow(true)}
                   className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--theme-fg)]/25 rounded-full font-mono text-xs uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors cursor-pointer"
                 >
-                  <span>MY DESIGN AI WORKFLOW</span>
+                  <span>MY AI WORKFLOW</span>
                   <ArrowUpRight size={14} />
                 </button>
               </div>
@@ -383,12 +383,12 @@ function WorkSection() {
       {/* Mobile Normal Scroll */}
       <ScrollReveal as="section" id="work-mobile" className="block md:hidden pt-32 pb-24 ">
         <div className="px-6 mb-12 flex flex-col items-start gap-4">
-          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">S<span className="inline-block scale-x-150 origin-center mx-[0.12em]">O</span>FTWARE PROJECTS</h2>
+          <h2 className="font-display text-4xl md:text-6xl tracking-tight text-[var(--theme-fg)] uppercase">F<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span>ATURED PROJECTS</h2>
           <button
             onClick={() => setShowAiWorkflow(true)}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-[var(--theme-fg)]/25 rounded-full font-mono text-[11px] uppercase tracking-widest text-[var(--theme-fg)] hover:bg-[var(--theme-fg)] hover:text-[var(--theme-bg)] transition-colors shrink-0 cursor-pointer"
           >
-            <span>MY DESIGN AI WORKFLOW</span>
+            <span>MY AI WORKFLOW</span>
             <ArrowUpRight size={13} />
           </button>
         </div>
@@ -607,42 +607,49 @@ function WorkSection() {
               {/* Body */}
               <div className="px-8 pb-8 pt-4 md:px-14 md:pb-12 md:pt-4 overflow-y-auto overscroll-contain space-y-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-lenis-prevent>
                 {/* Flowchart: Horizontal Process on Desktop, Vertical on Mobile */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-[var(--theme-fg)]/20">
+                <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 border border-[var(--theme-fg)]/20">
                   {[
                     {
                       step: "01",
-                      phase: "DESIGN",
-                      tool: "Figma",
-                      summary: "Wireframes, layouts, components, design tokens, prototypes.",
-                      detail: "Create the UI designs either from scratch using Figma or with AI design tools such as Google Stitch, Figma AI, Uizard, or Lovable. Explore layouts, generate design concepts, and refine the selected direction into polished screens, reusable components, and a consistent design system."
+                      phase: "UNDERSTAND",
+                      tool: "AGY / Claude Code",
+                      summary: "Understand the problem, users, and existing system.",
+                      detail: "Understand the problem, target users, and expected outcome. Use AI to analyze requirements, identify user needs, map user flows, and define the features that need to be built. If working on an existing product, let the coding agent inspect the codebase, understand the architecture, identify reusable components, and determine technical constraints before proceeding."
                     },
                     {
                       step: "02",
-                      phase: "UNDERSTAND",
-                      tool: "Claude Code / Antigravity",
-                      summary: "Read design context, inspect existing code, plan implementation.",
-                      detail: "Connect Figma to your coding agent using Figma MCP so it can read your designs and understand their structure. Let it inspect the existing codebase, identify reusable components, understand how the system works, and prepare a plan before making changes."
+                      phase: "DESIGN",
+                      tool: "Figma",
+                      summary: "Turn ideas into wireframes and polished UI designs.",
+                      detail: "Create low-fidelity wireframes to establish the layout, information hierarchy, and user flows using preferred AI design tools. Once the structure is established, develop the UI design by refining the visual direction, colors, typography, spacing, and interface elements into polished high-fidelity screens manually or using AI. Organize reusable components, design tokens, and interactive prototypes before implementation."
                     },
                     {
                       step: "03",
                       phase: "BUILD",
                       tool: "Frontend Agent Skills",
-                      summary: "Components, responsive layouts, interactions, animations.",
-                      detail: "Use frontend skills to guide AI in turning the designs into actual code. Build the pages, reusable components, responsive layouts, and interactions while keeping the existing system and backend functionality intact."
+                      summary: "Turn approved designs into working interfaces.",
+                      detail: "Connect Figma to your coding agent using Figma MCP so it can access the actual design context, including layouts, components, and variables. Use frontend development skills and existing project conventions to implement the approved designs. Build reusable components, responsive layouts, functional interactions, and animations while preserving existing backend logic and functionality."
                     },
                     {
                       step: "04",
                       phase: "REVIEW",
-                      tool: "Browser Preview",
-                      summary: "Compare against Figma, inspect breakpoints, spot visual issues.",
-                      detail: "Run the system locally and open it in the browser. Check how the implementation looks compared to the original design, review different screen sizes, and identify anything that looks or behaves incorrectly."
+                      tool: "DevTools",
+                      summary: "Check the implementation against the original design.",
+                      detail: "Run the application locally and inspect the actual implementation in the browser. Compare the interface against the original Figma design, check different screen sizes, and test user flows. Identify visual inconsistencies, broken interactions, confusing layouts, and anything that does not behave as intended. Document the issues that need improvement."
                     },
                     {
                       step: "05",
-                      phase: "REFINE & TEST",
-                      tool: "AI + Creative Direction",
-                      summary: "Polish details, accessibility, performance, and functionality.",
-                      detail: "Give AI feedback and let it fix the identified issues. Fine-tune the spacing, typography, colors, and interactions, then test responsiveness, accessibility, performance, and existing functionality before considering the work complete."
+                      phase: "ITERATE & TEST",
+                      tool: "Playwright",
+                      summary: "Fix issues, refine the UI, and test functionality.",
+                      detail: "Feed the identified issues back to your coding agent and refine the implementation. Fine-tune spacing, typography, visual hierarchy, component behavior, and interactions. Test responsiveness, keyboard accessibility, functionality, performance, and existing features. Repeat the Build → Review → Iterate & Test cycle until the implementation meets the design and quality requirements. Once everything passes, proceed to shipping."
+                    },
+                    {
+                      step: "06",
+                      phase: "SHIP",
+                      tool: "GitHub",
+                      summary: "Prepare the final build and deploy the product.",
+                      detail: "Finalize the implementation, review code changes, resolve outstanding issues, and verify that required tests pass. Commit and push the approved changes, integrate them with the existing application, and deploy through your CI/CD pipeline. And its important to perform a final production check to ensure the interface and functionality work as expected."
                     }
                   ].map((node, idx, arr) => {
                     const isActive = activeWorkflowNode === node.step;
@@ -651,6 +658,8 @@ function WorkSection() {
                     <div
                       key={node.step}
                       className={`relative p-5 md:p-6 flex flex-col justify-between transition-colors duration-300 ${
+                        isInfoOpen ? "z-50" : "z-0"
+                      } ${
                         isActive
                           ? "bg-[var(--theme-fg)] text-[var(--theme-bg)]"
                           : "bg-[var(--theme-bg)] text-[var(--theme-fg)]"
@@ -694,7 +703,7 @@ function WorkSection() {
                             <Info size={14} />
                           </button>
                           {isInfoOpen && (
-                            <div className="absolute right-0 bottom-7 z-30 w-60 p-3.5 bg-[var(--theme-bg)] text-[var(--theme-fg)] border border-[var(--theme-fg)]/30 shadow-xl font-sans text-xs leading-relaxed">
+                            <div className={`absolute right-0 ${idx === 0 ? "lg:left-0 lg:right-auto" : ""} top-7 z-[60] w-64 p-3.5 bg-[var(--theme-bg)] text-[var(--theme-fg)] border border-[var(--theme-fg)]/30 shadow-xl font-sans text-xs leading-relaxed`}>
                               {node.detail}
                             </div>
                           )}
@@ -706,7 +715,7 @@ function WorkSection() {
                 </div>
 
                 {/* Feedback Loop Connector under 03–05 */}
-                <div className="hidden lg:grid grid-cols-5 -mt-10">
+                <div className="hidden lg:grid grid-cols-6 -mt-10">
                   <div className="col-span-2" />
                   <div className={`col-span-3 border-x border-b h-8 relative flex items-center justify-center transition-colors duration-300 ${
                     activeWorkflowNode === "iterate" ? "border-[var(--theme-fg)]" : "border-[var(--theme-fg)]/20"
@@ -719,6 +728,7 @@ function WorkSection() {
                       ↺ Iterate
                     </span>
                   </div>
+                  <div className="col-span-1" />
                 </div>
 
                 {/* Clickable Frontend Agent Skills */}
