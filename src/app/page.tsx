@@ -1211,11 +1211,11 @@ function TypewriterRole({ roles }: { roles: string[] }) {
   }, [currentText, isDeleting, currentRoleIndex, roles, mounted]);
 
   if (!mounted) {
-    return <span className="border-b-2 border-current">{roles[0]}</span>;
+    return <span className="italic font-light opacity-65">{roles[0]}</span>;
   }
 
   return (
-    <span className="inline-block border-b-2 border-current font-bold text-[var(--theme-fg)]">
+    <span className="inline-block italic font-light opacity-65">
       {currentText || "\u00A0"}
       <span className="animate-pulse ml-0.5 opacity-70">|</span>
     </span>
