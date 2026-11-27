@@ -1752,7 +1752,7 @@ function HeroAndAboutSection() {
             >
               Jervys
             </a>{" "}
-            — an aspiring multimedia artist and software <span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ngineer exploring different ways to bring ideas to life through m<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>dia production and software development. I&apos;ve always enjoyed cr<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ating, whether it&apos;s through visuals, storyt<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>lling, design, or t<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>chnology.
+            — an aspiring multimedia artist and software <span className="whitespace-nowrap"><span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ngineer</span> exploring different ways to bring ideas to life through <span className="whitespace-nowrap">m<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>dia</span> production and software development. I&apos;ve always enjoyed <span className="whitespace-nowrap">cr<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>ating</span>, whether it&apos;s through visuals, <span className="whitespace-nowrap">storyt<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>lling</span>, design, or <span className="whitespace-nowrap">t<span className="inline-block scale-x-150 origin-center mx-[0.12em]">e</span>chnology</span>.
           </h3>
 
           {/* Centered CTA Link Button */}
