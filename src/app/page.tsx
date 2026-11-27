@@ -30,26 +30,69 @@ function renderHighlightedDesc(desc: string, highlights?: string[]) {
   });
 }
 
-function AcidDissolveBg({ topOnly = false }: { topOnly?: boolean }) {
+function AcidDissolveBg({ topOnly = false, withRocks = false }: { topOnly?: boolean; withRocks?: boolean }) {
   const fullMask =
     "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,530 C2850,545 2815,475 2780,512 C2715,590 2665,564 2595,532 C2520,498 2455,605 2385,565 C2305,475 2260,522 2195,548 C2115,578 2050,460 1975,515 C1895,595 1855,575 1785,535 C1710,492 1645,595 1575,542 C1505,485 1470,565 1440,530 C1410,545 1375,475 1340,512 C1275,590 1225,564 1155,532 C1080,498 1015,605 945,565 C865,475 820,522 755,548 C675,578 610,460 535,515 C455,595 415,575 345,535 C270,492 205,595 135,542 C65,485 25,565 0,530 Z'/%3E%3C/svg%3E\")";
   const topOnlyMask =
     "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 600' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3C/defs%3E%3Cpath filter='url(%23b)' fill='white' d='M0,95 C65,25 110,115 190,42 C245,-5 295,90 365,68 C425,48 455,10 535,88 C610,145 680,18 755,48 C815,72 860,125 940,32 C1005,-10 1065,98 1135,76 C1210,52 1255,12 1325,84 C1375,130 1410,35 1440,95 C1505,25 1550,115 1630,42 C1685,-5 1735,90 1805,68 C1865,48 1895,10 1975,88 C2050,145 2120,18 2195,48 C2255,72 2300,125 2380,32 C2445,-10 2505,98 2575,76 C2650,52 2695,12 2765,84 C2815,130 2850,35 2880,95 L2880,640 L0,640 Z'/%3E%3C/svg%3E\")";
   const mask = topOnly ? topOnlyMask : fullMask;
 
+  const rocks = [
+    { x: "5%", y: "16%", size: 15, rot: 14, path: "M3,12 L1,7 L5,2 L11,1 L16,5 L15,11 L10,15 Z", facet: "M5,2 L11,1 L10,7 L3,12 L1,7 Z" },
+    { x: "14%", y: "78%", size: 11, rot: -22, path: "M2,10 L1,5 L6,1 L12,3 L14,8 L9,13 Z", facet: "M6,1 L12,3 L8,7 L2,10 L1,5 Z" },
+    { x: "23%", y: "26%", size: 13, rot: 35, path: "M2,9 L4,3 L9,1 L15,4 L16,10 L11,14 L5,13 Z", facet: "M4,3 L9,1 L11,6 L2,9 Z" },
+    { x: "31%", y: "84%", size: 16, rot: -10, path: "M1,11 L3,4 L8,1 L14,2 L17,8 L13,14 L6,15 Z", facet: "M3,4 L8,1 L10,7 L1,11 Z" },
+    { x: "39%", y: "20%", size: 10, rot: 48, path: "M2,8 L4,2 L10,1 L14,6 L11,11 L5,11 Z", facet: "M4,2 L10,1 L8,6 L2,8 Z" },
+    { x: "45%", y: "68%", size: 12, rot: -34, path: "M1,9 L5,2 L11,2 L15,7 L12,13 L5,13 Z", facet: "M5,2 L11,2 L9,7 L1,9 Z" },
+    { x: "48%", y: "34%", size: 9, rot: 18, path: "M2,7 L5,1 L11,2 L13,7 L9,11 L3,10 Z", facet: "M5,1 L11,2 L7,6 L2,7 Z" },
+    { x: "55%", y: "16%", size: 15, rot: 14, path: "M3,12 L1,7 L5,2 L11,1 L16,5 L15,11 L10,15 Z", facet: "M5,2 L11,1 L10,7 L3,12 L1,7 Z" },
+    { x: "64%", y: "78%", size: 11, rot: -22, path: "M2,10 L1,5 L6,1 L12,3 L14,8 L9,13 Z", facet: "M6,1 L12,3 L8,7 L2,10 L1,5 Z" },
+    { x: "73%", y: "26%", size: 13, rot: 35, path: "M2,9 L4,3 L9,1 L15,4 L16,10 L11,14 L5,13 Z", facet: "M4,3 L9,1 L11,6 L2,9 Z" },
+    { x: "81%", y: "84%", size: 16, rot: -10, path: "M1,11 L3,4 L8,1 L14,2 L17,8 L13,14 L6,15 Z", facet: "M3,4 L8,1 L10,7 L1,11 Z" },
+    { x: "89%", y: "20%", size: 10, rot: 48, path: "M2,8 L4,2 L10,1 L14,6 L11,11 L5,11 Z", facet: "M4,2 L10,1 L8,6 L2,8 Z" },
+    { x: "95%", y: "68%", size: 12, rot: -34, path: "M1,9 L5,2 L11,2 L15,7 L12,13 L5,13 Z", facet: "M5,2 L11,2 L9,7 L1,9 Z" },
+    { x: "98%", y: "34%", size: 9, rot: 18, path: "M2,7 L5,1 L11,2 L13,7 L9,11 L3,10 Z", facet: "M5,1 L11,2 L7,6 L2,7 Z" },
+  ];
+
   return (
-    <motion.div
-      aria-hidden="true"
-      animate={{ x: ["0%", "-50%"] }}
-      transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-      className="pointer-events-none absolute inset-y-0 left-0 w-[200%] min-w-[1440px] z-0 bg-[var(--theme-neutral-950)]"
-      style={{
-        WebkitMaskImage: mask,
-        maskImage: mask,
-        WebkitMaskSize: "100% 100%",
-        maskSize: "100% 100%",
-      }}
-    />
+    <>
+      <motion.div
+        aria-hidden="true"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        className="pointer-events-none absolute inset-y-0 left-0 w-[200%] min-w-[1440px] z-0 bg-[var(--theme-neutral-950)]"
+        style={{
+          WebkitMaskImage: mask,
+          maskImage: mask,
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
+        }}
+      />
+      {withRocks && (
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+          className="pointer-events-none absolute inset-y-0 left-0 w-[200%] min-w-[1440px] z-[1]"
+        >
+          {rocks.map((r, idx) => (
+            <motion.svg
+              key={idx}
+              viewBox="0 0 18 16"
+              width={r.size * 1.4}
+              height={r.size * 1.4}
+              style={{ left: r.x, top: r.y, rotate: `${r.rot}deg` }}
+              animate={{ y: [0, idx % 2 === 0 ? -6 : 6, 0] }}
+              transition={{ duration: 4 + (idx % 3), repeat: Infinity, ease: "easeInOut" }}
+              className="absolute text-[var(--theme-fg)] opacity-15"
+            >
+              <path d={r.path} fill="currentColor" opacity="0.7" />
+              <path d={r.facet} fill="currentColor" />
+            </motion.svg>
+          ))}
+        </motion.div>
+      )}
+    </>
   );
 }
 
@@ -1777,7 +1820,7 @@ function HeroAndAboutSection() {
         id="about" 
         className="relative z-10 py-36 md:py-52 px-6 md:px-12 flex flex-col justify-center overflow-hidden"
       >
-        <AcidDissolveBg />
+        <AcidDissolveBg withRocks />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <motion.div 
           style={isDesktop ? { y: aboutContentY, opacity: aboutContentOpacity } : undefined}
@@ -1961,7 +2004,7 @@ export default function Home() {
 
       {/* Experience */}
       <ScrollReveal as="section" id="experience" className="py-24 md:py-36 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
-        <AcidDissolveBg />
+        <AcidDissolveBg withRocks />
         <div className="ambient-dissolve-glow" aria-hidden="true" />
         <div className="w-full max-w-6xl mx-auto relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">EXPERIENC<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span></h2>
@@ -2068,7 +2111,7 @@ export default function Home() {
 
       {/* Certifications */}
       <ScrollReveal as="section" id="certifications" className="py-32 md:py-48 px-6 md:px-12 relative overflow-hidden flex flex-col justify-center">
-        <AcidDissolveBg />
+        <AcidDissolveBg withRocks />
         <div className="w-full relative z-10">
           <h2 className="font-display text-4xl md:text-6xl tracking-tight mb-16 uppercase">CRED<span className="inline-block scale-x-150 origin-center mx-[0.12em]">E</span>NTIALS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-fr">
