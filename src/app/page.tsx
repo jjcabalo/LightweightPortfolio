@@ -855,6 +855,21 @@ function WorkSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Semantic SSR-readable project details for AI reviewers & crawlers */}
+      <section className="sr-only" aria-label="Featured Projects Full Details">
+        <h2>Featured Projects — Complete Details</h2>
+        {projects.map((p, idx) => (
+          <article key={idx}>
+            <h3>{p.title}</h3>
+            <p>Status: {p.deployed ? "Deployed" : "Designer Only"} | Category: {p.category} | Date: {p.date}</p>
+            <p>Role: {p.role} | Tech Stack: {p.tech}</p>
+            <p>{p.desc}</p>
+            {p.liveUrl && <a href={p.liveUrl}>Live Site: {p.liveUrl}</a>}
+            {p.figmaUrl && <a href={p.figmaUrl}>UI/UX Design: {p.figmaUrl}</a>}
+          </article>
+        ))}
+      </section>
     </>
   );
 }
@@ -1460,6 +1475,18 @@ function AwardsSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Semantic SSR-readable award details for AI reviewers & crawlers */}
+      <section className="sr-only" aria-label="Awards Full Details">
+        <h2>Awards — Complete Details</h2>
+        {awards.map((a, idx) => (
+          <article key={idx}>
+            <h3>{a.award} — {a.competition} ({a.year})</h3>
+            <p>Project: {a.project} | Prize: {a.prize} | Role: {a.role}</p>
+            <p>{a.desc}</p>
+          </article>
+        ))}
+      </section>
     </>
   );
 }

@@ -38,7 +38,7 @@ interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "mock-cut-01",
-    title: "Narrative Film Reel 01",
+    title: "MOCK",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -47,11 +47,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["DaVinci Resolve", "Cinema Camera"],
     client: "Sample Production House",
     resolution: "4K DCI (24fps)",
-    description: "Sample mock entry: High-contrast cinematic narrative sequence showcasing pacing, multi-cam grading, and atmospheric sound design."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: "mock-reel-02",
-    title: "Vertical Social Edit 02",
+    title: "MOCK",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -60,11 +60,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["Premiere Pro", "After Effects"],
     client: "Sample Creative Collective",
     resolution: "1080 x 1920 (9:16)",
-    description: "Sample mock entry: Fast-paced short-form motion rhythm featuring kinetic typography, match-cuts, and bass-synced motion graphics."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: "mock-still-03",
-    title: "Color Grading Still 03",
+    title: "MOCK",
     category: "Creative Code",
     type: "image",
     mediaUrl: "",
@@ -73,11 +73,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["Photoshop", "Lightroom"],
     client: "Studio Showcase",
     resolution: "4000 x 4000",
-    description: "Sample mock entry: Editorial still capture highlighting natural low-light film emulation and volumetric exposure curves."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: "mock-cut-04",
-    title: "Broadcast Documentary 04",
+    title: "MOCK",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -86,11 +86,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["Sony Cinema Line", "Audition"],
     client: "Broadcast Media Lab",
     resolution: "1080p Broadcast",
-    description: "Sample mock entry: Observational field documentary cut highlighting natural soundscapes, ambient B-roll, and narrative interviews."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: "mock-reel-05",
-    title: "Dynamic Fashion Reel 05",
+    title: "MOCK",
     category: "Motion & Video",
     type: "video",
     mediaUrl: "",
@@ -99,11 +99,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["After Effects", "Speed Ramping"],
     client: "Apparel Brand Concept",
     resolution: "1080 x 1920 (9:16)",
-    description: "Sample mock entry: Rhythmic vertical showcase with dynamic speed-ramping, graphic overlays, and editorial transitions."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: "mock-still-06",
-    title: "Archival Portrait Series 06",
+    title: "MOCK",
     category: "Visual Identity",
     type: "image",
     mediaUrl: "",
@@ -112,7 +112,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     tools: ["35mm Emulation", "Lightroom"],
     client: "Independent Archive",
     resolution: "2048 x 2048",
-    description: "Sample mock entry: Monochrome archival portraiture study focusing on contrast ratios and organic grain texture."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   }
 ];
 
