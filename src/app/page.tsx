@@ -764,36 +764,36 @@ function WorkSection() {
                         name: "Frontend Design",
                         author: "Anthropic",
                         role: "Aesthetic thesis, typography & layout identity",
-                        url: "https://github.com/anthropics/skills",
+                        url: "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
                         Icon: Layout
                       },
                       {
-                        name: "UI/UX Designer",
-                        author: "Antigravity Library",
-                        role: "WCAG accessibility, color palettes & type pairing",
-                        url: "https://antigravityskills.com",
+                        name: "UI/UX Pro Max",
+                        author: "NextLevelBuilder",
+                        role: "Design system engine, color palettes & UX guidelines",
+                        url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
                         Icon: Layers
                       },
                       {
-                        name: "Design Engineering",
-                        author: "Emil Kowalski",
-                        role: "Physics-based transitions & micro-interactions",
-                        url: "https://antigravityskills.com",
-                        Icon: Zap
+                        name: "Web Design Guidelines",
+                        author: "Vercel Labs",
+                        role: "100+ rules for accessibility, forms & UI polish",
+                        url: "https://github.com/vercel-labs/agent-skills",
+                        Icon: Eye
                       },
                       {
                         name: "Impeccable",
                         author: "Paul Bakaus",
-                        role: "Spacing, hierarchy & alignment audit",
-                        url: "https://antigravityskills.com",
+                        role: "Spacing, hierarchy & anti-pattern audit",
+                        url: "https://github.com/pbakaus/impeccable",
                         Icon: SlidersHorizontal
                       },
                       {
-                        name: "Taste Skill",
-                        author: "Community",
-                        role: "Editorial & minimalist visual direction",
-                        url: "https://antigravityskills.com",
-                        Icon: Eye
+                        name: "React Best Practices",
+                        author: "Vercel Labs",
+                        role: "Performance, rendering & component architecture",
+                        url: "https://github.com/vercel-labs/agent-skills",
+                        Icon: Zap
                       }
                     ].map(({ Icon, ...skill }) => (
                       <a
