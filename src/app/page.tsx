@@ -158,6 +158,7 @@ function WorkSection() {
       desc: "KokoMyut is an offline-first AI commuter assistant for the Taguig and Makati corridor. Its on-device AI understands Tagalog and English, providing route recommendations, fare and schedule details, and drop-off alerts without internet access. I led its branding and UI/UX design, applying Progressive Disclosure and Recognition Over Recall to simplify information and make route discovery easier.",
       highlights: ["Progressive Disclosure", "Recognition Over Recall"],
       deployed: false,
+      tag: "AI HACKATHON ENTRY",
       figmaUrl: "https://www.figma.com/design/o72FIFhP9JvfqAFDOtAAh0",
       mediaButtons: [
         {
@@ -190,6 +191,7 @@ function WorkSection() {
       desc: "MAKI (My Assistant for Knowledge and Information) is an AI-powered university assistant integrated into the University of Makati website, helping students quickly find information inside the website. I led shaping the visual identity, embedded interface design, UX, and responsive interface, contributing to its recognition as Best in UI/UX and 1st Runner-Up in the InfoTechnolympics 2026 Hackathon Category.",
       highlights: ["visual identity", "Best in UI/UX"],
       deployed: false,
+      tag: "AI HACKATHON ENTRY",
       deviceType: "tablet",
       deviceImage: "/projects/MAKI/MAKI-1.webp",
       deviceImages: [
@@ -380,7 +382,7 @@ function WorkSection() {
                             ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                             : "bg-white/10 text-[#ffffff] border border-[#ffffff] backdrop-blur-md"
                         }`}>
-                          {project.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
+                          {project.tag ?? (project.deployed ? "DEPLOYED" : "DESIGNER ONLY")}
                         </span>
                         <ArrowUpRight size={32} className="text-[#ffffff] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
@@ -508,7 +510,7 @@ function WorkSection() {
                           ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                           : "bg-white/10 text-white border border-white/20 backdrop-blur-md"
                       }`}>
-                        {selectedProject.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
+                        {selectedProject.tag ?? (selectedProject.deployed ? "DEPLOYED" : "DESIGNER ONLY")}
                       </span>
                     </div>
                     
@@ -880,7 +882,7 @@ function WorkSection() {
         {projects.map((p, idx) => (
           <article key={idx}>
             <h3>{p.title}</h3>
-            <p>Status: {p.deployed ? "Deployed" : "Designer Only"} | Category: {p.category} | Date: {p.date}</p>
+            <p>Status: {p.tag ?? (p.deployed ? "Deployed" : "Designer Only")} | Category: {p.category} | Date: {p.date}</p>
             <p>Role: {p.role} | Tech Stack: {p.tech}</p>
             <p>{p.desc}</p>
             {p.liveUrl && <a href={p.liveUrl}>Live Site: {p.liveUrl}</a>}
@@ -2187,7 +2189,7 @@ function MobileProjectCard({ project, i, onClick }: { project: any, i: number, o
             ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             : "bg-white/10 text-[#ffffff] border border-[#ffffff] backdrop-blur-md"
         }`}>
-          {project.deployed ? "DEPLOYED" : "DESIGNER ONLY"}
+          {project.tag ?? (project.deployed ? "DEPLOYED" : "DESIGNER ONLY")}
         </span>
         <ArrowUpRight size={28} className="text-[#ffffff]" />
       </div>
