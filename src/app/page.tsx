@@ -152,7 +152,7 @@ function WorkSection() {
       title: "KokoMyut",
       category: "Offline AI Mobile App",
       year: "2026",
-      date: "2026",
+      date: "OCT 2026",
       role: "Lead UI/UX Designer, Brand Designer",
       tech: "On-Device LLM, Figma",
       desc: "KokoMyut is an offline-first AI commuter assistant for the Taguig and Makati corridor. Its on-device AI understands Tagalog and English, providing route recommendations, fare and schedule details, and drop-off alerts without internet access. I led its branding and UI/UX design, applying Progressive Disclosure and Recognition Over Recall to simplify information and make route discovery easier.",
@@ -179,6 +179,24 @@ function WorkSection() {
         "/projects/KokoMyut/Ongoing Commute (1).webp"
       ],
       bgImage: "/projects/KokoMyut/Chat Route Carousel.webp"
+    },
+    {
+      title: "MAKI",
+      category: "AI University Assistant",
+      year: "2026",
+      date: "OCT 2026",
+      role: "UI/UX Designer, Brand Designer & Frontend Developer",
+      tech: "React, Vite, Tailwind CSS, TypeScript, Motion, Lucide React",
+      desc: "MAKI (My Assistant for Knowledge and Information) is an AI-powered university assistant integrated into the University of Makati website, helping students quickly find information inside the website. I led shaping the visual identity, embedded interface design, UX, and responsive interface, contributing to its recognition as Best in UI/UX and 1st Runner-Up in the InfoTechnolympics 2026 Hackathon Category.",
+      highlights: ["visual identity", "responsive interface"],
+      deployed: false,
+      deviceType: "tablet",
+      deviceImage: "/projects/MAKI/MAKI-1.webp",
+      deviceImages: [
+        "/projects/MAKI/MAKI-1.webp",
+        "/projects/MAKI/MAKI-2.webp"
+      ],
+      bgImage: "/projects/MAKI/MAKI-2.webp"
     },
     { 
       title: "eHANDA", 
@@ -1541,7 +1559,7 @@ function HeroAndAboutSection() {
 
   // Adaptive Hero Stat Cards
   const heroCards = [
-    { num: "9+", label: "Projects", href: "#work" },
+    { num: "10+", label: "Projects", href: "#work" },
     { num: "4", label: "Awards", href: "#awards" },
     { num: "100+", label: "Gallery", href: "/gallery" },
     { num: "4+", label: "Years Exp.", href: "#experience" }
