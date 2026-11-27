@@ -17,12 +17,12 @@ function renderHighlightedDesc(desc: string, highlights?: string[]) {
   return parts.map((part, idx) => {
     const isMatch = highlights.some((h) => h.toLowerCase() === part.toLowerCase());
     if (!isMatch) return part;
-    const tilt = matchIndex % 2 === 0 ? "-rotate-1" : "rotate-1";
+    const tilt = matchIndex % 2 === 0 ? "md:-rotate-1" : "md:rotate-1";
     matchIndex++;
     return (
       <span
         key={idx}
-        className={`inline-block bg-[var(--theme-fg)] text-[var(--theme-bg)] px-1.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold text-[0.85em] ${tilt} mx-0.5`}
+        className={`inline md:inline-block box-decoration-clone bg-[var(--theme-fg)] text-[var(--theme-bg)] px-1.5 py-0.5 rounded-none font-[family-name:var(--font-inter)] font-sans uppercase font-bold text-[0.85em] ${tilt} mx-0.5`}
       >
         {part}
       </span>
